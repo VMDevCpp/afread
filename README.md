@@ -1,2 +1,6 @@
 # afread
-Library for reading .afdesign, .afphoto and .afpub files (created with Affinity Designer, Affinity Photo, Affinity Publisher); and tool to convert them to JSON
+
+Tool to convert files created with Affinity Designer, Affinity Photo or Affinity Publisher to Json
+
+Copyright (c) 2020 [Vladimir Mamonov](mailto:vm.dev.cpp@gmail.com)
+Licensed under the MIT license.
