@@ -509,7 +509,6 @@ AF_STRUCT_INIT(MC2C)
 	AF_INIT_S(SOcr, 0x534F6372u, bool);
 	AF_INIT_S(Clos, 0x436C6F73u, bool);
 	AF_INIT_S(ClSt, 0x436C5374u, bool);
-	AF_INIT_S(Tole, 0x546F6C65u, double);
 	AF_INIT_L(Undo, 0x556E646Fu, Undo);
 	AF_INIT_E(OCrv);
 	AF_INIT_N(ORCv);
@@ -587,10 +586,15 @@ AF_STRUCT_INIT(MvNC)
 
 	AF_INIT_S(Type, 0x54797065u, AffinityReader::EnumT);
 	AF_INIT_S(CLiT, 0x434C6954u, AffinityReader::EnumT);
-	AF_INIT_C(Dest, 0x44657374u, ShpN);
+	AF_INIT_M(0x44657374u, {
+		AF_CASE_M(Dest, 0x47727570u, Grup);
+		AF_CASE_M(Dest, 0x52737472u, Rstr);
+		AF_CASE_M(Dest, 0x5368704Eu, ShpN);
+	});
 	AF_INIT_X(0x4F6C6450u, {
 		AF_CASE_X(OldP, 0x47727570u, Grup);
 		AF_CASE_X(OldP, 0x5368704Eu, ShpN);
+		AF_CASE_X(OldP, 0x53707264u, Sprd);
 	});
 	AF_INIT_V(OldC, 0x4F6C6443u, AffinityReader::SharedArray<AffinityReader::EnumT>);
 	AF_INIT_S(RACt, 0x52414374u, bool);
@@ -598,7 +602,9 @@ AF_STRUCT_INIT(MvNC)
 	AF_INIT_S(FrKA, 0x46724B41u, bool);
 	AF_INIT_X(0x44744C4Fu, {
 		AF_CASE_X(DtLO, 0x47727570u, Grup);
+		AF_CASE_X(DtLO, 0x52737472u, Rstr);
 		AF_CASE_X(DtLO, 0x5368704Eu, ShpN);
+		AF_CASE_X(DtLO, 0x53707264u, Sprd);
 	});
 	AF_INIT_V(DtLF, 0x44744C46u, AffinityReader::SharedArray<bool>);
 }
@@ -843,8 +849,6 @@ AF_STRUCT_INIT(PNoC)
 AF_STRUCT_INIT(PRNS)
 {
 	AF_INIT_BASE(BaseCmd);
-
-	AF_INIT_E(RedT);
 }
 
 AF_STRUCT_INIT(PSRe)
@@ -983,6 +987,8 @@ AF_STRUCT_INIT(Pers)
 	AF_INIT_S(CCFm, 0x4343466Du, bool);
 	AF_INIT_S(PrCC, 0x50724343u, bool);
 	AF_INIT_S(PrFC, 0x50724643u, bool);
+	AF_INIT_C(IAPr, 0x49415072u, ICCP);
+	AF_INIT_C(CMYP, 0x434D5950u, ICCP);
 	AF_INIT_C(LABP, 0x4C414250u, ICCP);
 	AF_INIT_C(RGBP, 0x52474250u, ICCP);
 	AF_INIT_C(RGUP, 0x52475550u, ICCP);
@@ -1564,6 +1570,7 @@ AF_STRUCT_INIT(ScIN)
 	AF_INIT_BASE(BaseScObjs);
 
 	AF_INIT_M(0x69706E64u, {
+		AF_CASE_M(ipnd, 0x47727570u, Grup);
 		AF_CASE_M(ipnd, 0x50437276u, PCrv);
 		AF_CASE_M(ipnd, 0x52737472u, Rstr);
 		AF_CASE_M(ipnd, 0x53636F70u, Scop);
@@ -1607,6 +1614,7 @@ AF_STRUCT_INIT(ScRN)
 	AF_INIT_M(0x6F6C6E73u, {
 		AF_CASE_M(olns, 0x47727570u, Grup);
 		AF_CASE_M(olns, 0x50437276u, PCrv);
+		AF_CASE_M(olns, 0x52737472u, Rstr);
 		AF_CASE_M(olns, 0x5368704Eu, ShpN);
 	});
 	AF_INIT_S(olct, 0x6F6C6374u, AffinityReader::EnumT);

@@ -216,6 +216,8 @@ using ColorGRAY = ColorT<float, 2>;
 
 struct EnumT
 {
+	[[nodiscard]] uint64_t Id() const { return (static_cast<uint64_t>(version) << 32u) | (static_cast<uint64_t>(id)); }
+
 	int id;
 	int version;
 };

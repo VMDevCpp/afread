@@ -45,6 +45,7 @@ struct FTXR;
 struct FilS;
 struct Font;
 struct ForC;
+struct Futr;
 struct GAtt;
 struct GStr;
 struct GlAS;
@@ -705,6 +706,7 @@ struct BaseCmd
 		EnSt,
 		ExIn,
 		FAFH,
+		FFCm,
 		FmTC,
 		GrMA,
 		GrNC,
@@ -846,7 +848,7 @@ struct BaseCmd
 	 * RcRA*, Rstr*, SCRA*, SHRA*, SPRA*, ScPr*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
 	vector<BaseLayer*> mapo;
 	bool               UsTS;
-	/* Grup*, ObjS*, ShpN* */
+	/* Grup*, ObjS*, Scop*, ShpN* */
 	vector<BaseLayer*> OldN;
 	vector<GlAS*>      OlGA;
 	vector<PaAS*>      OlPA;
@@ -875,7 +877,7 @@ struct BaseCmd
 	bool             Prog;
 	bool             GnHT;
 	int32_t          DIdx;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, ShpN* */
 	vector<BaseLayer*>       OlPS;
 	vector<void*>            NewB;
 	vector<array<double, 6>> OldT;
@@ -888,6 +890,8 @@ struct BaseCmd
 	vector<void*>            Fak2;
 	bool                     VsCh;
 	bool                     VsRs;
+	double                   Tole;
+	vector<DyBm*>            RedT;
 	PAtt*                    RPA0;
 	PAtt*                    RPA1;
 	GAtt*                    RGA0;
@@ -1631,11 +1635,11 @@ struct DPro: public BaseCmd
 struct DcHI
 {
 	/* AAAC*, AAMC*, AARC*, ACCm*, AESC*, AOSC*, ARCm*, CRGl*, ChMA*, CmCm*, CrSl*, DCCm*, DNCm*, DPro*, EnBE*, EnCO*, EnGA*, EnGO*, EnIS*,
-	 * EnIg*, EnOg*, EnPB*, EnSh*, EnSt*, ExIn*, FAFH*, FmTC*, GrMA*, GrNC*, InGl*, MC2C*, MvNC*, SBMC*, SDeC*, SLsC*, SSNS*, SSaC*, SViC*,
-	 * SetE*, TrCm*, TrSl*, XMgC*, XStC* */
+	 * EnIg*, EnOg*, EnPB*, EnSh*, EnSt*, ExIn*, FAFH*, FFCm*, FmTC*, GrMA*, GrNC*, InGl*, MC2C*, MvNC*, SBMC*, SDeC*, SLsC*, SSNS*, SSaC*,
+	 * SViC*, SetE*, TrCm*, TrSl*, XMgC*, XStC* */
 	BaseCmd*      Cmnd;
 	uint64_t      Tim2;
-	vector<void*> Futu;
+	vector<Futr*> Futu;
 	BinaryData    Thum;
 };
 
@@ -1685,25 +1689,25 @@ struct DeSy
 	vector<string> olgd;
 	vector<ShpN*>  Fir3;
 	vector<PSRe*>  Sec3;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fir4;
 	vector<PSRe*>      Sec4;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fir6;
 	vector<PSRe*>      Sec6;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fir7;
 	vector<PSRe*>      Sec7;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fir1;
 	vector<PSRe*>      Sec1;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr10;
 	vector<PSRe*>      Sc10;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr12;
 	vector<PSRe*>      Sc12;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr11;
 	vector<PSRe*>      Sc11;
 	vector<PCrv*>      Fir8;
@@ -1712,7 +1716,7 @@ struct DeSy
 	vector<void*>      Sec9;
 	vector<void*>      Fir5;
 	vector<void*>      Sec5;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr14;
 	vector<PSRe*>      Sc14;
 	vector<void*>      Fr16;
@@ -1724,34 +1728,34 @@ struct DeSy
 	/* PCrv*, ShpN* */
 	vector<BaseLayer*> Fr18;
 	vector<PSRe*>      Sc18;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr19;
 	vector<PSRe*>      Sc19;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr13;
 	vector<PSRe*>      Sc13;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr21;
 	vector<PSRe*>      Sc21;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr22;
 	vector<PSRe*>      Sc22;
 	/* PCrv*, ShpN* */
 	vector<BaseLayer*> Fr23;
 	vector<PSRe*>      Sc23;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr24;
 	vector<PSRe*>      Sc24;
 	/* PCrv*, ShpN* */
 	vector<BaseLayer*> Fr26;
 	vector<PSRe*>      Sc26;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr15;
 	vector<PSRe*>      Sc15;
 	vector<void*>      lnkd;
 	vector<void*>      ulkd;
 	struct Sele*       Sele;
-	/* ShpN*, Sprd* */
+	/* Scop*, ShpN*, Sprd* */
 	BaseLayer*    Layr;
 	EnumT         Dire;
 	bool          Prev;
@@ -2360,6 +2364,19 @@ struct FExO: public BaseExport
 	uint8_t Qlty;
 };
 
+struct FFCm: public BaseCmd
+{
+	double Poin[2];
+	/* CMYK*, GRAY*, HSLA*, LABA*, RGBA* */
+	BaseColor* Colo;
+	bool       Cont;
+	EnumT      SamS;
+	EnumT      BleM;
+	bool       AbrP;
+	float      PMin;
+	float      PMax;
+};
+
 struct FSDe: public BaseDels
 {
 	Font*   Font;
@@ -2468,6 +2485,11 @@ struct ForC: public BaseCmd
 	TStS*              NTSt;
 };
 
+struct Futr
+{
+	vector<DcHI*> Itms;
+};
+
 struct GADD: public BaseDels
 {
 	double Valu;
@@ -2547,10 +2569,11 @@ struct GrMP: public BaseAdjustment
 
 struct GrNC: public BaseCmd
 {
-	Grup*                    Grou;
-	double                   InvR[4];
-	vector<Sprd*>            OldP;
-	vector<Grup*>            OldS;
+	Grup*         Grou;
+	double        InvR[4];
+	vector<Sprd*> OldP;
+	/* Grup*, Rstr* */
+	vector<BaseLayer*>       OldS;
 	struct Sele*             OlSl;
 	vector<EnumT>            OlCT;
 	vector<array<double, 6>> OlTr;
@@ -2847,7 +2870,6 @@ struct MC2C: public BaseCmd
 	bool          SOcr;
 	bool          Clos;
 	bool          ClSt;
-	double        Tole;
 	vector<Undo*> Undo;
 	vector<void*> OCrv;
 	void*         ORCv;
@@ -2911,14 +2933,15 @@ struct MvNC: public BaseCmd
 {
 	EnumT Type;
 	EnumT CLiT;
-	ShpN* Dest;
-	/* Grup*, ShpN* */
+	/* Grup*, Rstr*, ShpN* */
+	BaseLayer* Dest;
+	/* Grup*, ShpN*, Sprd* */
 	vector<BaseLayer*> OldP;
 	vector<EnumT>      OldC;
 	bool               RACt;
 	vector<bool>       OlTS;
 	bool               FrKA;
-	/* Grup*, ShpN* */
+	/* Grup*, Rstr*, ShpN*, Sprd* */
 	vector<BaseLayer*> DtLO;
 	vector<bool>       DtLF;
 };
@@ -3109,7 +3132,6 @@ struct PNoC: public BaseCmd
 
 struct PRNS: public BaseCmd
 {
-	vector<void*> RedT;
 };
 
 struct PSRe
@@ -3229,6 +3251,8 @@ struct Pers
 	bool          CCFm;
 	bool          PrCC;
 	bool          PrFC;
+	ICCP*         IAPr;
+	ICCP*         CMYP;
 	ICCP*         LABP;
 	ICCP*         RGBP;
 	ICCP*         RGUP;
@@ -3678,7 +3702,7 @@ struct ScAN: public BaseScObjs
 
 struct ScIN: public BaseScObjs
 {
-	/* PCrv*, Rstr*, Scop*, ShpN*, TxtA*, WBRA* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, WBRA* */
 	BaseLayer* ipnd;
 };
 
@@ -3703,7 +3727,7 @@ struct ScRN: public BaseScObjs
 	EnumT shdt;
 	/* Grup*, ShpN*, Sprd* */
 	BaseLayer* olpr;
-	/* Grup*, PCrv*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, ShpN* */
 	BaseLayer* olns;
 	EnumT      olct;
 	DeSy*      dtcm;
