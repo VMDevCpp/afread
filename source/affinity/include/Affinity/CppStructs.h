@@ -722,6 +722,7 @@ struct BaseCmd
 		SetE,
 		TrCm,
 		TrSl,
+		UANC,
 		XMgC,
 		XStC,
 		ARFC,
@@ -781,23 +782,26 @@ struct BaseCmd
 	struct Sele*  OSCo;
 	vector<void*> Fir3;
 	vector<void*> Sec3;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fir4;
 	vector<PSRe*>      Sec4;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fir6;
 	vector<PSRe*>      Sec6;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fir7;
 	vector<PSRe*>      Sec7;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fir1;
 	vector<PSRe*>      Sec1;
-	vector<Grup*>      Fr10;
+	/* Grup*, Scop* */
+	vector<BaseLayer*> Fr10;
 	vector<PSRe*>      Sc10;
-	vector<Grup*>      Fr12;
+	/* Grup*, Scop* */
+	vector<BaseLayer*> Fr12;
 	vector<PSRe*>      Sc12;
-	vector<Grup*>      Fr11;
+	/* Grup*, Scop* */
+	vector<BaseLayer*> Fr11;
 	vector<PSRe*>      Sc11;
 	vector<void*>      Fir8;
 	vector<void*>      Sec8;
@@ -805,7 +809,7 @@ struct BaseCmd
 	vector<void*>      Sec9;
 	vector<void*>      Fir5;
 	vector<void*>      Sec5;
-	/* Grup*, ShpN*, Sprd* */
+	/* Grup*, Scop*, ShpN*, Sprd* */
 	vector<BaseLayer*> Fr14;
 	vector<PSRe*>      Sc14;
 	vector<void*>      Fr16;
@@ -816,26 +820,26 @@ struct BaseCmd
 	vector<void*>      Sc17;
 	vector<void*>      Fr18;
 	vector<void*>      Sc18;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fr19;
 	vector<PSRe*>      Sc19;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fr13;
 	vector<PSRe*>      Sc13;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fr21;
 	vector<PSRe*>      Sc21;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fr22;
 	vector<PSRe*>      Sc22;
 	vector<void*>      Fr23;
 	vector<void*>      Sc23;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fr24;
 	vector<PSRe*>      Sc24;
 	vector<Sprd*>      Fr26;
 	vector<PSRe*>      Sc26;
-	/* Grup*, Sprd* */
+	/* Grup*, Scop*, Sprd* */
 	vector<BaseLayer*> Fr15;
 	vector<PSRe*>      Sc15;
 	vector<void*>      lnkd;
@@ -896,12 +900,14 @@ struct BaseCmd
 	PAtt*                    RPA1;
 	GAtt*                    RGA0;
 	GAtt*                    RGA1;
+	double                   InvR[4];
 	bool                     RasS;
 	bool                     CMSl;
 	int32_t                  DefM;
 	bool                     uTSl;
 	bool                     eTSl;
 	bool                     Vali;
+	vector<struct UndR*>     UndR;
 	bool                     Defs;
 	void*                    NDef;
 	void*                    ODef;
@@ -1636,7 +1642,7 @@ struct DcHI
 {
 	/* AAAC*, AAMC*, AARC*, ACCm*, AESC*, AOSC*, ARCm*, CRGl*, ChMA*, CmCm*, CrSl*, DCCm*, DNCm*, DPro*, EnBE*, EnCO*, EnGA*, EnGO*, EnIS*,
 	 * EnIg*, EnOg*, EnPB*, EnSh*, EnSt*, ExIn*, FAFH*, FFCm*, FmTC*, GrMA*, GrNC*, InGl*, MC2C*, MvNC*, SBMC*, SDeC*, SLsC*, SSNS*, SSaC*,
-	 * SViC*, SetE*, TrCm*, TrSl*, XMgC*, XStC* */
+	 * SViC*, SetE*, TrCm*, TrSl*, UANC*, XMgC*, XStC* */
 	BaseCmd*      Cmnd;
 	uint64_t      Tim2;
 	vector<Futr*> Futu;
@@ -1860,75 +1866,78 @@ struct Dupl
 	vector<void*> UndR;
 	bool          Link;
 	SpRV*         IRec;
-	vector<PCrv*> Undo;
-	vector<PCrv*> UndL;
-	vector<void*> Redo;
-	vector<void*> RedL;
-	struct Sele*  NewS;
-	struct Sele*  OldS;
-	double        Trns[6];
-	bool          ObRS;
-	bool          ASnC;
-	bool          MdSp;
-	bool          MdTc;
-	vector<void*> Fir3;
-	vector<void*> Sec3;
-	vector<void*> Fir4;
-	vector<void*> Sec4;
-	vector<void*> Fir6;
-	vector<void*> Sec6;
-	vector<void*> Fir7;
-	vector<void*> Sec7;
-	vector<void*> Fir1;
-	vector<void*> Sec1;
-	vector<void*> Fr10;
-	vector<void*> Sc10;
-	vector<void*> Fr12;
-	vector<void*> Sc12;
-	vector<void*> Fr11;
-	vector<void*> Sc11;
-	vector<void*> Fir8;
-	vector<void*> Sec8;
-	vector<void*> Fir9;
-	vector<void*> Sec9;
-	vector<void*> Fir5;
-	vector<void*> Sec5;
-	vector<void*> Fr14;
-	vector<void*> Sc14;
-	vector<void*> Fr16;
-	vector<void*> Sc16;
-	vector<void*> Fr25;
-	vector<void*> Sc25;
-	vector<void*> Fr17;
-	vector<void*> Sc17;
-	vector<void*> Fr18;
-	vector<void*> Sc18;
-	vector<void*> Fr19;
-	vector<void*> Sc19;
-	vector<void*> Fr13;
-	vector<void*> Sc13;
-	vector<void*> Fr21;
-	vector<void*> Sc21;
-	vector<void*> Fr22;
-	vector<void*> Sc22;
-	vector<void*> Fr23;
-	vector<void*> Sc23;
-	vector<void*> Fr24;
-	vector<void*> Sc24;
-	vector<void*> Fr26;
-	vector<void*> Sc26;
-	vector<void*> Fr15;
-	vector<void*> Sc15;
-	vector<void*> lnkd;
-	vector<void*> ulkd;
-	struct Sele*  Sele;
-	ShpN*         Layr;
-	EnumT         Dire;
-	bool          Prev;
-	bool          ArtC;
-	bool          AAtC;
-	bool          CArC;
-	/* PCrv*, ScPr* */
+	/* PCrv*, ShpN* */
+	vector<BaseLayer*> Undo;
+	/* PCrv*, ShpN* */
+	vector<BaseLayer*> UndL;
+	vector<void*>      Redo;
+	vector<void*>      RedL;
+	struct Sele*       NewS;
+	struct Sele*       OldS;
+	double             Trns[6];
+	bool               ObRS;
+	bool               ASnC;
+	bool               MdSp;
+	bool               MdTc;
+	vector<void*>      Fir3;
+	vector<void*>      Sec3;
+	vector<void*>      Fir4;
+	vector<void*>      Sec4;
+	vector<void*>      Fir6;
+	vector<void*>      Sec6;
+	vector<void*>      Fir7;
+	vector<void*>      Sec7;
+	vector<void*>      Fir1;
+	vector<void*>      Sec1;
+	vector<void*>      Fr10;
+	vector<void*>      Sc10;
+	vector<void*>      Fr12;
+	vector<void*>      Sc12;
+	vector<void*>      Fr11;
+	vector<void*>      Sc11;
+	vector<void*>      Fir8;
+	vector<void*>      Sec8;
+	vector<void*>      Fir9;
+	vector<void*>      Sec9;
+	vector<void*>      Fir5;
+	vector<void*>      Sec5;
+	vector<void*>      Fr14;
+	vector<void*>      Sc14;
+	vector<void*>      Fr16;
+	vector<void*>      Sc16;
+	vector<void*>      Fr25;
+	vector<void*>      Sc25;
+	vector<void*>      Fr17;
+	vector<void*>      Sc17;
+	vector<void*>      Fr18;
+	vector<void*>      Sc18;
+	vector<void*>      Fr19;
+	vector<void*>      Sc19;
+	vector<void*>      Fr13;
+	vector<void*>      Sc13;
+	vector<void*>      Fr21;
+	vector<void*>      Sc21;
+	vector<void*>      Fr22;
+	vector<void*>      Sc22;
+	vector<void*>      Fr23;
+	vector<void*>      Sc23;
+	vector<void*>      Fr24;
+	vector<void*>      Sc24;
+	vector<void*>      Fr26;
+	vector<void*>      Sc26;
+	vector<void*>      Fr15;
+	vector<void*>      Sc15;
+	vector<void*>      lnkd;
+	vector<ShpN*>      ulkd;
+	struct Sele*       Sele;
+	/* Scop*, ShpN* */
+	BaseLayer* Layr;
+	EnumT      Dire;
+	bool       Prev;
+	bool       ArtC;
+	bool       AAtC;
+	bool       CArC;
+	/* PCrv*, ScPr*, ShpN* */
 	vector<BaseLayer*> mapo;
 };
 
@@ -2569,9 +2578,9 @@ struct GrMP: public BaseAdjustment
 
 struct GrNC: public BaseCmd
 {
-	Grup*         Grou;
-	double        InvR[4];
-	vector<Sprd*> OldP;
+	Grup* Grou;
+	/* Scop*, Sprd* */
+	vector<BaseLayer*> OldP;
 	/* Grup*, Rstr* */
 	vector<BaseLayer*>       OldS;
 	struct Sele*             OlSl;
@@ -2933,15 +2942,15 @@ struct MvNC: public BaseCmd
 {
 	EnumT Type;
 	EnumT CLiT;
-	/* Grup*, Rstr*, ShpN* */
+	/* Grup*, Rstr*, Scop*, ShpN* */
 	BaseLayer* Dest;
-	/* Grup*, ShpN*, Sprd* */
+	/* Grup*, Scop*, ShpN*, Sprd* */
 	vector<BaseLayer*> OldP;
 	vector<EnumT>      OldC;
 	bool               RACt;
 	vector<bool>       OlTS;
 	bool               FrKA;
-	/* Grup*, Rstr*, ShpN*, Sprd* */
+	/* Grup*, Rstr*, Scop*, ShpN*, Sprd* */
 	vector<BaseLayer*> DtLO;
 	vector<bool>       DtLF;
 };
@@ -3725,9 +3734,9 @@ struct ScPr: public BaseLayer
 struct ScRN: public BaseScObjs
 {
 	EnumT shdt;
-	/* Grup*, ShpN*, Sprd* */
+	/* Grup*, Scop*, ShpN*, Sprd* */
 	BaseLayer* olpr;
-	/* Grup*, PCrv*, Rstr*, ShpN* */
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	BaseLayer* olns;
 	EnumT      olct;
 	DeSy*      dtcm;
@@ -4226,7 +4235,6 @@ struct TonP: public BaseProp
 
 struct TrCm: public BaseCmd
 {
-	vector<void*>            UndR;
 	bool                     TrRS;
 	bool                     FTxS;
 	double                   Xfrm[6];
@@ -4291,6 +4299,11 @@ struct TxtT: public BaseLayer
 {
 };
 
+struct UANC: public BaseCmd
+{
+	struct Sele* OldS;
+};
+
 struct UVCn
 {
 	double  UPPI;
@@ -4306,8 +4319,15 @@ struct UnSR
 
 struct UndR
 {
-	uint32_t Fetr;
-	int32_t  Valu;
+	uint32_t      Fetr;
+	int32_t       Valu;
+	ShpN*         Node;
+	double        Xfrm[6];
+	double        FTxS[6];
+	Grup*         Grou;
+	Scop*         Pare;
+	void*         NexS;
+	vector<UndR*> Chil;
 };
 
 struct Undo

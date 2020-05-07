@@ -589,10 +589,12 @@ AF_STRUCT_INIT(MvNC)
 	AF_INIT_M(0x44657374u, {
 		AF_CASE_M(Dest, 0x47727570u, Grup);
 		AF_CASE_M(Dest, 0x52737472u, Rstr);
+		AF_CASE_M(Dest, 0x53636F70u, Scop);
 		AF_CASE_M(Dest, 0x5368704Eu, ShpN);
 	});
 	AF_INIT_X(0x4F6C6450u, {
 		AF_CASE_X(OldP, 0x47727570u, Grup);
+		AF_CASE_X(OldP, 0x53636F70u, Scop);
 		AF_CASE_X(OldP, 0x5368704Eu, ShpN);
 		AF_CASE_X(OldP, 0x53707264u, Sprd);
 	});
@@ -603,6 +605,7 @@ AF_STRUCT_INIT(MvNC)
 	AF_INIT_X(0x44744C4Fu, {
 		AF_CASE_X(DtLO, 0x47727570u, Grup);
 		AF_CASE_X(DtLO, 0x52737472u, Rstr);
+		AF_CASE_X(DtLO, 0x53636F70u, Scop);
 		AF_CASE_X(DtLO, 0x5368704Eu, ShpN);
 		AF_CASE_X(DtLO, 0x53707264u, Sprd);
 	});
@@ -1608,6 +1611,7 @@ AF_STRUCT_INIT(ScRN)
 	AF_INIT_S(shdt, 0x73686474u, AffinityReader::EnumT);
 	AF_INIT_M(0x6F6C7072u, {
 		AF_CASE_M(olpr, 0x47727570u, Grup);
+		AF_CASE_M(olpr, 0x53636F70u, Scop);
 		AF_CASE_M(olpr, 0x5368704Eu, ShpN);
 		AF_CASE_M(olpr, 0x53707264u, Sprd);
 	});
@@ -1615,6 +1619,7 @@ AF_STRUCT_INIT(ScRN)
 		AF_CASE_M(olns, 0x47727570u, Grup);
 		AF_CASE_M(olns, 0x50437276u, PCrv);
 		AF_CASE_M(olns, 0x52737472u, Rstr);
+		AF_CASE_M(olns, 0x53636F70u, Scop);
 		AF_CASE_M(olns, 0x5368704Eu, ShpN);
 	});
 	AF_INIT_S(olct, 0x6F6C6374u, AffinityReader::EnumT);
@@ -2195,7 +2200,6 @@ AF_STRUCT_INIT(TrCm)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_E(UndR);
 	AF_INIT_S(TrRS, 0x54725253u, bool);
 	AF_INIT_S(FTxS, 0x46547853u, bool);
 	AF_INIT_A(Xfrm, 0x5866726Du, AffinityReader::vec_d_t<6>, 6);
@@ -2269,6 +2273,13 @@ AF_STRUCT_INIT(TxtT)
 	AF_INIT_BASE(BaseLayer);
 }
 
+AF_STRUCT_INIT(UANC)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_C(OldS, 0x4F6C6453u, Sele);
+}
+
 AF_STRUCT_INIT(UVCn)
 {
 	AF_INIT_S(UPPI, 0x55505049u, double);
@@ -2286,6 +2297,13 @@ AF_STRUCT_INIT(UndR)
 {
 	AF_INIT_S(Fetr, 0x46657472u, uint32_t);
 	AF_INIT_S(Valu, 0x56616C75u, int32_t);
+	AF_INIT_C(Node, 0x4E6F6465u, ShpN);
+	AF_INIT_A(Xfrm, 0x5866726Du, AffinityReader::vec_d_t<6>, 6);
+	AF_INIT_A(FTxS, 0x46547853u, AffinityReader::vec_d_t<6>, 6);
+	AF_INIT_C(Grou, 0x47726F75u, Grup);
+	AF_INIT_C(Pare, 0x50617265u, Scop);
+	AF_INIT_N(NexS);
+	AF_INIT_L(Chil, 0x4368696Cu, UndR);
 }
 
 AF_STRUCT_INIT(Undo)

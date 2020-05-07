@@ -52,7 +52,11 @@
 		const auto& vs = f->value.GetValue<AffinityReader::SharedArray<AffinityReader::SharedPtr<Class>>>();                               \
 		for (const auto& v: vs)                                                                                                            \
 		{                                                                                                                                  \
-			s->ss.push_back(AF_NEW_INSTANCE(tt));                                                                                          \
+			auto* inst = AF_NEW_INSTANCE(tt);                                                                                              \
+			if (inst != nullptr)                                                                                                           \
+			{                                                                                                                              \
+				s->ss.push_back(inst);                                                                                                     \
+			}                                                                                                                              \
 		}                                                                                                                                  \
 	}
 #define AF_INIT_M(uu, sw)                                                                                                                  \
@@ -65,9 +69,12 @@
 #define AF_CASE_M(ss, uu, tt)                                                                                                              \
 	case uu:                                                                                                                               \
 	{                                                                                                                                      \
-		auto* inst      = AF_NEW_INSTANCE(tt);                                                                                             \
-		inst->base_type = tt::Type::tt;                                                                                                    \
-		s->ss           = inst;                                                                                                            \
+		auto* inst = AF_NEW_INSTANCE(tt);                                                                                                  \
+		if (inst != nullptr)                                                                                                               \
+		{                                                                                                                                  \
+			inst->base_type = tt::Type::tt;                                                                                                \
+		}                                                                                                                                  \
+		s->ss = inst;                                                                                                                      \
 	}                                                                                                                                      \
 	break
 #define AF_INIT_X(uu, sw)                                                                                                                  \
@@ -84,9 +91,12 @@
 #define AF_CASE_X(ss, uu, tt)                                                                                                              \
 	case uu:                                                                                                                               \
 	{                                                                                                                                      \
-		auto* inst      = AF_NEW_INSTANCE(tt);                                                                                             \
-		inst->base_type = tt::Type::tt;                                                                                                    \
-		s->ss.push_back(inst);                                                                                                             \
+		auto* inst = AF_NEW_INSTANCE(tt);                                                                                                  \
+		if (inst != nullptr)                                                                                                               \
+		{                                                                                                                                  \
+			inst->base_type = tt::Type::tt;                                                                                                \
+			s->ss.push_back(inst);                                                                                                         \
+		}                                                                                                                                  \
 	}                                                                                                                                      \
 	break
 
