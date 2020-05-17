@@ -180,6 +180,7 @@ struct BaseLayer
 		Comp,
 		CrRA,
 		EmbN,
+		FRst,
 		FlRN,
 		Grup,
 		HsRA,
@@ -215,6 +216,7 @@ struct BaseLayer
 		ExRA,
 		RcRA,
 		SNEN,
+		TxtS,
 		SlcP,
 		Slic,
 		SNRR,
@@ -287,10 +289,10 @@ struct BaseLayer
 	BaseLayer* FiEM;
 	ILSN*      SLnk;
 	ILGI*      GLnk;
-	/* BCRA*, BWRA*, CBRA*, CMRA*, CPTx*, CnsN*, Comp*, CrRA*, EmbN*, ExRA*, FlRN*, Grup*, HsRA*, ImgN*, LeRA*, MPIN*, MRst*, PCrv*, PfRA*,
-	 * RcRA*, Rstr*, SCRA*, SHRA*, SNEN*, SNRR*, Scop*, ShRN*, ShpN*, StkN*, TxtA*, TxtF*, TxtT*, VbRA*, WBRA* */
+	/* BCRA*, BWRA*, CBRA*, CMRA*, CPTx*, CnsN*, Comp*, CrRA*, EmbN*, ExRA*, FRst*, FlRN*, Grup*, HsRA*, ImgN*, LeRA*, MPIN*, MRst*, PCrv*,
+	 * PfRA*, RcRA*, Rstr*, SCRA*, SHRA*, SNEN*, SNRR*, Scop*, ShRN*, ShpN*, StkN*, TxtA*, TxtF*, TxtS*, TxtT*, VbRA*, WBRA* */
 	vector<BaseLayer*> Chld;
-	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
+	/* CnsN*, Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
 	BaseLayer* TWMa;
 	/* FDsc*, FilS* */
 	BaseFill* BFil;
@@ -331,8 +333,9 @@ struct BaseLayer
 	string     GooI;
 	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
 	BaseLayer* HKMs;
-	FilS*      PFil;
-	bool       HsFC;
+	/* FDsc*, FilS* */
+	BaseFill* PFil;
+	bool      HsFC;
 	/* PCrv*, ShpN* */
 	BaseLayer* PFMs;
 	ILDO*      DLnk;
@@ -362,7 +365,9 @@ struct BaseLayer
 	bool           USnG;
 	SnpG*          SGrd;
 	vector<double> GdsH;
-	Stry*          StSt;
+	/* TxtA*, TxtF* */
+	BaseLayer* StMa;
+	Stry*      StSt;
 	/* TxtA*, TxtF* */
 	BaseLayer* TxFM;
 	/* ArFr*, CoFr*, PaFr*, TbFr* */
@@ -852,7 +857,7 @@ struct BaseCmd
 	 * RcRA*, Rstr*, SCRA*, SHRA*, SPRA*, ScPr*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
 	vector<BaseLayer*> mapo;
 	bool               UsTS;
-	/* Grup*, ObjS*, Scop*, ShpN* */
+	/* Grup*, ObjS*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> OldN;
 	vector<GlAS*>      OlGA;
 	vector<PaAS*>      OlPA;
@@ -2078,6 +2083,14 @@ struct DyBm: public BaseBitm
 	vector<uint8_t> MT3_13;
 	vector<Blck*>   MI4_13;
 	vector<uint8_t> MT4_13;
+	vector<void*>   MI1_14;
+	vector<uint8_t> MT1_14;
+	vector<void*>   MI2_14;
+	vector<uint8_t> MT2_14;
+	vector<void*>   MI3_14;
+	vector<uint8_t> MT3_14;
+	vector<void*>   MI4_14;
+	vector<uint8_t> MT4_14;
 	vector<Blck*>   MI2_7;
 	vector<uint8_t> MT2_7;
 	vector<Blck*>   MI3_7;
@@ -2386,6 +2399,10 @@ struct FFCm: public BaseCmd
 	float      PMax;
 };
 
+struct FRst: public BaseLayer
+{
+};
+
 struct FSDe: public BaseDels
 {
 	Font*   Font;
@@ -2511,7 +2528,7 @@ struct GAID: public BaseDels
 
 struct GAOD: public BaseDels
 {
-	/* FDsc*, HlkA*, LDsc*, OpAA* */
+	/* FDsc*, HlkA*, LDsc*, OpAA*, OtAt* */
 	BaseFill* Valu;
 };
 
@@ -2663,19 +2680,19 @@ struct ILDO
 
 struct ILGI
 {
-	/* Comp*, Grup*, MPIN*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, Sprd*, TxtA*, TxtF* */
+	/* CnsN*, Comp*, Grup*, MPIN*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, Sprd*, TxtA*, TxtF* */
 	vector<BaseLayer*> ILOb;
 };
 
 struct ILSN
 {
-	/* Comp*, Grup*, MPIN*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, Sprd*, TxtA*, TxtF* */
+	/* CnsN*, Comp*, Grup*, MPIN*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, Sprd*, TxtA*, TxtF* */
 	vector<BaseLayer*> ILOb;
 };
 
 struct ILTI
 {
-	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
+	/* CnsN*, Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
 	vector<BaseLayer*> ILOb;
 };
 
@@ -4290,9 +4307,12 @@ struct TxtA: public BaseLayer
 
 struct TxtF: public BaseLayer
 {
-	TxtF*         StMa;
 	vector<PCrv*> WSCh;
 	bool          bflp;
+};
+
+struct TxtS: public BaseLayer
+{
 };
 
 struct TxtT: public BaseLayer

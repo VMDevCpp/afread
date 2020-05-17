@@ -81,6 +81,7 @@ AF_DEFINE(ExpP);
 AF_DEFINE(FAFH);
 AF_DEFINE(FDsc);
 AF_DEFINE(FFCm);
+AF_DEFINE(FRst);
 AF_DEFINE(FSDe);
 AF_DEFINE(FTXR);
 AF_DEFINE(FilG);
@@ -254,6 +255,7 @@ AF_DEFINE(TxFU);
 AF_DEFINE(TxFl);
 AF_DEFINE(TxtA);
 AF_DEFINE(TxtF);
+AF_DEFINE(TxtS);
 AF_DEFINE(TxtT);
 AF_DEFINE(UANC);
 AF_DEFINE(UnSR);
@@ -454,6 +456,7 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_X(Chld, 0x43725241u, CrRA);
 		AF_CASE_X(Chld, 0x456D624Eu, EmbN);
 		AF_CASE_X(Chld, 0x45785241u, ExRA);
+		AF_CASE_X(Chld, 0x46527374u, FRst);
 		AF_CASE_X(Chld, 0x466C524Eu, FlRN);
 		AF_CASE_X(Chld, 0x47727570u, Grup);
 		AF_CASE_X(Chld, 0x48735241u, HsRA);
@@ -475,11 +478,13 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_X(Chld, 0x53746B4Eu, StkN);
 		AF_CASE_X(Chld, 0x54787441u, TxtA);
 		AF_CASE_X(Chld, 0x54787446u, TxtF);
+		AF_CASE_X(Chld, 0x54787453u, TxtS);
 		AF_CASE_X(Chld, 0x54787454u, TxtT);
 		AF_CASE_X(Chld, 0x56625241u, VbRA);
 		AF_CASE_X(Chld, 0x57425241u, WBRA);
 	});
 	AF_INIT_M(0x54574D61u, {
+		AF_CASE_M(TWMa, 0x436E734Eu, CnsN);
 		AF_CASE_M(TWMa, 0x436F6D70u, Comp);
 		AF_CASE_M(TWMa, 0x47727570u, Grup);
 		AF_CASE_M(TWMa, 0x4D527374u, MRst);
@@ -579,7 +584,10 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_M(HKMs, 0x5368704Eu, ShpN);
 		AF_CASE_M(HKMs, 0x54787446u, TxtF);
 	});
-	AF_INIT_C(PFil, 0x5046696Cu, FilS);
+	AF_INIT_M(0x5046696Cu, {
+		AF_CASE_M(PFil, 0x46447363u, FDsc);
+		AF_CASE_M(PFil, 0x46696C53u, FilS);
+	});
 	AF_INIT_S(HsFC, 0x48734643u, bool);
 	AF_INIT_M(0x50464D73u, {
 		AF_CASE_M(PFMs, 0x50437276u, PCrv);
@@ -635,6 +643,10 @@ AF_STRUCT_INIT(BaseLayer)
 	AF_INIT_S(USnG, 0x55536E47u, bool);
 	AF_INIT_C(SGrd, 0x53477264u, SnpG);
 	AF_INIT_V(GdsH, 0x47647348u, AffinityReader::SharedArray<double>);
+	AF_INIT_M(0x53744D61u, {
+		AF_CASE_M(StMa, 0x54787441u, TxtA);
+		AF_CASE_M(StMa, 0x54787446u, TxtF);
+	});
 	AF_INIT_C(StSt, 0x53745374u, Stry);
 	AF_INIT_M(0x5478464Du, {
 		AF_CASE_M(TxFM, 0x54787441u, TxtA);
@@ -1035,6 +1047,7 @@ AF_STRUCT_INIT(BaseCmd)
 	AF_INIT_X(0x4F6C644Eu, {
 		AF_CASE_X(OldN, 0x47727570u, Grup);
 		AF_CASE_X(OldN, 0x4F626A53u, ObjS);
+		AF_CASE_X(OldN, 0x52737472u, Rstr);
 		AF_CASE_X(OldN, 0x53636F70u, Scop);
 		AF_CASE_X(OldN, 0x5368704Eu, ShpN);
 	});
@@ -2526,6 +2539,14 @@ AF_STRUCT_INIT(DyBm)
 	AF_INIT_V(MT3_13, 0x4D540D33u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_13, 0x4D490D34u, Blck);
 	AF_INIT_V(MT4_13, 0x4D540D34u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_E(MI1_14);
+	AF_INIT_V(MT1_14, 0x4D540E31u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_E(MI2_14);
+	AF_INIT_V(MT2_14, 0x4D540E32u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_E(MI3_14);
+	AF_INIT_V(MT3_14, 0x4D540E33u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_E(MI4_14);
+	AF_INIT_V(MT4_14, 0x4D540E34u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_7, 0x4D490732u, Blck);
 	AF_INIT_V(MT2_7, 0x4D540732u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_7, 0x4D490733u, Blck);
@@ -2912,6 +2933,11 @@ AF_STRUCT_INIT(FFCm)
 	AF_INIT_S(PMax, 0x504D6178u, float);
 }
 
+AF_STRUCT_INIT(FRst)
+{
+	AF_INIT_BASE(BaseLayer);
+}
+
 AF_STRUCT_INIT(FSDe)
 {
 	AF_INIT_BASE(BaseDels);
@@ -3088,6 +3114,7 @@ AF_STRUCT_INIT(GAOD)
 		AF_CASE_M(Valu, 0x486C6B41u, HlkA);
 		AF_CASE_M(Valu, 0x4C447363u, LDsc);
 		AF_CASE_M(Valu, 0x4F704141u, OpAA);
+		AF_CASE_M(Valu, 0x4F744174u, OtAt);
 	});
 }
 
