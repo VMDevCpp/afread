@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Vladimir Mamonov
+// Copyright (c) 2020-2021 Vladimir Mamonov
 // Licensed under the MIT license.
 
 #ifndef AFFINITY_MODEL_H
@@ -18,19 +18,11 @@ template <typename T>
 class SharedPtr
 {
 public:
-	explicit SharedPtr(T* ptr = nullptr) { m_ptr = new Ptr(ptr, 1); }
+	explicit SharedPtr(T* ptr = nullptr): m_ptr(new Ptr(ptr, 1)) {}
 
-	SharedPtr(const SharedPtr<T>& p) noexcept
-	{
-		m_ptr = p.m_ptr;
-		m_ptr->count++;
-	}
+	SharedPtr(const SharedPtr<T>& p) noexcept: m_ptr(p.m_ptr) { m_ptr->count++; }
 
-	SharedPtr(SharedPtr<T>&& p) noexcept
-	{
-		m_ptr   = p.m_ptr;
-		p.m_ptr = nullptr;
-	}
+	SharedPtr(SharedPtr<T>&& p) noexcept: m_ptr(p.m_ptr) { p.m_ptr = nullptr; }
 
 	~SharedPtr()
 	{
@@ -85,19 +77,11 @@ template <typename T>
 class SharedArray
 {
 public:
-	explicit SharedArray(T* ptr, size_t size) { m_ptr = new Ptr(ptr, size, 1); }
+	explicit SharedArray(T* ptr, size_t size): m_ptr(new Ptr(ptr, size, 1)) {}
 
-	SharedArray(const SharedArray<T>& p) noexcept
-	{
-		m_ptr = p.m_ptr;
-		m_ptr->count++;
-	}
+	SharedArray(const SharedArray<T>& p) noexcept: m_ptr(p.m_ptr) { m_ptr->count++; }
 
-	SharedArray(SharedArray<T>&& p) noexcept
-	{
-		m_ptr   = p.m_ptr;
-		p.m_ptr = nullptr;
-	}
+	SharedArray(SharedArray<T>&& p) noexcept: m_ptr(p.m_ptr) { p.m_ptr = nullptr; }
 
 	~SharedArray()
 	{
@@ -197,9 +181,18 @@ struct CurveT
 	U u[M];
 };
 
+template <class U, int M>
+struct UnknownStruct
+{
+	U u[M];
+};
+
 using curve12_t = CurveT<double, 1, uint8_t, 4>;
 using curve16_t = CurveT<double, 1, uint32_t, 2>;
 using curve18_t = CurveT<double, 2, uint8_t, 2>;
+
+using curve24_t = UnknownStruct<uint8_t, 24>;
+using curve32_t = UnknownStruct<uint8_t, 32>;
 
 template <class D, int N, int = 0>
 struct ColorT
@@ -213,6 +206,8 @@ using ColorHSLA = ColorT<float, 4, 2>;
 using ColorLABA = ColorT<uint16_t, 4>;
 using ColorCMYK = ColorT<float, 5>;
 using ColorGRAY = ColorT<float, 2>;
+
+using UnknownStruct16 = UnknownStruct<uint8_t, 16>;
 
 struct EnumT
 {
@@ -264,7 +259,7 @@ private:
 
 class Variant final
 {
-private:
+	/*private:*/
 	template <typename T>
 	using IsNotVariant = typename std::enable_if<!std::is_same<typename std::remove_reference<T>::type, Variant>::value>::type;
 

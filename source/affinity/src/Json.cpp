@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Vladimir Mamonov
+// Copyright (c) 2020-2021 Vladimir Mamonov
 // Licensed under the MIT license.
 
 #include "Affinity/Json.h"
@@ -81,6 +81,8 @@ void Visit(Visitor&& vis, const Variant& var) noexcept
 	AF_VISIT_B(curve12_t);
 	AF_VISIT_B(curve16_t);
 	AF_VISIT_B(curve18_t);
+	AF_VISIT_B(curve24_t);
+	AF_VISIT_B(curve32_t);
 	AF_VISIT_B(int8_t);
 	AF_VISIT_B(int16_t);
 	AF_VISIT_B(int32_t);
@@ -118,11 +120,14 @@ void Visit(Visitor&& vis, const Variant& var) noexcept
 	AF_VISIT_B(ColorLABA);
 	AF_VISIT_B(ColorCMYK);
 	AF_VISIT_B(ColorGRAY);
+	AF_VISIT_B(UnknownStruct16);
 
 	AF_VISIT_B(SharedArray<SharedPtr<Class>>);
 	AF_VISIT_B(SharedArray<curve12_t>);
 	AF_VISIT_B(SharedArray<curve16_t>);
 	AF_VISIT_B(SharedArray<curve18_t>);
+	AF_VISIT_B(SharedArray<curve24_t>);
+	AF_VISIT_B(SharedArray<curve32_t>);
 	AF_VISIT_B(SharedArray<int8_t>);
 	AF_VISIT_B(SharedArray<int16_t>);
 	AF_VISIT_B(SharedArray<int32_t>);
@@ -157,6 +162,7 @@ void Visit(Visitor&& vis, const Variant& var) noexcept
 	AF_VISIT_B(SharedArray<ColorLABA>);
 	AF_VISIT_B(SharedArray<ColorCMYK>);
 	AF_VISIT_B(SharedArray<ColorGRAY>);
+	AF_VISIT_B(SharedArray<UnknownStruct16>);
 	//
 	//	printf("invalid type\n");
 	//	exit(123);
@@ -210,6 +216,33 @@ struct JsonPrinter
 	{
 		s << T(R"({ "type": "curve18_t",  "value": )") << R"({ "_dbl": [)" << arg.d[0] << ", " << arg.d[1] << R"(], "_int" : [)"
 		  << static_cast<int>(arg.u[0]) << ", " << static_cast<int>(arg.u[1]) << "] }" << T("}");
+	}
+	void operator()(const curve24_t& arg) const
+	{
+		s << T(R"({ "type": "curve24_t",  "value": )") << R"({ "_int" : [)" << static_cast<int>(arg.u[0]);
+		for (int i = 1; i < 24; i++)
+		{
+			s << ", " << static_cast<int>(arg.u[i]);
+		}
+		s << "] }" << T("}");
+	}
+	void operator()(const curve32_t& arg) const
+	{
+		s << T(R"({ "type": "curve32_t",  "value": )") << R"({ "_int" : [)" << static_cast<int>(arg.u[0]);
+		for (int i = 1; i < 32; i++)
+		{
+			s << ", " << static_cast<int>(arg.u[i]);
+		}
+		s << "] }" << T("}");
+	}
+	void operator()(const UnknownStruct16& arg) const
+	{
+		s << T(R"({ "type": "UnknownStruct16",  "value": )") << R"({ "_int" : [)" << static_cast<int>(arg.u[0]);
+		for (int i = 1; i < 16; i++)
+		{
+			s << ", " << static_cast<int>(arg.u[i]);
+		}
+		s << "] }" << T("}");
 	}
 	void operator()(const int8_t& arg) const { s << T(R"({ "type": "int8_t",     "value": )") << static_cast<int>(arg) << T("}"); }
 	void operator()(const int16_t& arg) const { s << T(R"({ "type": "int16_t",    "value": )") << arg << T("}"); }
@@ -399,6 +432,48 @@ struct JsonPrinter
 		{
 			s << R"({ "_dbl": [ )" << arg[i].d[0] << ", " << arg[i].d[1] << R"(], "_int" : [)" << static_cast<int>(arg[i].u[0]) << ", "
 			  << static_cast<int>(arg[i].u[1]) << "] }" << (i + 1 != size ? ", " : "");
+		}
+		s << "]" << T("}");
+	}
+	void operator()(const SharedArray<curve24_t>& arg) const
+	{
+		s << T(R"({ "type": "curve24_t[]", "value": )") << "[";
+		for (int i = 0; i < size; i++)
+		{
+			s << R"({ "_int" : [)" << static_cast<int>(arg[i].u[0]);
+			for (int j = 1; j < 24; j++)
+			{
+				s << ", " << static_cast<int>(arg[i].u[j]);
+			}
+			s << "] }" << (i + 1 != size ? ", " : "");
+		}
+		s << "]" << T("}");
+	}
+	void operator()(const SharedArray<curve32_t>& arg) const
+	{
+		s << T(R"({ "type": "curve32_t[]", "value": )") << "[";
+		for (int i = 0; i < size; i++)
+		{
+			s << R"({ "_int" : [)" << static_cast<int>(arg[i].u[0]);
+			for (int j = 1; j < 32; j++)
+			{
+				s << ", " << static_cast<int>(arg[i].u[j]);
+			}
+			s << "] }" << (i + 1 != size ? ", " : "");
+		}
+		s << "]" << T("}");
+	}
+	void operator()(const SharedArray<UnknownStruct16>& arg) const
+	{
+		s << T(R"({ "type": "UnknownStruct16[]", "value": )") << "[";
+		for (int i = 0; i < size; i++)
+		{
+			s << R"({ "_int" : [)" << static_cast<int>(arg[i].u[0]);
+			for (int j = 1; j < 16; j++)
+			{
+				s << ", " << static_cast<int>(arg[i].u[j]);
+			}
+			s << "] }" << (i + 1 != size ? ", " : "");
 		}
 		s << "]" << T("}");
 	}

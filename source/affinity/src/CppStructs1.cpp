@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Vladimir Mamonov
+// Copyright (c) 2020-2021 Vladimir Mamonov
 // Licensed under the MIT license.
 
 /* This file is auto generated                               */
@@ -9,6 +9,7 @@
 
 namespace AffinityReader::CppModel {
 
+AF_DEFINE(v_00DS);
 AF_DEFINE(v_3DLA);
 AF_DEFINE(v_3DLP);
 AF_DEFINE(ACCm);
@@ -42,11 +43,13 @@ AF_DEFINE(CrpP);
 AF_DEFINE(CrvD);
 AF_DEFINE(CrvP);
 AF_DEFINE(DFFO);
+AF_DEFINE(DMdf);
 AF_DEFINE(DcHI);
 AF_DEFINE(DocS);
 AF_DEFINE(DrCp);
 AF_DEFINE(DrpD);
 AF_DEFINE(DyBm);
+AF_DEFINE(EDfP);
 AF_DEFINE(EOEp);
 AF_DEFINE(EOGf);
 AF_DEFINE(EOHD);
@@ -83,10 +86,13 @@ AF_DEFINE(FDsc);
 AF_DEFINE(FFCm);
 AF_DEFINE(FRst);
 AF_DEFINE(FSDe);
+AF_DEFINE(FTFH);
 AF_DEFINE(FTXR);
+AF_DEFINE(FilB);
 AF_DEFINE(FilG);
 AF_DEFINE(FilN);
 AF_DEFINE(FilS);
+AF_DEFINE(FlDS);
 AF_DEFINE(FlRN);
 AF_DEFINE(FmTC);
 AF_DEFINE(Font);
@@ -105,6 +111,7 @@ AF_DEFINE(GrMA);
 AF_DEFINE(GrMP);
 AF_DEFINE(GrNC);
 AF_DEFINE(GrRA);
+AF_DEFINE(GraP);
 AF_DEFINE(Grad);
 AF_DEFINE(GrdO);
 AF_DEFINE(Grup);
@@ -150,6 +157,7 @@ AF_DEFINE(PADS);
 AF_DEFINE(PAID);
 AF_DEFINE(PAOD);
 AF_DEFINE(PAtt);
+AF_DEFINE(PBxR);
 AF_DEFINE(PCrv);
 AF_DEFINE(PCvD);
 AF_DEFINE(PNoC);
@@ -167,11 +175,15 @@ AF_DEFINE(PoRA);
 AF_DEFINE(PosP);
 AF_DEFINE(PthT);
 AF_DEFINE(Quad);
+AF_DEFINE(RANC);
 AF_DEFINE(RBMI);
 AF_DEFINE(RDF2);
+AF_DEFINE(RDGC);
+AF_DEFINE(RDNC);
 AF_DEFINE(RGBA);
 AF_DEFINE(RGBC);
 AF_DEFINE(RHPC);
+AF_DEFINE(RLbC);
 AF_DEFINE(RLdC);
 AF_DEFINE(RLig);
 AF_DEFINE(RRBr);
@@ -196,6 +208,16 @@ AF_DEFINE(SLsC);
 AF_DEFINE(SNAR);
 AF_DEFINE(SNEN);
 AF_DEFINE(SNRR);
+AF_DEFINE(SOBE);
+AF_DEFINE(SOCO);
+AF_DEFINE(SOGA);
+AF_DEFINE(SOGO);
+AF_DEFINE(SOIS);
+AF_DEFINE(SOIg);
+AF_DEFINE(SOOg);
+AF_DEFINE(SOPB);
+AF_DEFINE(SOSh);
+AF_DEFINE(SOSt);
 AF_DEFINE(SPRA);
 AF_DEFINE(SRBr);
 AF_DEFINE(SSAS);
@@ -270,115 +292,19 @@ AF_DEFINE(XMgC);
 AF_DEFINE(XStC);
 AF_DEFINE(v_CB3);
 
-AF_STRUCT_INIT(BaseExport)
+AF_STRUCT_INIT(BaseDels)
 {
-	AF_INIT_C(ICCP, 0x49434350u, ICCP);
-	AF_INIT_S(EmIP, 0x456D4950u, bool);
-	AF_INIT_S(EmMt, 0x456D4D74u, bool);
-	AF_INIT_C(Matt, 0x4D617474u, RGBA);
-	AF_INIT_S(Rsmp, 0x52736D70u, AffinityReader::EnumT);
-	AF_INIT_S(Bled, 0x426C6564u, bool);
-	AF_INIT_S(TxCr, 0x54784372u, bool);
-	AF_INIT_S(isds, 0x69736473u, bool);
-	AF_INIT_S(dadi, 0x64616469u, double);
-	AF_INIT_S(jpeg, 0x6A706567u, bool);
-	AF_INIT_S(iurd, 0x69757264u, bool);
-	AF_INIT_S(rdpi, 0x72647069u, double);
-	AF_INIT_S(RaPo, 0x5261506Fu, AffinityReader::EnumT);
-	AF_INIT_S(isct, 0x69736374u, bool);
-	AF_INIT_S(ahcl, 0x6168636Cu, bool);
-	AF_INIT_S(PxFm, 0x5078466Du, AffinityReader::EnumT);
-	AF_INIT_S(PlTy, 0x506C5479u, AffinityReader::EnumT);
-	AF_INIT_S(PlSz, 0x506C537Au, uint16_t);
-	AF_INIT_N(UPlt);
-	AF_INIT_S(Comp, 0x436F6D70u, AffinityReader::EnumT);
-	AF_INIT_S(Plts, 0x506C7473u, bool);
+	AF_INIT_M(0x41747420u, {
+		AF_CASE_M(Att, 0x41464174u, AFAt);
+		AF_CASE_M(Att, 0x44724370u, DrCp);
+	});
+	AF_INIT_S(Fild, 0x46696C64u, int32_t);
+	AF_INIT_S(Key_, 0x4B65795Fu, int32_t);
 }
 
 AF_STRUCT_INIT(BaseLayer)
 {
-	AF_INIT_M(0x41646A50u, {
-		AF_CASE_M(AdjP, 0x33444C50u, v_3DLP);
-		AF_CASE_M(AdjP, 0x42264350u, BCP_38);
-		AF_CASE_M(AdjP, 0x42265750u, BWP_38);
-		AF_CASE_M(AdjP, 0x43495050u, CIPP);
-		AF_CASE_M(AdjP, 0x436E4D50u, CnMP);
-		AF_CASE_M(AdjP, 0x436F4250u, CoBP);
-		AF_CASE_M(AdjP, 0x43727650u, CrvP);
-		AF_CASE_M(AdjP, 0x45787050u, ExpP);
-		AF_CASE_M(AdjP, 0x47724D50u, GrMP);
-		AF_CASE_M(AdjP, 0x48535350u, HSSP);
-		AF_CASE_M(AdjP, 0x4C654650u, LeFP);
-		AF_CASE_M(AdjP, 0x4C657650u, LevP);
-		AF_CASE_M(AdjP, 0x506F7350u, PosP);
-		AF_CASE_M(AdjP, 0x52656350u, RecP);
-		AF_CASE_M(AdjP, 0x53436F50u, SCoP);
-		AF_CASE_M(AdjP, 0x53486950u, SHiP);
-		AF_CASE_M(AdjP, 0x53545061u, STPa);
-		AF_CASE_M(AdjP, 0x536F5050u, SoPP);
-		AF_CASE_M(AdjP, 0x54687250u, ThrP);
-		AF_CASE_M(AdjP, 0x56696250u, VibP);
-		AF_CASE_M(AdjP, 0x57684250u, WhBP);
-	});
-	AF_INIT_S(TrCn, 0x5472436Eu, int32_t);
-	AF_INIT_S(TrAn, 0x5472416Eu, AffinityReader::EnumT);
-	AF_INIT_S(TraC, 0x54726143u, int32_t);
-	AF_INIT_A(TrFP, 0x54724650u, AffinityReader::vec_d_t<2>, 2);
-	AF_INIT_S(TrFV, 0x54724656u, bool);
-	AF_INIT_A(Xfrm, 0x5866726Du, AffinityReader::vec_d_t<6>, 6);
-	AF_INIT_A(SrBx, 0x53724278u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_A(SrPB, 0x53725042u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_A(FTxS, 0x46547853u, AffinityReader::vec_d_t<6>, 6);
-	AF_INIT_S(Blnd, 0x426C6E64u, AffinityReader::EnumT);
-	AF_INIT_S(PasT, 0x50617354u, bool);
-	AF_INIT_C(BlRa, 0x426C5261u, BlnR);
-	AF_INIT_S(Desc, 0x44657363u, std::string);
-	AF_INIT_C(TagC, 0x54616743u, RGBA);
-	AF_INIT_S(DefD, 0x44656644u, std::string);
-	AF_INIT_S(Visi, 0x56697369u, bool);
-	AF_INIT_S(Opac, 0x4F706163u, float);
-	AF_INIT_S(FOpc, 0x464F7063u, float);
-	AF_INIT_X(0x46694566u, {
-		AF_CASE_X(FiEf, 0x42657645u, BevE);
-		AF_CASE_X(FiEf, 0x436F6C4Fu, ColO);
-		AF_CASE_X(FiEf, 0x47617573u, Gaus);
-		AF_CASE_X(FiEf, 0x4772644Fu, GrdO);
-		AF_CASE_X(FiEf, 0x496E6E47u, InnG);
-		AF_CASE_X(FiEf, 0x496E6E53u, InnS);
-		AF_CASE_X(FiEf, 0x4F757447u, OutG);
-		AF_CASE_X(FiEf, 0x50686742u, PhgB);
-		AF_CASE_X(FiEf, 0x53686164u, Shad);
-		AF_CASE_X(FiEf, 0x5374726Bu, Strk);
-	});
-	AF_INIT_S(Edtb, 0x45647462u, bool);
-	AF_INIT_S(MEtb, 0x4D457462u, bool);
-	AF_INIT_N(Data);
-	AF_INIT_S(CEdb, 0x43456462u, bool);
-	AF_INIT_V(Frst, 0x46727374u, AffinityReader::SharedArray<std::string>);
-	AF_INIT_V(Scnd, 0x53636E64u, AffinityReader::SharedArray<std::string>);
-	AF_INIT_S(Hyty, 0x48797479u, AffinityReader::EnumT);
-	AF_INIT_S(Hypr, 0x48797072u, std::string);
-	AF_INIT_S(HyTr, 0x48795472u, AffinityReader::EnumT);
-	AF_INIT_S(CLiT, 0x434C6954u, AffinityReader::EnumT);
-	AF_INIT_S(TWSt, 0x54575374u, AffinityReader::EnumT);
-	AF_INIT_A(TWBo, 0x5457426Fu, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_M(0x4269746Du, {
-		AF_CASE_M(Bitm, 0x4479426Du, DyBm);
-		AF_CASE_M(Bitm, 0x456D6252u, EmbR);
-	});
-	AF_INIT_A(BitR, 0x42697452u, AffinityReader::vec_i_t<4>, 4);
-	AF_INIT_A(BitI, 0x42697449u, AffinityReader::vec_i_t<4>, 4);
-	AF_INIT_S(CMsk, 0x434D736Bu, int32_t);
-	AF_INIT_S(ProT, 0x50726F54u, AffinityReader::EnumT);
-	AF_INIT_N(Unpr);
-	AF_INIT_C(WRot, 0x57526F74u, Matx);
-	AF_INIT_S(Lati, 0x4C617469u, double);
-	AF_INIT_S(Long, 0x4C6F6E67u, double);
-	AF_INIT_S(Roll, 0x526F6C6Cu, double);
-	AF_INIT_S(FOV, 0x464F5620u, double);
-	AF_INIT_C(Psp_42, 0x5073702Au, Per_42);
-	AF_INIT_S(ExtE, 0x45787445u, bool);
-	AF_INIT_C(Pspv, 0x50737076u, Quad);
+	AF_INIT_S(ABEn, 0x4142456Eu, bool);
 	AF_INIT_X(0x41644368u, {
 		AF_CASE_X(AdCh, 0x33444C41u, v_3DLA);
 		AF_CASE_X(AdCh, 0x42435241u, BCRA);
@@ -408,8 +334,48 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_X(AdCh, 0x56625241u, VbRA);
 		AF_CASE_X(AdCh, 0x57425241u, WBRA);
 	});
-	AF_INIT_S(ComO, 0x436F6D4Fu, AffinityReader::EnumT);
-	AF_INIT_C(TLnk, 0x544C6E6Bu, ILTI);
+	AF_INIT_M(0x41646A50u, {
+		AF_CASE_M(AdjP, 0x33444C50u, v_3DLP);
+		AF_CASE_M(AdjP, 0x42264350u, BCP_38);
+		AF_CASE_M(AdjP, 0x42265750u, BWP_38);
+		AF_CASE_M(AdjP, 0x43495050u, CIPP);
+		AF_CASE_M(AdjP, 0x436E4D50u, CnMP);
+		AF_CASE_M(AdjP, 0x436F4250u, CoBP);
+		AF_CASE_M(AdjP, 0x43727650u, CrvP);
+		AF_CASE_M(AdjP, 0x45787050u, ExpP);
+		AF_CASE_M(AdjP, 0x47724D50u, GrMP);
+		AF_CASE_M(AdjP, 0x48535350u, HSSP);
+		AF_CASE_M(AdjP, 0x4C654650u, LeFP);
+		AF_CASE_M(AdjP, 0x4C657650u, LevP);
+		AF_CASE_M(AdjP, 0x506F7350u, PosP);
+		AF_CASE_M(AdjP, 0x52656350u, RecP);
+		AF_CASE_M(AdjP, 0x53436F50u, SCoP);
+		AF_CASE_M(AdjP, 0x53486950u, SHiP);
+		AF_CASE_M(AdjP, 0x53545061u, STPa);
+		AF_CASE_M(AdjP, 0x536F5050u, SoPP);
+		AF_CASE_M(AdjP, 0x54687250u, ThrP);
+		AF_CASE_M(AdjP, 0x56696250u, VibP);
+		AF_CASE_M(AdjP, 0x57684250u, WhBP);
+	});
+	AF_INIT_N(AncD);
+	AF_INIT_S(Anch, 0x416E6368u, AffinityReader::EnumT);
+	AF_INIT_S(BFCr, 0x42464372u, uint32_t);
+	AF_INIT_L(BFFl, 0x4246466Cu, FDsc);
+	AF_INIT_M(0x4246696Cu, {
+		AF_CASE_M(BFil, 0x46447363u, FDsc);
+		AF_CASE_M(BFil, 0x46696C53u, FilS);
+	});
+	AF_INIT_M(0x42474D73u, {
+		AF_CASE_M(BGMs, 0x50437276u, PCrv);
+		AF_CASE_M(BGMs, 0x5368704Eu, ShpN);
+		AF_CASE_M(BGMs, 0x54787446u, TxtF);
+	});
+	AF_INIT_A(BitI, 0x42697449u, AffinityReader::vec_i_t<4>, 4);
+	AF_INIT_A(BitR, 0x42697452u, AffinityReader::vec_i_t<4>, 4);
+	AF_INIT_M(0x4269746Du, {
+		AF_CASE_M(Bitm, 0x4479426Du, DyBm);
+		AF_CASE_M(Bitm, 0x456D6252u, EmbR);
+	});
 	AF_INIT_M(0x426C4D4Du, {
 		AF_CASE_M(BlMM, 0x436F6D70u, Comp);
 		AF_CASE_M(BlMM, 0x47727570u, Grup);
@@ -421,31 +387,14 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_M(BlMM, 0x54787441u, TxtA);
 		AF_CASE_M(BlMM, 0x54787446u, TxtF);
 	});
-	AF_INIT_M(0x5669734Du, {
-		AF_CASE_M(VisM, 0x436F6D70u, Comp);
-		AF_CASE_M(VisM, 0x47727570u, Grup);
-		AF_CASE_M(VisM, 0x4D527374u, MRst);
-		AF_CASE_M(VisM, 0x50437276u, PCrv);
-		AF_CASE_M(VisM, 0x52737472u, Rstr);
-		AF_CASE_M(VisM, 0x53636F70u, Scop);
-		AF_CASE_M(VisM, 0x5368704Eu, ShpN);
-		AF_CASE_M(VisM, 0x54787441u, TxtA);
-		AF_CASE_M(VisM, 0x54787446u, TxtF);
-	});
-	AF_INIT_M(0x4669454Du, {
-		AF_CASE_M(FiEM, 0x436F6D70u, Comp);
-		AF_CASE_M(FiEM, 0x47727570u, Grup);
-		AF_CASE_M(FiEM, 0x4D527374u, MRst);
-		AF_CASE_M(FiEM, 0x50437276u, PCrv);
-		AF_CASE_M(FiEM, 0x52737472u, Rstr);
-		AF_CASE_M(FiEM, 0x53636F70u, Scop);
-		AF_CASE_M(FiEM, 0x5368704Eu, ShpN);
-		AF_CASE_M(FiEM, 0x54787441u, TxtA);
-		AF_CASE_M(FiEM, 0x54787446u, TxtF);
-	});
-	AF_INIT_C(SLnk, 0x534C6E6Bu, ILSN);
-	AF_INIT_C(GLnk, 0x474C6E6Bu, ILGI);
+	AF_INIT_C(BlRa, 0x426C5261u, BlnR);
+	AF_INIT_S(Blnd, 0x426C6E64u, AffinityReader::EnumT);
+	AF_INIT_S(CEdb, 0x43456462u, bool);
+	AF_INIT_V(CGds, 0x43476473u, AffinityReader::SharedArray<AffinityReader::curve16_t>);
+	AF_INIT_S(CLiT, 0x434C6954u, AffinityReader::EnumT);
+	AF_INIT_S(CMsk, 0x434D736Bu, int32_t);
 	AF_INIT_X(0x43686C64u, {
+		AF_CASE_X(Chld, 0x33444C41u, v_3DLA);
 		AF_CASE_X(Chld, 0x42435241u, BCRA);
 		AF_CASE_X(Chld, 0x42575241u, BWRA);
 		AF_CASE_X(Chld, 0x43425241u, CBRA);
@@ -483,68 +432,24 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_X(Chld, 0x56625241u, VbRA);
 		AF_CASE_X(Chld, 0x57425241u, WBRA);
 	});
-	AF_INIT_M(0x54574D61u, {
-		AF_CASE_M(TWMa, 0x436E734Eu, CnsN);
-		AF_CASE_M(TWMa, 0x436F6D70u, Comp);
-		AF_CASE_M(TWMa, 0x47727570u, Grup);
-		AF_CASE_M(TWMa, 0x4D527374u, MRst);
-		AF_CASE_M(TWMa, 0x50437276u, PCrv);
-		AF_CASE_M(TWMa, 0x52737472u, Rstr);
-		AF_CASE_M(TWMa, 0x53636F70u, Scop);
-		AF_CASE_M(TWMa, 0x5368704Eu, ShpN);
-		AF_CASE_M(TWMa, 0x54787441u, TxtA);
-		AF_CASE_M(TWMa, 0x54787446u, TxtF);
-	});
-	AF_INIT_M(0x4246696Cu, {
-		AF_CASE_M(BFil, 0x46447363u, FDsc);
-		AF_CASE_M(BFil, 0x46696C53u, FilS);
-	});
-	AF_INIT_C(LSty, 0x4C537479u, LDsc);
-	AF_INIT_M(0x5642464Du, {
-		AF_CASE_M(VBFM, 0x436F6D70u, Comp);
-		AF_CASE_M(VBFM, 0x47727570u, Grup);
-		AF_CASE_M(VBFM, 0x50437276u, PCrv);
-		AF_CASE_M(VBFM, 0x53636F70u, Scop);
-		AF_CASE_M(VBFM, 0x5368704Eu, ShpN);
-		AF_CASE_M(VBFM, 0x54787446u, TxtF);
-	});
-	AF_INIT_M(0x5654724Du, {
-		AF_CASE_M(VTrM, 0x436F6D70u, Comp);
-		AF_CASE_M(VTrM, 0x47727570u, Grup);
-		AF_CASE_M(VTrM, 0x50437276u, PCrv);
-		AF_CASE_M(VTrM, 0x53636F70u, Scop);
-		AF_CASE_M(VTrM, 0x5368704Eu, ShpN);
-		AF_CASE_M(VTrM, 0x54787446u, TxtF);
-	});
-	AF_INIT_M(0x564C534Du, {
-		AF_CASE_M(VLSM, 0x436F6D70u, Comp);
-		AF_CASE_M(VLSM, 0x47727570u, Grup);
-		AF_CASE_M(VLSM, 0x50437276u, PCrv);
-		AF_CASE_M(VLSM, 0x53636F70u, Scop);
-		AF_CASE_M(VLSM, 0x5368704Eu, ShpN);
-		AF_CASE_M(VLSM, 0x54787446u, TxtF);
-	});
-	AF_INIT_S(BFCr, 0x42464372u, uint32_t);
-	AF_INIT_L(BFFl, 0x4246466Cu, FDsc);
-	AF_INIT_M(0x54726E73u, {
-		AF_CASE_M(Trns, 0x46447363u, FDsc);
-		AF_CASE_M(Trns, 0x46696C53u, FilS);
-	});
-	AF_INIT_S(LICr, 0x4C494372u, uint32_t);
-	AF_INIT_L(LILn, 0x4C494C6Eu, LDsc);
-	AF_INIT_L(LIFl, 0x4C49466Cu, FDsc);
-	AF_INIT_S(IsVF, 0x49735646u, bool);
+	AF_INIT_S(ClrF, 0x436C7246u, bool);
+	AF_INIT_S(CnCl, 0x436E436Cu, bool);
+	AF_INIT_S(CnCp, 0x436E4370u, int32_t);
+	AF_INIT_S(CnFm, 0x436E466Du, int32_t);
+	AF_INIT_S(CnJn, 0x436E4A6Eu, int32_t);
+	AF_INIT_S(CnML, 0x436E4D4Cu, double);
+	AF_INIT_S(CnOf, 0x436E4F66u, double);
+	AF_INIT_S(ComO, 0x436F6D4Fu, AffinityReader::EnumT);
+	AF_INIT_C(Crvs, 0x43727673u, PCvD);
 	AF_INIT_S(Ctrl, 0x4374726Cu, uint32_t);
-	AF_INIT_S(Anch, 0x416E6368u, AffinityReader::EnumT);
-	AF_INIT_A(OCRc, 0x4F435263u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_S(CvWi, 0x43765769u, AffinityReader::EnumT);
+	AF_INIT_A(CvsB, 0x43767342u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_C(DLnk, 0x444C6E6Bu, ILDO);
+	AF_INIT_N(Data);
+	AF_INIT_S(DefD, 0x44656644u, std::string);
+	AF_INIT_S(Desc, 0x44657363u, std::string);
+	AF_INIT_S(DfId, 0x44664964u, std::string);
 	AF_INIT_V(DrwO, 0x4472774Fu, AffinityReader::SharedArray<AffinityReader::EnumT>);
-	AF_INIT_S(Spac, 0x53706163u, AffinityReader::EnumT);
-	AF_INIT_S(IPlc, 0x49506C63u, AffinityReader::EnumT);
-	AF_INIT_C(Path, 0x50617468u, PthT);
-	AF_INIT_S(Flsz, 0x466C737Au, uint64_t);
-	AF_INIT_S(MfTm, 0x4D66546Du, int64_t);
-	AF_INIT_S(FTyp, 0x46547970u, AffinityReader::EnumT);
-	AF_INIT_C(RPth, 0x52507468u, PthT);
 	AF_INIT_M(0x44734D61u, {
 		AF_CASE_M(DsMa, 0x47727570u, Grup);
 		AF_CASE_M(DsMa, 0x4D527374u, MRst);
@@ -554,8 +459,6 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_M(DsMa, 0x5368704Eu, ShpN);
 		AF_CASE_M(DsMa, 0x54787446u, TxtF);
 	});
-	AF_INIT_A(SrTr, 0x53725472u, AffinityReader::vec_d_t<6>, 6);
-	AF_INIT_A(SrPT, 0x53725054u, AffinityReader::vec_d_t<6>, 6);
 	AF_INIT_M(0x45644D61u, {
 		AF_CASE_M(EdMa, 0x47727570u, Grup);
 		AF_CASE_M(EdMa, 0x4D527374u, MRst);
@@ -565,15 +468,44 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_M(EdMa, 0x5368704Eu, ShpN);
 		AF_CASE_M(EdMa, 0x54787446u, TxtF);
 	});
-	AF_INIT_M(0x544D6173u, {
-		AF_CASE_M(TMas, 0x47727570u, Grup);
-		AF_CASE_M(TMas, 0x4D527374u, MRst);
-		AF_CASE_M(TMas, 0x50437276u, PCrv);
-		AF_CASE_M(TMas, 0x52737472u, Rstr);
-		AF_CASE_M(TMas, 0x53636F70u, Scop);
-		AF_CASE_M(TMas, 0x5368704Eu, ShpN);
-		AF_CASE_M(TMas, 0x54787446u, TxtF);
+	AF_INIT_S(Edtb, 0x45647462u, bool);
+	AF_INIT_S(ExFn, 0x4578466Eu, std::string);
+	AF_INIT_S(ExIn, 0x4578496Eu, bool);
+	AF_INIT_S(ExtE, 0x45787445u, bool);
+	AF_INIT_S(FOV, 0x464F5620u, double);
+	AF_INIT_S(FOpc, 0x464F7063u, float);
+	AF_INIT_A(FTxS, 0x46547853u, AffinityReader::vec_d_t<6>, 6);
+	AF_INIT_S(FTyp, 0x46547970u, AffinityReader::EnumT);
+	AF_INIT_M(0x4669454Du, {
+		AF_CASE_M(FiEM, 0x436F6D70u, Comp);
+		AF_CASE_M(FiEM, 0x47727570u, Grup);
+		AF_CASE_M(FiEM, 0x4D527374u, MRst);
+		AF_CASE_M(FiEM, 0x50437276u, PCrv);
+		AF_CASE_M(FiEM, 0x52737472u, Rstr);
+		AF_CASE_M(FiEM, 0x53636F70u, Scop);
+		AF_CASE_M(FiEM, 0x5368704Eu, ShpN);
+		AF_CASE_M(FiEM, 0x54787441u, TxtA);
+		AF_CASE_M(FiEM, 0x54787446u, TxtF);
 	});
+	AF_INIT_X(0x46694566u, {
+		AF_CASE_X(FiEf, 0x42657645u, BevE);
+		AF_CASE_X(FiEf, 0x436F6C4Fu, ColO);
+		AF_CASE_X(FiEf, 0x47617573u, Gaus);
+		AF_CASE_X(FiEf, 0x4772644Fu, GrdO);
+		AF_CASE_X(FiEf, 0x496E6E47u, InnG);
+		AF_CASE_X(FiEf, 0x496E6E53u, InnS);
+		AF_CASE_X(FiEf, 0x4F757447u, OutG);
+		AF_CASE_X(FiEf, 0x50686742u, PhgB);
+		AF_CASE_X(FiEf, 0x53686164u, Shad);
+		AF_CASE_X(FiEf, 0x5374726Bu, Strk);
+	});
+	AF_INIT_C(Flow, 0x466C6F77u, TxFl);
+	AF_INIT_S(Flsz, 0x466C737Au, uint64_t);
+	AF_INIT_V(Frst, 0x46727374u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_C(GLnk, 0x474C6E6Bu, ILGI);
+	AF_INIT_S(GdsA, 0x47647341u, bool);
+	AF_INIT_V(GdsH, 0x47647348u, AffinityReader::SharedArray<double>);
+	AF_INIT_V(GdsV, 0x47647356u, AffinityReader::SharedArray<double>);
 	AF_INIT_S(GooI, 0x476F6F49u, std::string);
 	AF_INIT_M(0x484B4D73u, {
 		AF_CASE_M(HKMs, 0x47727570u, Grup);
@@ -584,34 +516,56 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_M(HKMs, 0x5368704Eu, ShpN);
 		AF_CASE_M(HKMs, 0x54787446u, TxtF);
 	});
-	AF_INIT_M(0x5046696Cu, {
-		AF_CASE_M(PFil, 0x46447363u, FDsc);
-		AF_CASE_M(PFil, 0x46696C53u, FilS);
-	});
 	AF_INIT_S(HsFC, 0x48734643u, bool);
-	AF_INIT_M(0x50464D73u, {
-		AF_CASE_M(PFMs, 0x50437276u, PCrv);
-		AF_CASE_M(PFMs, 0x5368704Eu, ShpN);
+	AF_INIT_S(HyTr, 0x48795472u, AffinityReader::EnumT);
+	AF_INIT_S(Hypr, 0x48797072u, std::string);
+	AF_INIT_S(Hyty, 0x48797479u, AffinityReader::EnumT);
+	AF_INIT_S(IPlc, 0x49506C63u, AffinityReader::EnumT);
+	AF_INIT_M(0x49524453u, {
+		AF_CASE_M(IRDS, 0x30304453u, v_00DS);
+		AF_CASE_M(IRDS, 0x466C4453u, FlDS);
 	});
-	AF_INIT_C(DLnk, 0x444C6E6Bu, ILDO);
-	AF_INIT_C(Crvs, 0x43727673u, PCvD);
-	AF_INIT_A(CvsB, 0x43767342u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(CvWi, 0x43765769u, AffinityReader::EnumT);
-	AF_INIT_M(0x42474D73u, {
-		AF_CASE_M(BGMs, 0x50437276u, PCrv);
-		AF_CASE_M(BGMs, 0x5368704Eu, ShpN);
-		AF_CASE_M(BGMs, 0x54787446u, TxtF);
-	});
-	AF_INIT_C(Opts, 0x4F707473u, BGrd);
-	AF_INIT_V(MrgA, 0x4D726741u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
-	AF_INIT_V(UMgA, 0x554D6741u, AffinityReader::SharedArray<bool>);
-	AF_INIT_S(MiID, 0x4D694944u, std::string);
-	AF_INIT_V(CGds, 0x43476473u, AffinityReader::SharedArray<AffinityReader::curve16_t>);
-	AF_INIT_V(UCGA, 0x55434741u, AffinityReader::SharedArray<bool>);
+	AF_INIT_S(IgBG, 0x49674247u, bool);
+	AF_INIT_S(IgTW, 0x49675457u, bool);
+	AF_INIT_S(IsVF, 0x49735646u, bool);
+	AF_INIT_S(LICr, 0x4C494372u, uint32_t);
+	AF_INIT_L(LIFl, 0x4C49466Cu, FDsc);
+	AF_INIT_L(LILn, 0x4C494C6Eu, LDsc);
+	AF_INIT_C(LSty, 0x4C537479u, LDsc);
+	AF_INIT_S(Lati, 0x4C617469u, double);
+	AF_INIT_S(Long, 0x4C6F6E67u, double);
+	AF_INIT_S(MEtb, 0x4D457462u, bool);
 	AF_INIT_M(0x4D52614Du, {
 		AF_CASE_M(MRaM, 0x4D527374u, MRst);
 		AF_CASE_M(MRaM, 0x52737472u, Rstr);
 	});
+	AF_INIT_S(MfTm, 0x4D66546Du, int64_t);
+	AF_INIT_S(MiID, 0x4D694944u, std::string);
+	AF_INIT_V(MrgA, 0x4D726741u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
+	AF_INIT_E(MrgF);
+	AF_INIT_A(OCRc, 0x4F435263u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_S(ODPI, 0x4F445049u, int32_t);
+	AF_INIT_S(Opac, 0x4F706163u, float);
+	AF_INIT_C(Opts, 0x4F707473u, BGrd);
+	AF_INIT_M(0x50464D73u, {
+		AF_CASE_M(PFMs, 0x50437276u, PCrv);
+		AF_CASE_M(PFMs, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_M(0x5046696Cu, {
+		AF_CASE_M(PFil, 0x46447363u, FDsc);
+		AF_CASE_M(PFil, 0x46696C53u, FilS);
+	});
+	AF_INIT_S(PasT, 0x50617354u, bool);
+	AF_INIT_C(Path, 0x50617468u, PthT);
+	AF_INIT_S(ProT, 0x50726F54u, AffinityReader::EnumT);
+	AF_INIT_C(Psp_42, 0x5073702Au, Per_42);
+	AF_INIT_C(Pspv, 0x50737076u, Quad);
+	AF_INIT_C(RPth, 0x52507468u, PthT);
+	AF_INIT_S(Roll, 0x526F6C6Cu, double);
+	AF_INIT_C(SGrd, 0x53477264u, SnpG);
+	AF_INIT_C(SLnk, 0x534C6E6Bu, ILSN);
+	AF_INIT_V(Scnd, 0x53636E64u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_A(ShpB, 0x53687042u, AffinityReader::vec_d_t<4>, 4);
 	AF_INIT_M(0x53687065u, {
 		AF_CASE_M(Shpe, 0x53684352u, ShCR);
 		AF_CASE_M(Shpe, 0x53684367u, ShCg);
@@ -633,21 +587,50 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_M(Shpe, 0x53687045u, ShpE);
 		AF_CASE_M(Shpe, 0x53687054u, ShpT);
 	});
-	AF_INIT_A(ShpB, 0x53687042u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_C(XCfg, 0x58436667u, XCfg);
-	AF_INIT_S(ExIn, 0x4578496Eu, bool);
-	AF_INIT_S(ExFn, 0x4578466Eu, std::string);
-	AF_INIT_S(ABEn, 0x4142456Eu, bool);
-	AF_INIT_V(GdsV, 0x47647356u, AffinityReader::SharedArray<double>);
-	AF_INIT_S(GdsA, 0x47647341u, bool);
-	AF_INIT_S(USnG, 0x55536E47u, bool);
-	AF_INIT_C(SGrd, 0x53477264u, SnpG);
-	AF_INIT_V(GdsH, 0x47647348u, AffinityReader::SharedArray<double>);
+	AF_INIT_S(Spac, 0x53706163u, AffinityReader::EnumT);
+	AF_INIT_A(SrBx, 0x53724278u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_A(SrPB, 0x53725042u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_A(SrPT, 0x53725054u, AffinityReader::vec_d_t<6>, 6);
+	AF_INIT_A(SrTr, 0x53725472u, AffinityReader::vec_d_t<6>, 6);
 	AF_INIT_M(0x53744D61u, {
 		AF_CASE_M(StMa, 0x54787441u, TxtA);
 		AF_CASE_M(StMa, 0x54787446u, TxtF);
 	});
 	AF_INIT_C(StSt, 0x53745374u, Stry);
+	AF_INIT_C(TLnk, 0x544C6E6Bu, ILTI);
+	AF_INIT_M(0x544D6173u, {
+		AF_CASE_M(TMas, 0x47727570u, Grup);
+		AF_CASE_M(TMas, 0x4D527374u, MRst);
+		AF_CASE_M(TMas, 0x50437276u, PCrv);
+		AF_CASE_M(TMas, 0x52737472u, Rstr);
+		AF_CASE_M(TMas, 0x53636F70u, Scop);
+		AF_CASE_M(TMas, 0x5368704Eu, ShpN);
+		AF_CASE_M(TMas, 0x54787446u, TxtF);
+	});
+	AF_INIT_A(TWBo, 0x5457426Fu, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_M(0x54574D61u, {
+		AF_CASE_M(TWMa, 0x436E734Eu, CnsN);
+		AF_CASE_M(TWMa, 0x436F6D70u, Comp);
+		AF_CASE_M(TWMa, 0x47727570u, Grup);
+		AF_CASE_M(TWMa, 0x4D527374u, MRst);
+		AF_CASE_M(TWMa, 0x50437276u, PCrv);
+		AF_CASE_M(TWMa, 0x52737472u, Rstr);
+		AF_CASE_M(TWMa, 0x53636F70u, Scop);
+		AF_CASE_M(TWMa, 0x5368704Eu, ShpN);
+		AF_CASE_M(TWMa, 0x54787441u, TxtA);
+		AF_CASE_M(TWMa, 0x54787446u, TxtF);
+	});
+	AF_INIT_S(TWSt, 0x54575374u, AffinityReader::EnumT);
+	AF_INIT_C(TagC, 0x54616743u, RGBA);
+	AF_INIT_S(TrAn, 0x5472416Eu, AffinityReader::EnumT);
+	AF_INIT_S(TrCn, 0x5472436Eu, int32_t);
+	AF_INIT_A(TrFP, 0x54724650u, AffinityReader::vec_d_t<2>, 2);
+	AF_INIT_S(TrFV, 0x54724656u, bool);
+	AF_INIT_S(TraC, 0x54726143u, int32_t);
+	AF_INIT_M(0x54726E73u, {
+		AF_CASE_M(Trns, 0x46447363u, FDsc);
+		AF_CASE_M(Trns, 0x46696C53u, FilS);
+	});
 	AF_INIT_M(0x5478464Du, {
 		AF_CASE_M(TxFM, 0x54787441u, TxtA);
 		AF_CASE_M(TxFM, 0x54787446u, TxtF);
@@ -659,179 +642,348 @@ AF_STRUCT_INIT(BaseLayer)
 		AF_CASE_M(TxtH, 0x54624672u, TbFr);
 	});
 	AF_INIT_C(TxtL, 0x5478744Cu, Layt);
-	AF_INIT_S(IgTW, 0x49675457u, bool);
-	AF_INIT_S(IgBG, 0x49674247u, bool);
-	AF_INIT_C(Flow, 0x466C6F77u, TxFl);
-}
-
-AF_STRUCT_INIT(BaseBrush)
-{
-	AF_INIT_L(TipT, 0x54697054u, DyBm);
-	AF_INIT_S(BUid, 0x42556964u, std::string);
-	AF_INIT_S(Opac, 0x4F706163u, float);
-	AF_INIT_S(Spac, 0x53706163u, float);
-	AF_INIT_S(BlMo, 0x426C4D6Fu, AffinityReader::EnumT);
-	AF_INIT_S(SABM, 0x5341424Du, bool);
-	AF_INIT_S(WetE, 0x57657445u, bool);
-	AF_INIT_C(WeES, 0x57654553u, Spln);
-	AF_INIT_S(SAWE, 0x53415745u, bool);
-	AF_INIT_C(Flow, 0x466C6F77u, BrDy);
-	AF_INIT_C(Accn, 0x4163636Eu, BrDy);
-	AF_INIT_C(Size, 0x53697A65u, BrDy);
-	AF_INIT_C(Hard, 0x48617264u, BrDy);
-	AF_INIT_C(Shap, 0x53686170u, BrDy);
-	AF_INIT_C(Angl, 0x416E676Cu, BrDy);
-	AF_INIT_C(ScaX, 0x53636158u, BrDy);
-	AF_INIT_C(ScaY, 0x53636159u, BrDy);
-	AF_INIT_C(HueS, 0x48756553u, BrDy);
-	AF_INIT_C(SatS, 0x53617453u, BrDy);
-	AF_INIT_C(LumS, 0x4C756D53u, BrDy);
-	AF_INIT_C(TipC, 0x54697043u, BrDy);
-	AF_INIT_C(MskT, 0x4D736B54u, DyBm);
-	AF_INIT_S(MkTM, 0x4D6B544Du, AffinityReader::EnumT);
-	AF_INIT_S(MkTS, 0x4D6B5453u, double);
-	AF_INIT_S(Strk, 0x5374726Bu, bool);
-	AF_INIT_S(Head, 0x48656164u, double);
-	AF_INIT_S(Tail, 0x5461696Cu, double);
-	AF_INIT_S(RptB, 0x52707442u, bool);
-	AF_INIT_S(CnrS, 0x436E7253u, AffinityReader::EnumT);
-	AF_INIT_S(SATI, 0x53415449u, bool);
-	AF_INIT_S(ToID, 0x546F4944u, int32_t);
-	AF_INIT_L(SubB, 0x53756242u, IBRB);
-	AF_INIT_S(SMod, 0x534D6F64u, AffinityReader::EnumT);
-	AF_INIT_S(SSMd, 0x53534D64u, AffinityReader::EnumT);
-	AF_INIT_S(SSSz, 0x5353537Au, bool);
-	AF_INIT_S(SSSp, 0x53535370u, bool);
-	AF_INIT_V(Frst, 0x46727374u, AffinityReader::SharedArray<std::string>);
-	AF_INIT_V(Scnd, 0x53636E64u, AffinityReader::SharedArray<std::string>);
-}
-
-AF_STRUCT_INIT(BaseColor)
-{
-	AF_INIT_S(v_nse, 0x5F6E7365u, double);
-	AF_INIT_S(v_glb, 0x5F676C62u, std::string);
-	AF_INIT_S(v_tnt, 0x5F746E74u, double);
-}
-
-AF_STRUCT_INIT(BaseFill) {}
-
-AF_STRUCT_INIT(BaseGlys) {}
-
-AF_STRUCT_INIT(BaseAtt)
-{
-	AF_INIT_S(Enbl, 0x456E626Cu, bool);
-	AF_INIT_S(SNam, 0x534E616Du, std::string);
-	AF_INIT_C(SDlt, 0x53446C74u, CoDe);
-}
-
-AF_STRUCT_INIT(BaseDels)
-{
-	AF_INIT_M(0x41747420u, {
-		AF_CASE_M(Att, 0x41464174u, AFAt);
-		AF_CASE_M(Att, 0x44724370u, DrCp);
+	AF_INIT_V(UCGA, 0x55434741u, AffinityReader::SharedArray<bool>);
+	AF_INIT_V(UMgA, 0x554D6741u, AffinityReader::SharedArray<bool>);
+	AF_INIT_S(USnG, 0x55536E47u, bool);
+	AF_INIT_V(UmgF, 0x556D6746u, AffinityReader::SharedArray<bool>);
+	AF_INIT_N(Unpr);
+	AF_INIT_M(0x5642464Du, {
+		AF_CASE_M(VBFM, 0x436F6D70u, Comp);
+		AF_CASE_M(VBFM, 0x47727570u, Grup);
+		AF_CASE_M(VBFM, 0x50437276u, PCrv);
+		AF_CASE_M(VBFM, 0x53636F70u, Scop);
+		AF_CASE_M(VBFM, 0x5368704Eu, ShpN);
+		AF_CASE_M(VBFM, 0x54787446u, TxtF);
 	});
-	AF_INIT_S(Fild, 0x46696C64u, int32_t);
-	AF_INIT_S(Key_, 0x4B65795Fu, int32_t);
-}
-
-AF_STRUCT_INIT(BaseShape)
-{
-	AF_INIT_S(AbSz, 0x4162537Au, bool);
-	AF_INIT_S(Lock, 0x4C6F636Bu, bool);
-	AF_INIT_A(ShCR, 0x53684352u, AffinityReader::vec_f_t<4>, 4);
-	AF_INIT_S(TlHg, 0x546C4867u, float);
-	AF_INIT_S(TlEP, 0x546C4550u, float);
-	AF_INIT_S(IRad, 0x49526164u, float);
-	AF_INIT_S(Curv, 0x43757276u, float);
-	AF_INIT_S(Pnts, 0x506E7473u, uint16_t);
-	AF_INIT_S(IRae, 0x49526165u, float);
-	AF_INIT_S(Side, 0x53696465u, uint16_t);
-	AF_INIT_S(Pos, 0x506F7320u, float);
+	AF_INIT_M(0x564C534Du, {
+		AF_CASE_M(VLSM, 0x436F6D70u, Comp);
+		AF_CASE_M(VLSM, 0x47727570u, Grup);
+		AF_CASE_M(VLSM, 0x50437276u, PCrv);
+		AF_CASE_M(VLSM, 0x53636F70u, Scop);
+		AF_CASE_M(VLSM, 0x5368704Eu, ShpN);
+		AF_CASE_M(VLSM, 0x54787446u, TxtF);
+	});
+	AF_INIT_M(0x5654724Du, {
+		AF_CASE_M(VTrM, 0x436F6D70u, Comp);
+		AF_CASE_M(VTrM, 0x47727570u, Grup);
+		AF_CASE_M(VTrM, 0x50437276u, PCrv);
+		AF_CASE_M(VTrM, 0x53636F70u, Scop);
+		AF_CASE_M(VTrM, 0x5368704Eu, ShpN);
+		AF_CASE_M(VTrM, 0x54787446u, TxtF);
+	});
+	AF_INIT_M(0x5669734Du, {
+		AF_CASE_M(VisM, 0x436F6D70u, Comp);
+		AF_CASE_M(VisM, 0x47727570u, Grup);
+		AF_CASE_M(VisM, 0x4D527374u, MRst);
+		AF_CASE_M(VisM, 0x50437276u, PCrv);
+		AF_CASE_M(VisM, 0x52737472u, Rstr);
+		AF_CASE_M(VisM, 0x53636F70u, Scop);
+		AF_CASE_M(VisM, 0x5368704Eu, ShpN);
+		AF_CASE_M(VisM, 0x54787441u, TxtA);
+		AF_CASE_M(VisM, 0x54787446u, TxtF);
+	});
+	AF_INIT_S(Visi, 0x56697369u, bool);
+	AF_INIT_C(WRot, 0x57526F74u, Matx);
+	AF_INIT_C(XCfg, 0x58436667u, XCfg);
+	AF_INIT_A(Xfrm, 0x5866726Du, AffinityReader::vec_d_t<6>, 6);
+	AF_INIT_S(avin, 0x6176696Eu, uint32_t);
+	AF_INIT_C(bbxs, 0x62627873u, PBxR);
 }
 
 AF_STRUCT_INIT(BaseEffect)
 {
-	AF_INIT_S(Enab, 0x456E6162u, bool);
+	AF_INIT_S(Angl, 0x416E676Cu, double);
 	AF_INIT_S(BlnM, 0x426C6E4Du, AffinityReader::EnumT);
-	AF_INIT_S(Opac, 0x4F706163u, double);
-	AF_INIT_S(SclO, 0x53636C4Fu, bool);
-	AF_INIT_S(Dept, 0x44657074u, double);
-	AF_INIT_S(Radi, 0x52616469u, double);
-	AF_INIT_S(Disr, 0x44697372u, bool);
-	AF_INIT_S(Sftn, 0x5366746Eu, double);
-	AF_INIT_C(Prof, 0x50726F66u, Spln);
 	AF_INIT_M(0x436F6C72u, {
 		AF_CASE_M(Colr, 0x434D594Bu, CMYK);
 		AF_CASE_M(Colr, 0x48534C41u, HSLA);
 		AF_CASE_M(Colr, 0x4C414241u, LABA);
 		AF_CASE_M(Colr, 0x52474241u, RGBA);
 	});
-	AF_INIT_C(GrFl, 0x4772466Cu, FDsc);
 	AF_INIT_S(Comp, 0x436F6D70u, double);
+	AF_INIT_S(Dept, 0x44657074u, double);
+	AF_INIT_S(Disr, 0x44697372u, bool);
+	AF_INIT_S(Enab, 0x456E6162u, bool);
+	AF_INIT_C(GrFl, 0x4772466Cu, FDsc);
 	AF_INIT_S(Offs, 0x4F666673u, double);
-	AF_INIT_S(Angl, 0x416E676Cu, double);
+	AF_INIT_S(Opac, 0x4F706163u, double);
+	AF_INIT_C(Prof, 0x50726F66u, Spln);
+	AF_INIT_S(Radi, 0x52616469u, double);
+	AF_INIT_S(SclO, 0x53636C4Fu, bool);
+	AF_INIT_S(Sftn, 0x5366746Eu, double);
 }
 
-AF_STRUCT_INIT(BaseSubSel) {}
+AF_STRUCT_INIT(BaseGlys) {}
+
+AF_STRUCT_INIT(BaseColor)
+{
+	AF_INIT_S(v_glb, 0x5F676C62u, std::string);
+	AF_INIT_S(v_nse, 0x5F6E7365u, double);
+	AF_INIT_S(v_tnt, 0x5F746E74u, double);
+}
+
+AF_STRUCT_INIT(BaseShape)
+{
+	AF_INIT_S(AbSz, 0x4162537Au, bool);
+	AF_INIT_S(Curv, 0x43757276u, float);
+	AF_INIT_S(IRad, 0x49526164u, float);
+	AF_INIT_S(IRae, 0x49526165u, float);
+	AF_INIT_S(Lock, 0x4C6F636Bu, bool);
+	AF_INIT_S(Pnts, 0x506E7473u, uint16_t);
+	AF_INIT_S(Pos, 0x506F7320u, float);
+	AF_INIT_A(ShCR, 0x53684352u, AffinityReader::vec_f_t<4>, 4);
+	AF_INIT_S(Side, 0x53696465u, uint16_t);
+	AF_INIT_S(TlEP, 0x546C4550u, float);
+	AF_INIT_S(TlHg, 0x546C4867u, float);
+}
 
 AF_STRUCT_INIT(BaseProp) {}
-
-AF_STRUCT_INIT(BaseExCsts)
-{
-	AF_INIT_S(type, 0x74797065u, AffinityReader::EnumT);
-	AF_INIT_S(cnst, 0x636E7374u, std::string);
-	AF_INIT_S(desc, 0x64657363u, std::string);
-}
-
-AF_STRUCT_INIT(BaseExVals) {}
 
 AF_STRUCT_INIT(BaseFrms)
 {
 	AF_INIT_A(FrmB, 0x46726D42u, AffinityReader::vec_d_t<4>, 4);
 }
 
+AF_STRUCT_INIT(BaseAdjustment)
+{
+	AF_INIT_S(Gamm, 0x47616D6Du, float);
+	AF_INIT_S(Vers, 0x56657273u, uint16_t);
+	AF_INIT_S(Vibr, 0x56696272u, int32_t);
+	AF_INIT_V(Weig, 0x57656967u, AffinityReader::SharedArray<float>);
+}
+
+AF_STRUCT_INIT(BaseFill) {}
+
+AF_STRUCT_INIT(BaseBrush)
+{
+	AF_INIT_C(Accn, 0x4163636Eu, BrDy);
+	AF_INIT_C(Angl, 0x416E676Cu, BrDy);
+	AF_INIT_S(BUid, 0x42556964u, std::string);
+	AF_INIT_S(BlMo, 0x426C4D6Fu, AffinityReader::EnumT);
+	AF_INIT_S(CnrS, 0x436E7253u, AffinityReader::EnumT);
+	AF_INIT_C(Flow, 0x466C6F77u, BrDy);
+	AF_INIT_V(Frst, 0x46727374u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_C(Hard, 0x48617264u, BrDy);
+	AF_INIT_S(Head, 0x48656164u, double);
+	AF_INIT_C(HueS, 0x48756553u, BrDy);
+	AF_INIT_C(LumS, 0x4C756D53u, BrDy);
+	AF_INIT_S(MkTM, 0x4D6B544Du, AffinityReader::EnumT);
+	AF_INIT_S(MkTS, 0x4D6B5453u, double);
+	AF_INIT_C(MskT, 0x4D736B54u, DyBm);
+	AF_INIT_S(Opac, 0x4F706163u, float);
+	AF_INIT_S(RptB, 0x52707442u, bool);
+	AF_INIT_S(SABM, 0x5341424Du, bool);
+	AF_INIT_S(SATI, 0x53415449u, bool);
+	AF_INIT_S(SAWE, 0x53415745u, bool);
+	AF_INIT_S(SMod, 0x534D6F64u, AffinityReader::EnumT);
+	AF_INIT_S(SSMd, 0x53534D64u, AffinityReader::EnumT);
+	AF_INIT_S(SSSp, 0x53535370u, bool);
+	AF_INIT_S(SSSz, 0x5353537Au, bool);
+	AF_INIT_C(SatS, 0x53617453u, BrDy);
+	AF_INIT_C(ScaX, 0x53636158u, BrDy);
+	AF_INIT_C(ScaY, 0x53636159u, BrDy);
+	AF_INIT_V(Scnd, 0x53636E64u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_C(Shap, 0x53686170u, BrDy);
+	AF_INIT_C(Size, 0x53697A65u, BrDy);
+	AF_INIT_S(Spac, 0x53706163u, float);
+	AF_INIT_S(Strk, 0x5374726Bu, bool);
+	AF_INIT_X(0x53756242u, {
+		AF_CASE_X(SubB, 0x49425242u, IBRB);
+		AF_CASE_X(SubB, 0x52524272u, RRBr);
+	});
+	AF_INIT_S(Tail, 0x5461696Cu, double);
+	AF_INIT_C(TipC, 0x54697043u, BrDy);
+	AF_INIT_L(TipT, 0x54697054u, DyBm);
+	AF_INIT_S(ToID, 0x546F4944u, int32_t);
+	AF_INIT_C(WeES, 0x57654553u, Spln);
+	AF_INIT_S(WetE, 0x57657445u, bool);
+}
+
+AF_STRUCT_INIT(BaseExCsts)
+{
+	AF_INIT_S(cnst, 0x636E7374u, std::string);
+	AF_INIT_S(desc, 0x64657363u, std::string);
+	AF_INIT_S(type, 0x74797065u, AffinityReader::EnumT);
+}
+
 AF_STRUCT_INIT(BaseCmd)
 {
+	AF_INIT_S(AARp, 0x41415270u, bool);
+	AF_INIT_S(AAtC, 0x41417443u, bool);
+	AF_INIT_S(ANme, 0x414E6D65u, bool);
+	AF_INIT_S(AThm, 0x4154686Du, bool);
+	AF_INIT_S(AbrP, 0x41627250u, bool);
+	AF_INIT_S(AcWP, 0x41635750u, bool);
+	AF_INIT_S(AdSC, 0x41645343u, bool);
+	AF_INIT_S(AndS, 0x416E6453u, bool);
+	AF_INIT_S(AppD, 0x41707044u, bool);
+	AF_INIT_S(ArtC, 0x41727443u, bool);
 	AF_INIT_S(Assi, 0x41737369u, bool);
+	AF_INIT_S(BlnM, 0x426C6E4Du, AffinityReader::EnumT);
+	AF_INIT_S(CArC, 0x43417243u, bool);
+	AF_INIT_N(CGlA);
+	AF_INIT_S(CLis, 0x434C6973u, AffinityReader::EnumT);
+	AF_INIT_S(CMSl, 0x434D536Cu, bool);
+	AF_INIT_S(CSDf, 0x43534466u, bool);
+	AF_INIT_S(ClrS, 0x436C7253u, bool);
+	AF_INIT_S(CopT, 0x436F7054u, bool);
+	AF_INIT_S(Crct, 0x43726374u, bool);
+	AF_INIT_S(DIdx, 0x44496478u, int32_t);
+	AF_INIT_S(DefM, 0x4465664Du, int32_t);
+	AF_INIT_M(0x44657374u, {
+		AF_CASE_M(Dest, 0x47727570u, Grup);
+		AF_CASE_M(Dest, 0x52737472u, Rstr);
+		AF_CASE_M(Dest, 0x53636F70u, Scop);
+		AF_CASE_M(Dest, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_S(DidD, 0x44696444u, bool);
+	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
+	AF_INIT_S(Done, 0x446F6E65u, bool);
+	AF_INIT_S(EnID, 0x456E4944u, bool);
+	AF_INIT_S(Enab, 0x456E6162u, bool);
+	AF_INIT_M(0x45784F70u, {
+		AF_CASE_M(ExOp, 0x454F4570u, EOEp);
+		AF_CASE_M(ExOp, 0x454F4766u, EOGf);
+		AF_CASE_M(ExOp, 0x454F4844u, EOHD);
+		AF_CASE_M(ExOp, 0x454F4A70u, EOJp);
+		AF_CASE_M(ExOp, 0x454F5053u, EOPS);
+		AF_CASE_M(ExOp, 0x454F5064u, EOPd);
+		AF_CASE_M(ExOp, 0x454F506Eu, EOPn);
+		AF_CASE_M(ExOp, 0x454F5376u, EOSv);
+		AF_CASE_M(ExOp, 0x454F5466u, EOTf);
+		AF_CASE_M(ExOp, 0x454F5467u, EOTg);
+		AF_CASE_M(ExOp, 0x454F5852u, EOXR);
+	});
+	AF_INIT_S(Expo, 0x4578706Fu, double);
+	AF_INIT_S(FMsk, 0x464D736Bu, int32_t);
+	AF_INIT_E(Fak1);
+	AF_INIT_E(Fak2);
+	AF_INIT_S(FilI, 0x46696C49u, uint32_t);
+	AF_INIT_M(0x46696C6Cu, {
+		AF_CASE_M(Fill, 0x46696C47u, FilG);
+		AF_CASE_M(Fill, 0x46696C53u, FilS);
+	});
+	AF_INIT_X(0x46697231u, {
+		AF_CASE_X(Fir1, 0x47727570u, Grup);
+		AF_CASE_X(Fir1, 0x53636F70u, Scop);
+		AF_CASE_X(Fir1, 0x53707264u, Sprd);
+	});
+	AF_INIT_E(Fir2);
+	AF_INIT_E(Fir3);
+	AF_INIT_X(0x46697234u, {
+		AF_CASE_X(Fir4, 0x47727570u, Grup);
+		AF_CASE_X(Fir4, 0x53636F70u, Scop);
+		AF_CASE_X(Fir4, 0x53707264u, Sprd);
+	});
+	AF_INIT_E(Fir5);
+	AF_INIT_X(0x46697236u, {
+		AF_CASE_X(Fir6, 0x47727570u, Grup);
+		AF_CASE_X(Fir6, 0x53636F70u, Scop);
+		AF_CASE_X(Fir6, 0x53707264u, Sprd);
+	});
+	AF_INIT_X(0x46697237u, {
+		AF_CASE_X(Fir7, 0x47727570u, Grup);
+		AF_CASE_X(Fir7, 0x53636F70u, Scop);
+		AF_CASE_X(Fir7, 0x53707264u, Sprd);
+	});
+	AF_INIT_E(Fir8);
+	AF_INIT_E(Fir9);
+	AF_INIT_X(0x46723130u, {
+		AF_CASE_X(Fr10, 0x47727570u, Grup);
+		AF_CASE_X(Fr10, 0x53636F70u, Scop);
+	});
+	AF_INIT_X(0x46723131u, {
+		AF_CASE_X(Fr11, 0x47727570u, Grup);
+		AF_CASE_X(Fr11, 0x53636F70u, Scop);
+	});
+	AF_INIT_X(0x46723132u, {
+		AF_CASE_X(Fr12, 0x47727570u, Grup);
+		AF_CASE_X(Fr12, 0x53636F70u, Scop);
+	});
+	AF_INIT_X(0x46723133u, {
+		AF_CASE_X(Fr13, 0x47727570u, Grup);
+		AF_CASE_X(Fr13, 0x53636F70u, Scop);
+		AF_CASE_X(Fr13, 0x53707264u, Sprd);
+	});
+	AF_INIT_X(0x46723134u, {
+		AF_CASE_X(Fr14, 0x47727570u, Grup);
+		AF_CASE_X(Fr14, 0x53636F70u, Scop);
+		AF_CASE_X(Fr14, 0x5368704Eu, ShpN);
+		AF_CASE_X(Fr14, 0x53707264u, Sprd);
+	});
+	AF_INIT_X(0x46723135u, {
+		AF_CASE_X(Fr15, 0x47727570u, Grup);
+		AF_CASE_X(Fr15, 0x53636F70u, Scop);
+		AF_CASE_X(Fr15, 0x53707264u, Sprd);
+	});
+	AF_INIT_E(Fr16);
+	AF_INIT_E(Fr17);
+	AF_INIT_E(Fr18);
+	AF_INIT_X(0x46723139u, {
+		AF_CASE_X(Fr19, 0x47727570u, Grup);
+		AF_CASE_X(Fr19, 0x53636F70u, Scop);
+		AF_CASE_X(Fr19, 0x53707264u, Sprd);
+	});
+	AF_INIT_X(0x46723231u, {
+		AF_CASE_X(Fr21, 0x47727570u, Grup);
+		AF_CASE_X(Fr21, 0x53636F70u, Scop);
+		AF_CASE_X(Fr21, 0x53707264u, Sprd);
+	});
+	AF_INIT_X(0x46723232u, {
+		AF_CASE_X(Fr22, 0x47727570u, Grup);
+		AF_CASE_X(Fr22, 0x53636F70u, Scop);
+		AF_CASE_X(Fr22, 0x53707264u, Sprd);
+	});
+	AF_INIT_E(Fr23);
+	AF_INIT_X(0x46723234u, {
+		AF_CASE_X(Fr24, 0x47727570u, Grup);
+		AF_CASE_X(Fr24, 0x53636F70u, Scop);
+		AF_CASE_X(Fr24, 0x53707264u, Sprd);
+	});
+	AF_INIT_E(Fr25);
+	AF_INIT_L(Fr26, 0x46723236u, Sprd);
+	AF_INIT_E(Fr27);
+	AF_INIT_E(Fr28);
+	AF_INIT_S(FrcC, 0x46726343u, int32_t);
+	AF_INIT_C(Glyp, 0x476C7970u, GStr);
+	AF_INIT_S(GnHT, 0x476E4854u, bool);
+	AF_INIT_S(IINS, 0x49494E53u, bool);
+	AF_INIT_C(IRec, 0x49526563u, SpRV);
+	AF_INIT_A(InRc, 0x496E5263u, AffinityReader::vec_d_t<4>, 4);
 	AF_INIT_M(0x496E6E72u, {
 		AF_CASE_M(Innr, 0x43415343u, CASC);
 		AF_CASE_M(Innr, 0x436D436Du, CmCm);
 	});
-	AF_INIT_M(0x4E6F6465u, {
-		AF_CASE_M(Node, 0x33444C41u, v_3DLA);
-		AF_CASE_M(Node, 0x42435241u, BCRA);
-		AF_CASE_M(Node, 0x42575241u, BWRA);
-		AF_CASE_M(Node, 0x43425241u, CBRA);
-		AF_CASE_M(Node, 0x434D5241u, CMRA);
-		AF_CASE_M(Node, 0x43725241u, CrRA);
-		AF_CASE_M(Node, 0x45785241u, ExRA);
-		AF_CASE_M(Node, 0x47725241u, GrRA);
-		AF_CASE_M(Node, 0x48735241u, HsRA);
-		AF_CASE_M(Node, 0x496E5241u, InRA);
-		AF_CASE_M(Node, 0x4C655241u, LeRA);
-		AF_CASE_M(Node, 0x4D527374u, MRst);
-		AF_CASE_M(Node, 0x4F43524Eu, OCRN);
-		AF_CASE_M(Node, 0x50665241u, PfRA);
-		AF_CASE_M(Node, 0x506F5241u, PoRA);
-		AF_CASE_M(Node, 0x52635241u, RcRA);
-		AF_CASE_M(Node, 0x53435241u, SCRA);
-		AF_CASE_M(Node, 0x53485241u, SHRA);
-		AF_CASE_M(Node, 0x53505241u, SPRA);
-		AF_CASE_M(Node, 0x53705441u, SpTA);
-		AF_CASE_M(Node, 0x54685241u, ThRA);
-		AF_CASE_M(Node, 0x56625241u, VbRA);
-		AF_CASE_M(Node, 0x57425241u, WBRA);
+	AF_INIT_S(InsM, 0x496E734Du, AffinityReader::EnumT);
+	AF_INIT_M(0x496E7354u, {
+		AF_CASE_M(InsT, 0x47727570u, Grup);
+		AF_CASE_M(InsT, 0x50437276u, PCrv);
+		AF_CASE_M(InsT, 0x52737472u, Rstr);
+		AF_CASE_M(InsT, 0x53636F70u, Scop);
+		AF_CASE_M(InsT, 0x5368704Eu, ShpN);
+		AF_CASE_M(InsT, 0x53707264u, Sprd);
+		AF_CASE_M(InsT, 0x54787441u, TxtA);
+		AF_CASE_M(InsT, 0x57425241u, WBRA);
 	});
+	AF_INIT_S(Inte, 0x496E7465u, double);
+	AF_INIT_A(InvR, 0x496E7652u, AffinityReader::vec_d_t<4>, 4);
 	AF_INIT_C(LDsc, 0x4C447363u, LStr);
-	AF_INIT_S(Opaq, 0x4F706171u, bool);
-	AF_INIT_S(UsRS, 0x55735253u, bool);
-	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
-	AF_INIT_S(Prev, 0x50726576u, bool);
-	AF_INIT_S(ArtC, 0x41727443u, bool);
-	AF_INIT_S(AAtC, 0x41417443u, bool);
-	AF_INIT_S(CArC, 0x43417243u, bool);
-	AF_INIT_S(Work, 0x576F726Bu, bool);
-	AF_INIT_S(Done, 0x446F6E65u, bool);
+	AF_INIT_M(0x4C617972u, {
+		AF_CASE_M(Layr, 0x53636F70u, Scop);
+		AF_CASE_M(Layr, 0x5368704Eu, ShpN);
+		AF_CASE_M(Layr, 0x53707264u, Sprd);
+	});
+	AF_INIT_S(Live, 0x4C697665u, bool);
+	AF_INIT_S(MdTc, 0x4D645463u, bool);
+	AF_INIT_S(Mode, 0x4D6F6465u, AffinityReader::EnumT);
+	AF_INIT_S(Mono, 0x4D6F6E6Fu, bool);
+	AF_INIT_N(NDef);
+	AF_INIT_S(NInM, 0x4E496E4Du, AffinityReader::EnumT);
+	AF_INIT_E(NewB);
+	AF_INIT_L(NewG, 0x4E657747u, GlAS);
+	AF_INIT_L(NewL, 0x4E65774Cu, LDsc);
+	AF_INIT_C(NewS, 0x4E657753u, Sele);
+	AF_INIT_S(NoIn, 0x4E6F496Eu, bool);
 	AF_INIT_X(0x4E6F6441u, {
 		AF_CASE_X(NodA, 0x33444C41u, v_3DLA);
 		AF_CASE_X(NodA, 0x42435241u, BCRA);
@@ -863,153 +1015,173 @@ AF_STRUCT_INIT(BaseCmd)
 		AF_CASE_X(NodA, 0x56625241u, VbRA);
 		AF_CASE_X(NodA, 0x57425241u, WBRA);
 	});
-	AF_INIT_S(AdSC, 0x41645343u, bool);
-	AF_INIT_S(AppD, 0x41707044u, bool);
-	AF_INIT_S(TTTa, 0x54545461u, bool);
-	AF_INIT_S(UBLS, 0x55424C53u, bool);
-	AF_INIT_N(Pres);
-	AF_INIT_S(AndS, 0x416E6453u, bool);
-	AF_INIT_C(NewS, 0x4E657753u, Sele);
-	AF_INIT_S(FrcC, 0x46726343u, int32_t);
-	AF_INIT_S(UsFl, 0x5573466Cu, bool);
-	AF_INIT_S(ANme, 0x414E6D65u, bool);
-	AF_INIT_A(InRc, 0x496E5263u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(AARp, 0x41415270u, bool);
-	AF_INIT_M(0x496E7354u, {
-		AF_CASE_M(InsT, 0x47727570u, Grup);
-		AF_CASE_M(InsT, 0x50437276u, PCrv);
-		AF_CASE_M(InsT, 0x52737472u, Rstr);
-		AF_CASE_M(InsT, 0x53636F70u, Scop);
-		AF_CASE_M(InsT, 0x5368704Eu, ShpN);
-		AF_CASE_M(InsT, 0x53707264u, Sprd);
-		AF_CASE_M(InsT, 0x54787441u, TxtA);
-		AF_CASE_M(InsT, 0x57425241u, WBRA);
+	AF_INIT_M(0x4E6F6465u, {
+		AF_CASE_M(Node, 0x33444C41u, v_3DLA);
+		AF_CASE_M(Node, 0x42435241u, BCRA);
+		AF_CASE_M(Node, 0x42575241u, BWRA);
+		AF_CASE_M(Node, 0x43425241u, CBRA);
+		AF_CASE_M(Node, 0x434D5241u, CMRA);
+		AF_CASE_M(Node, 0x43725241u, CrRA);
+		AF_CASE_M(Node, 0x45785241u, ExRA);
+		AF_CASE_M(Node, 0x466C524Eu, FlRN);
+		AF_CASE_M(Node, 0x47725241u, GrRA);
+		AF_CASE_M(Node, 0x48735241u, HsRA);
+		AF_CASE_M(Node, 0x496E5241u, InRA);
+		AF_CASE_M(Node, 0x4C655241u, LeRA);
+		AF_CASE_M(Node, 0x4D527374u, MRst);
+		AF_CASE_M(Node, 0x4F43524Eu, OCRN);
+		AF_CASE_M(Node, 0x50665241u, PfRA);
+		AF_CASE_M(Node, 0x506F5241u, PoRA);
+		AF_CASE_M(Node, 0x52635241u, RcRA);
+		AF_CASE_M(Node, 0x53435241u, SCRA);
+		AF_CASE_M(Node, 0x53485241u, SHRA);
+		AF_CASE_M(Node, 0x53505241u, SPRA);
+		AF_CASE_M(Node, 0x53705441u, SpTA);
+		AF_CASE_M(Node, 0x54685241u, ThRA);
+		AF_CASE_M(Node, 0x56625241u, VbRA);
+		AF_CASE_M(Node, 0x57425241u, WBRA);
 	});
-	AF_INIT_S(InsM, 0x496E734Du, AffinityReader::EnumT);
-	AF_INIT_S(CLis, 0x434C6973u, AffinityReader::EnumT);
+	AF_INIT_E(NwBm);
+	AF_INIT_N(NwCm);
+	AF_INIT_C(NwTR, 0x4E775452u, UnSR);
+	AF_INIT_E(NwTV);
+	AF_INIT_N(ODef);
+	AF_INIT_L(OGAV, 0x4F474156u, GAtt);
 	AF_INIT_S(OInM, 0x4F496E4Du, AffinityReader::EnumT);
-	AF_INIT_S(NInM, 0x4E496E4Du, AffinityReader::EnumT);
-	AF_INIT_S(MdTc, 0x4D645463u, bool);
+	AF_INIT_L(OPAV, 0x4F504156u, PAtt);
+	AF_INIT_L(OPBV, 0x4F504256u, PAtt);
 	AF_INIT_C(OSCo, 0x4F53436Fu, Sele);
-	AF_INIT_E(Fir3);
-	AF_INIT_E(Sec3);
-	AF_INIT_X(0x46697234u, {
-		AF_CASE_X(Fir4, 0x47727570u, Grup);
-		AF_CASE_X(Fir4, 0x53636F70u, Scop);
-		AF_CASE_X(Fir4, 0x53707264u, Sprd);
+	AF_INIT_C(OTGA, 0x4F544741u, GAtt);
+	AF_INIT_X(0x4F626A73u, {
+		AF_CASE_X(Objs, 0x4143436Du, ACCm);
+		AF_CASE_X(Objs, 0x41524643u, ARFC);
+		AF_CASE_X(Objs, 0x4578496Eu, ExIn);
+		AF_CASE_X(Objs, 0x504E6F43u, PNoC);
+		AF_CASE_X(Objs, 0x50524E53u, PRNS);
+		AF_CASE_X(Objs, 0x52524643u, RRFC);
+		AF_CASE_X(Objs, 0x53434552u, SCER);
+		AF_CASE_X(Objs, 0x53463243u, SF2C);
+		AF_CASE_X(Objs, 0x534F4245u, SOBE);
+		AF_CASE_X(Objs, 0x534F434Fu, SOCO);
+		AF_CASE_X(Objs, 0x534F4741u, SOGA);
+		AF_CASE_X(Objs, 0x534F474Fu, SOGO);
+		AF_CASE_X(Objs, 0x534F4953u, SOIS);
+		AF_CASE_X(Objs, 0x534F4967u, SOIg);
+		AF_CASE_X(Objs, 0x534F4F67u, SOOg);
+		AF_CASE_X(Objs, 0x534F5042u, SOPB);
+		AF_CASE_X(Objs, 0x534F5368u, SOSh);
+		AF_CASE_X(Objs, 0x534F5374u, SOSt);
+		AF_CASE_X(Objs, 0x53534648u, SSFH);
+		AF_CASE_X(Objs, 0x53534C46u, SSLF);
+		AF_CASE_X(Objs, 0x53534E53u, SSNS);
 	});
-	AF_INIT_L(Sec4, 0x53656334u, PSRe);
-	AF_INIT_X(0x46697236u, {
-		AF_CASE_X(Fir6, 0x47727570u, Grup);
-		AF_CASE_X(Fir6, 0x53636F70u, Scop);
-		AF_CASE_X(Fir6, 0x53707264u, Sprd);
+	AF_INIT_E(OdTV);
+	AF_INIT_E(OlCm);
+	AF_INIT_V(OlE2, 0x4F6C4532u, AffinityReader::SharedArray<bool>);
+	AF_INIT_L(OlGA, 0x4F6C4741u, GlAS);
+	AF_INIT_L(OlPA, 0x4F6C5041u, PaAS);
+	AF_INIT_X(0x4F6C5053u, {
+		AF_CASE_X(OlPS, 0x47727570u, Grup);
+		AF_CASE_X(OlPS, 0x50437276u, PCrv);
+		AF_CASE_X(OlPS, 0x52737472u, Rstr);
+		AF_CASE_X(OlPS, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sec6, 0x53656336u, PSRe);
-	AF_INIT_X(0x46697237u, {
-		AF_CASE_X(Fir7, 0x47727570u, Grup);
-		AF_CASE_X(Fir7, 0x53636F70u, Scop);
-		AF_CASE_X(Fir7, 0x53707264u, Sprd);
+	AF_INIT_N(OlSp);
+	AF_INIT_C(OlTR, 0x4F6C5452u, UnSR);
+	AF_INIT_V(OldE, 0x4F6C6445u, AffinityReader::SharedArray<bool>);
+	AF_INIT_L(OldG, 0x4F6C6447u, GlAS);
+	AF_INIT_L(OldL, 0x4F6C644Cu, LDsc);
+	AF_INIT_X(0x4F6C644Eu, {
+		AF_CASE_X(OldN, 0x47727570u, Grup);
+		AF_CASE_X(OldN, 0x4F626A53u, ObjS);
+		AF_CASE_X(OldN, 0x52737472u, Rstr);
+		AF_CASE_X(OldN, 0x53636F70u, Scop);
+		AF_CASE_X(OldN, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sec7, 0x53656337u, PSRe);
-	AF_INIT_X(0x46697231u, {
-		AF_CASE_X(Fir1, 0x47727570u, Grup);
-		AF_CASE_X(Fir1, 0x53636F70u, Scop);
-		AF_CASE_X(Fir1, 0x53707264u, Sprd);
+	AF_INIT_V(OldO, 0x4F6C644Fu, AffinityReader::SharedArray<double>);
+	AF_INIT_V(OldT, 0x4F6C6454u, AffinityReader::SharedArray<AffinityReader::vec_d_t<6>>);
+	AF_INIT_S(Opaq, 0x4F706171u, bool);
+	AF_INIT_A(Orig, 0x4F726967u, AffinityReader::vec_d_t<2>, 2);
+	AF_INIT_S(PMax, 0x504D6178u, float);
+	AF_INIT_S(PMin, 0x504D696Eu, float);
+	AF_INIT_M(0x50617261u, {
+		AF_CASE_M(Para, 0x42264350u, BCP_38);
+		AF_CASE_M(Para, 0x42265750u, BWP_38);
+		AF_CASE_M(Para, 0x436E4D50u, CnMP);
+		AF_CASE_M(Para, 0x436F4250u, CoBP);
+		AF_CASE_M(Para, 0x43727650u, CrvP);
+		AF_CASE_M(Para, 0x45446650u, EDfP);
+		AF_CASE_M(Para, 0x45787050u, ExpP);
+		AF_CASE_M(Para, 0x47724D50u, GrMP);
+		AF_CASE_M(Para, 0x48535350u, HSSP);
+		AF_CASE_M(Para, 0x4C657650u, LevP);
+		AF_CASE_M(Para, 0x53436F50u, SCoP);
+		AF_CASE_M(Para, 0x53486950u, SHiP);
+		AF_CASE_M(Para, 0x53545061u, STPa);
+		AF_CASE_M(Para, 0x56696250u, VibP);
+		AF_CASE_M(Para, 0x57684250u, WhBP);
 	});
-	AF_INIT_L(Sec1, 0x53656331u, PSRe);
-	AF_INIT_X(0x46723130u, {
-		AF_CASE_X(Fr10, 0x47727570u, Grup);
-		AF_CASE_X(Fr10, 0x53636F70u, Scop);
-	});
+	AF_INIT_N(Pres);
+	AF_INIT_S(Prev, 0x50726576u, bool);
+	AF_INIT_S(Prog, 0x50726F67u, bool);
+	AF_INIT_C(RGA0, 0x52474130u, GAtt);
+	AF_INIT_C(RGA1, 0x52474131u, GAtt);
+	AF_INIT_C(RPA0, 0x52504130u, PAtt);
+	AF_INIT_C(RPA1, 0x52504131u, PAtt);
+	AF_INIT_E(RSw2);
+	AF_INIT_S(Radi, 0x52616469u, double);
+	AF_INIT_S(RasS, 0x52617353u, bool);
+	AF_INIT_L(RedT, 0x52656454u, DyBm);
+	AF_INIT_C(SFDe, 0x53464465u, FDsc);
 	AF_INIT_L(Sc10, 0x53633130u, PSRe);
-	AF_INIT_X(0x46723132u, {
-		AF_CASE_X(Fr12, 0x47727570u, Grup);
-		AF_CASE_X(Fr12, 0x53636F70u, Scop);
-	});
-	AF_INIT_L(Sc12, 0x53633132u, PSRe);
-	AF_INIT_X(0x46723131u, {
-		AF_CASE_X(Fr11, 0x47727570u, Grup);
-		AF_CASE_X(Fr11, 0x53636F70u, Scop);
-	});
 	AF_INIT_L(Sc11, 0x53633131u, PSRe);
-	AF_INIT_E(Fir8);
-	AF_INIT_E(Sec8);
-	AF_INIT_E(Fir9);
-	AF_INIT_E(Sec9);
-	AF_INIT_E(Fir5);
-	AF_INIT_E(Sec5);
-	AF_INIT_X(0x46723134u, {
-		AF_CASE_X(Fr14, 0x47727570u, Grup);
-		AF_CASE_X(Fr14, 0x53636F70u, Scop);
-		AF_CASE_X(Fr14, 0x5368704Eu, ShpN);
-		AF_CASE_X(Fr14, 0x53707264u, Sprd);
-	});
-	AF_INIT_L(Sc14, 0x53633134u, PSRe);
-	AF_INIT_E(Fr16);
-	AF_INIT_E(Sc16);
-	AF_INIT_E(Fr25);
-	AF_INIT_E(Sc25);
-	AF_INIT_E(Fr17);
-	AF_INIT_E(Sc17);
-	AF_INIT_E(Fr18);
-	AF_INIT_E(Sc18);
-	AF_INIT_X(0x46723139u, {
-		AF_CASE_X(Fr19, 0x47727570u, Grup);
-		AF_CASE_X(Fr19, 0x53636F70u, Scop);
-		AF_CASE_X(Fr19, 0x53707264u, Sprd);
-	});
-	AF_INIT_L(Sc19, 0x53633139u, PSRe);
-	AF_INIT_X(0x46723133u, {
-		AF_CASE_X(Fr13, 0x47727570u, Grup);
-		AF_CASE_X(Fr13, 0x53636F70u, Scop);
-		AF_CASE_X(Fr13, 0x53707264u, Sprd);
-	});
+	AF_INIT_L(Sc12, 0x53633132u, PSRe);
 	AF_INIT_L(Sc13, 0x53633133u, PSRe);
-	AF_INIT_X(0x46723231u, {
-		AF_CASE_X(Fr21, 0x47727570u, Grup);
-		AF_CASE_X(Fr21, 0x53636F70u, Scop);
-		AF_CASE_X(Fr21, 0x53707264u, Sprd);
-	});
-	AF_INIT_L(Sc21, 0x53633231u, PSRe);
-	AF_INIT_X(0x46723232u, {
-		AF_CASE_X(Fr22, 0x47727570u, Grup);
-		AF_CASE_X(Fr22, 0x53636F70u, Scop);
-		AF_CASE_X(Fr22, 0x53707264u, Sprd);
-	});
-	AF_INIT_L(Sc22, 0x53633232u, PSRe);
-	AF_INIT_E(Fr23);
-	AF_INIT_E(Sc23);
-	AF_INIT_X(0x46723234u, {
-		AF_CASE_X(Fr24, 0x47727570u, Grup);
-		AF_CASE_X(Fr24, 0x53636F70u, Scop);
-		AF_CASE_X(Fr24, 0x53707264u, Sprd);
-	});
-	AF_INIT_L(Sc24, 0x53633234u, PSRe);
-	AF_INIT_L(Fr26, 0x46723236u, Sprd);
-	AF_INIT_L(Sc26, 0x53633236u, PSRe);
-	AF_INIT_X(0x46723135u, {
-		AF_CASE_X(Fr15, 0x47727570u, Grup);
-		AF_CASE_X(Fr15, 0x53636F70u, Scop);
-		AF_CASE_X(Fr15, 0x53707264u, Sprd);
-	});
+	AF_INIT_L(Sc14, 0x53633134u, PSRe);
 	AF_INIT_L(Sc15, 0x53633135u, PSRe);
-	AF_INIT_E(lnkd);
-	AF_INIT_X(0x756C6B64u, {
-		AF_CASE_X(ulkd, 0x434D5241u, CMRA);
-		AF_CASE_X(ulkd, 0x47725241u, GrRA);
-		AF_CASE_X(ulkd, 0x47727570u, Grup);
-		AF_CASE_X(ulkd, 0x496D674Eu, ImgN);
-		AF_CASE_X(ulkd, 0x52737472u, Rstr);
-		AF_CASE_X(ulkd, 0x53636F70u, Scop);
-		AF_CASE_X(ulkd, 0x5368704Eu, ShpN);
-		AF_CASE_X(ulkd, 0x54787441u, TxtA);
-	});
+	AF_INIT_E(Sc16);
+	AF_INIT_E(Sc17);
+	AF_INIT_E(Sc18);
+	AF_INIT_L(Sc19, 0x53633139u, PSRe);
+	AF_INIT_L(Sc21, 0x53633231u, PSRe);
+	AF_INIT_L(Sc22, 0x53633232u, PSRe);
+	AF_INIT_E(Sc23);
+	AF_INIT_L(Sc24, 0x53633234u, PSRe);
+	AF_INIT_E(Sc25);
+	AF_INIT_L(Sc26, 0x53633236u, PSRe);
+	AF_INIT_E(Sc27);
+	AF_INIT_E(Sc28);
+	AF_INIT_S(SeNT, 0x53654E54u, AffinityReader::EnumT);
+	AF_INIT_L(Sec1, 0x53656331u, PSRe);
+	AF_INIT_E(Sec2);
+	AF_INIT_E(Sec3);
+	AF_INIT_L(Sec4, 0x53656334u, PSRe);
+	AF_INIT_E(Sec5);
+	AF_INIT_L(Sec6, 0x53656336u, PSRe);
+	AF_INIT_L(Sec7, 0x53656337u, PSRe);
+	AF_INIT_E(Sec8);
+	AF_INIT_E(Sec9);
 	AF_INIT_C(Sele, 0x53656C65u, Sele);
-	AF_INIT_M(0x4C617972u, {
-		AF_CASE_M(Layr, 0x53636F70u, Scop);
-		AF_CASE_M(Layr, 0x5368704Eu, ShpN);
-		AF_CASE_M(Layr, 0x53707264u, Sprd);
-	});
+	AF_INIT_N(Sour);
+	AF_INIT_N(SrUC);
+	AF_INIT_S(Stac, 0x53746163u, bool);
+	AF_INIT_S(TTTa, 0x54545461u, bool);
+	AF_INIT_S(TocC, 0x546F6343u, bool);
+	AF_INIT_S(Tole, 0x546F6C65u, double);
+	AF_INIT_C(TxFl, 0x5478466Cu, TxFU);
+	AF_INIT_S(UBLS, 0x55424C53u, bool);
+	AF_INIT_E(USw2);
+	AF_INIT_L(UndR, 0x556E6452u, UndR);
+	AF_INIT_S(UsFl, 0x5573466Cu, bool);
+	AF_INIT_S(UsRS, 0x55735253u, bool);
+	AF_INIT_S(UsTS, 0x55735453u, bool);
+	AF_INIT_S(Vali, 0x56616C69u, bool);
+	AF_INIT_S(VsCh, 0x56734368u, bool);
+	AF_INIT_S(VsRs, 0x56735273u, bool);
+	AF_INIT_S(Work, 0x576F726Bu, bool);
+	AF_INIT_A(Xfrm, 0x5866726Du, AffinityReader::vec_d_t<6>, 6);
+	AF_INIT_S(eTSl, 0x6554536Cu, bool);
+	AF_INIT_E(lnkd);
 	AF_INIT_X(0x6D61706Fu, {
 		AF_CASE_X(mapo, 0x33444C41u, v_3DLA);
 		AF_CASE_X(mapo, 0x42435241u, BCRA);
@@ -1043,131 +1215,67 @@ AF_STRUCT_INIT(BaseCmd)
 		AF_CASE_X(mapo, 0x56625241u, VbRA);
 		AF_CASE_X(mapo, 0x57425241u, WBRA);
 	});
-	AF_INIT_S(UsTS, 0x55735453u, bool);
-	AF_INIT_X(0x4F6C644Eu, {
-		AF_CASE_X(OldN, 0x47727570u, Grup);
-		AF_CASE_X(OldN, 0x4F626A53u, ObjS);
-		AF_CASE_X(OldN, 0x52737472u, Rstr);
-		AF_CASE_X(OldN, 0x53636F70u, Scop);
-		AF_CASE_X(OldN, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(OlGA, 0x4F6C4741u, GlAS);
-	AF_INIT_L(OlPA, 0x4F6C5041u, PaAS);
-	AF_INIT_E(Fir2);
-	AF_INIT_E(Sec2);
-	AF_INIT_N(SrUC);
-	AF_INIT_C(Glyp, 0x476C7970u, GStr);
-	AF_INIT_E(NwTV);
-	AF_INIT_E(OdTV);
-	AF_INIT_L(OPBV, 0x4F504256u, PAtt);
-	AF_INIT_L(OPAV, 0x4F504156u, PAtt);
-	AF_INIT_L(OGAV, 0x4F474156u, GAtt);
-	AF_INIT_S(SeNT, 0x53654E54u, AffinityReader::EnumT);
-	AF_INIT_C(OlTR, 0x4F6C5452u, UnSR);
-	AF_INIT_C(NwTR, 0x4E775452u, UnSR);
-	AF_INIT_N(CGlA);
-	AF_INIT_C(OTGA, 0x4F544741u, GAtt);
-	AF_INIT_S(TocC, 0x546F6343u, bool);
-	AF_INIT_S(NoIn, 0x4E6F496Eu, bool);
-	AF_INIT_C(IRec, 0x49526563u, SpRV);
-	AF_INIT_M(0x50617261u, {
-		AF_CASE_M(Para, 0x436E4D50u, CnMP);
-		AF_CASE_M(Para, 0x47724D50u, GrMP);
-	});
-	AF_INIT_S(Stac, 0x53746163u, bool);
-	AF_INIT_X(0x4F626A73u, {
-		AF_CASE_X(Objs, 0x4143436Du, ACCm);
-		AF_CASE_X(Objs, 0x41524643u, ARFC);
-		AF_CASE_X(Objs, 0x4578496Eu, ExIn);
-		AF_CASE_X(Objs, 0x504E6F43u, PNoC);
-		AF_CASE_X(Objs, 0x50524E53u, PRNS);
-		AF_CASE_X(Objs, 0x52524643u, RRFC);
-		AF_CASE_X(Objs, 0x53434552u, SCER);
-		AF_CASE_X(Objs, 0x53463243u, SF2C);
-		AF_CASE_X(Objs, 0x53534648u, SSFH);
-		AF_CASE_X(Objs, 0x53534C46u, SSLF);
-		AF_CASE_X(Objs, 0x53534E53u, SSNS);
-	});
-	AF_INIT_S(Prog, 0x50726F67u, bool);
-	AF_INIT_S(GnHT, 0x476E4854u, bool);
-	AF_INIT_S(DIdx, 0x44496478u, int32_t);
-	AF_INIT_X(0x4F6C5053u, {
-		AF_CASE_X(OlPS, 0x47727570u, Grup);
-		AF_CASE_X(OlPS, 0x50437276u, PCrv);
-		AF_CASE_X(OlPS, 0x52737472u, Rstr);
-		AF_CASE_X(OlPS, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_E(NewB);
-	AF_INIT_V(OldT, 0x4F6C6454u, AffinityReader::SharedArray<AffinityReader::vec_d_t<6>>);
-	AF_INIT_S(Enab, 0x456E6162u, bool);
-	AF_INIT_V(OldE, 0x4F6C6445u, AffinityReader::SharedArray<bool>);
-	AF_INIT_S(EnID, 0x456E4944u, bool);
-	AF_INIT_V(OlE2, 0x4F6C4532u, AffinityReader::SharedArray<bool>);
-	AF_INIT_L(OldG, 0x4F6C6447u, GlAS);
-	AF_INIT_E(Fak1);
-	AF_INIT_E(Fak2);
-	AF_INIT_S(VsCh, 0x56734368u, bool);
-	AF_INIT_S(VsRs, 0x56735273u, bool);
-	AF_INIT_S(Tole, 0x546F6C65u, double);
-	AF_INIT_L(RedT, 0x52656454u, DyBm);
-	AF_INIT_C(RPA0, 0x52504130u, PAtt);
-	AF_INIT_C(RPA1, 0x52504131u, PAtt);
-	AF_INIT_C(RGA0, 0x52474130u, GAtt);
-	AF_INIT_C(RGA1, 0x52474131u, GAtt);
-	AF_INIT_A(InvR, 0x496E7652u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(RasS, 0x52617353u, bool);
-	AF_INIT_S(CMSl, 0x434D536Cu, bool);
-	AF_INIT_S(DefM, 0x4465664Du, int32_t);
 	AF_INIT_S(uTSl, 0x7554536Cu, bool);
-	AF_INIT_S(eTSl, 0x6554536Cu, bool);
-	AF_INIT_S(Vali, 0x56616C69u, bool);
-	AF_INIT_L(UndR, 0x556E6452u, UndR);
-	AF_INIT_S(Defs, 0x44656673u, bool);
-	AF_INIT_N(NDef);
-	AF_INIT_N(ODef);
-	AF_INIT_S(AThm, 0x4154686Du, bool);
-	AF_INIT_S(IINS, 0x49494E53u, bool);
-	AF_INIT_M(0x45784F70u, {
-		AF_CASE_M(ExOp, 0x454F4570u, EOEp);
-		AF_CASE_M(ExOp, 0x454F4766u, EOGf);
-		AF_CASE_M(ExOp, 0x454F4844u, EOHD);
-		AF_CASE_M(ExOp, 0x454F4A70u, EOJp);
-		AF_CASE_M(ExOp, 0x454F5053u, EOPS);
-		AF_CASE_M(ExOp, 0x454F5064u, EOPd);
-		AF_CASE_M(ExOp, 0x454F506Eu, EOPn);
-		AF_CASE_M(ExOp, 0x454F5376u, EOSv);
-		AF_CASE_M(ExOp, 0x454F5466u, EOTf);
-		AF_CASE_M(ExOp, 0x454F5467u, EOTg);
-		AF_CASE_M(ExOp, 0x454F5852u, EOXR);
+	AF_INIT_X(0x756C6B64u, {
+		AF_CASE_X(ulkd, 0x434D5241u, CMRA);
+		AF_CASE_X(ulkd, 0x47725241u, GrRA);
+		AF_CASE_X(ulkd, 0x47727570u, Grup);
+		AF_CASE_X(ulkd, 0x496D674Eu, ImgN);
+		AF_CASE_X(ulkd, 0x50437276u, PCrv);
+		AF_CASE_X(ulkd, 0x52737472u, Rstr);
+		AF_CASE_X(ulkd, 0x53636F70u, Scop);
+		AF_CASE_X(ulkd, 0x5368704Eu, ShpN);
+		AF_CASE_X(ulkd, 0x54787441u, TxtA);
 	});
-	AF_INIT_S(DidD, 0x44696444u, bool);
-	AF_INIT_M(0x46696C6Cu, {
-		AF_CASE_M(Fill, 0x46696C47u, FilG);
-		AF_CASE_M(Fill, 0x46696C53u, FilS);
-	});
-	AF_INIT_S(FilI, 0x46696C49u, uint32_t);
-	AF_INIT_S(CopT, 0x436F7054u, bool);
-	AF_INIT_S(ClrS, 0x436C7253u, bool);
-	AF_INIT_S(CSDf, 0x43534466u, bool);
-	AF_INIT_S(Crct, 0x43726374u, bool);
-	AF_INIT_S(FMsk, 0x464D736Bu, int32_t);
-	AF_INIT_C(SFDe, 0x53464465u, FDsc);
-	AF_INIT_L(OldL, 0x4F6C644Cu, LDsc);
-	AF_INIT_L(NewL, 0x4E65774Cu, LDsc);
-	AF_INIT_E(NwBm);
+	AF_INIT_V(uscl, 0x7573636Cu, AffinityReader::SharedArray<double>);
+	AF_INIT_V(usof, 0x75736F66u, AffinityReader::SharedArray<uint32_t>);
 }
+
+AF_STRUCT_INIT(BaseBitm) {}
+
+AF_STRUCT_INIT(BaseAtt)
+{
+	AF_INIT_S(Enbl, 0x456E626Cu, bool);
+	AF_INIT_C(SDlt, 0x53446C74u, CoDe);
+	AF_INIT_S(SNam, 0x534E616Du, std::string);
+}
+
+AF_STRUCT_INIT(BaseExport)
+{
+	AF_INIT_S(Bled, 0x426C6564u, bool);
+	AF_INIT_S(Comp, 0x436F6D70u, AffinityReader::EnumT);
+	AF_INIT_S(EmIP, 0x456D4950u, bool);
+	AF_INIT_S(EmMt, 0x456D4D74u, bool);
+	AF_INIT_C(ICCP, 0x49434350u, ICCP);
+	AF_INIT_C(Matt, 0x4D617474u, RGBA);
+	AF_INIT_S(PlSz, 0x506C537Au, uint16_t);
+	AF_INIT_S(PlTy, 0x506C5479u, AffinityReader::EnumT);
+	AF_INIT_S(Plts, 0x506C7473u, bool);
+	AF_INIT_S(PxFm, 0x5078466Du, AffinityReader::EnumT);
+	AF_INIT_S(RaPo, 0x5261506Fu, AffinityReader::EnumT);
+	AF_INIT_S(Rsmp, 0x52736D70u, AffinityReader::EnumT);
+	AF_INIT_S(TxCr, 0x54784372u, bool);
+	AF_INIT_N(UPlt);
+	AF_INIT_S(ahcl, 0x6168636Cu, bool);
+	AF_INIT_S(dadi, 0x64616469u, double);
+	AF_INIT_S(isct, 0x69736374u, bool);
+	AF_INIT_S(isds, 0x69736473u, bool);
+	AF_INIT_S(iurd, 0x69757264u, bool);
+	AF_INIT_S(jpeg, 0x6A706567u, bool);
+	AF_INIT_S(rdpi, 0x72647069u, double);
+}
+
+AF_STRUCT_INIT(BaseExVals) {}
 
 AF_STRUCT_INIT(BaseScObjs)
 {
-	AF_INIT_M(0x706E6465u, {
-		AF_CASE_M(pnde, 0x47727570u, Grup);
-		AF_CASE_M(pnde, 0x53636F70u, Scop);
-		AF_CASE_M(pnde, 0x5368704Eu, ShpN);
-		AF_CASE_M(pnde, 0x53707264u, Sprd);
-		AF_CASE_M(pnde, 0x57425241u, WBRA);
-	});
-	AF_INIT_S(nclt, 0x6E636C74u, AffinityReader::EnumT);
+	AF_INIT_S(AAtC, 0x41417443u, bool);
+	AF_INIT_S(ArtC, 0x41727443u, bool);
+	AF_INIT_S(CArC, 0x43417243u, bool);
+	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
+	AF_INIT_S(Prev, 0x50726576u, bool);
 	AF_INIT_S(frnt, 0x66726E74u, bool);
+	AF_INIT_S(nclt, 0x6E636C74u, AffinityReader::EnumT);
 	AF_INIT_M(0x6E6F6465u, {
 		AF_CASE_M(node, 0x33444C41u, v_3DLA);
 		AF_CASE_M(node, 0x42435241u, BCRA);
@@ -1200,91 +1308,30 @@ AF_STRUCT_INIT(BaseScObjs)
 		AF_CASE_M(node, 0x56625241u, VbRA);
 		AF_CASE_M(node, 0x57425241u, WBRA);
 	});
-	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
-	AF_INIT_S(Prev, 0x50726576u, bool);
-	AF_INIT_S(ArtC, 0x41727443u, bool);
-	AF_INIT_S(AAtC, 0x41417443u, bool);
-	AF_INIT_S(CArC, 0x43417243u, bool);
+	AF_INIT_M(0x706E6465u, {
+		AF_CASE_M(pnde, 0x47727570u, Grup);
+		AF_CASE_M(pnde, 0x53636F70u, Scop);
+		AF_CASE_M(pnde, 0x5368704Eu, ShpN);
+		AF_CASE_M(pnde, 0x53707264u, Sprd);
+		AF_CASE_M(pnde, 0x57425241u, WBRA);
+	});
 }
 
-AF_STRUCT_INIT(BaseFilt)
+AF_STRUCT_INIT(BaseSubSel) {}
+
+AF_STRUCT_INIT(BaseFlDS) {}
+
+AF_STRUCT_INIT(BaseCrf)
 {
-	AF_INIT_S(Radi, 0x52616469u, double);
-	AF_INIT_E(OlCm);
-	AF_INIT_N(NwCm);
-	AF_INIT_S(Live, 0x4C697665u, bool);
-	AF_INIT_S(AbrP, 0x41627250u, bool);
-	AF_INIT_C(IRec, 0x49526563u, SpRV);
-	AF_INIT_E(RedT);
-	AF_INIT_S(PMin, 0x504D696Eu, float);
-	AF_INIT_S(PMax, 0x504D6178u, float);
-	AF_INIT_E(Fir3);
-	AF_INIT_E(Sec3);
-	AF_INIT_E(Fir4);
-	AF_INIT_E(Sec4);
-	AF_INIT_E(Fir6);
-	AF_INIT_E(Sec6);
-	AF_INIT_E(Fir7);
-	AF_INIT_E(Sec7);
-	AF_INIT_E(Fir1);
-	AF_INIT_E(Sec1);
-	AF_INIT_E(Fr10);
-	AF_INIT_E(Sc10);
-	AF_INIT_E(Fr12);
-	AF_INIT_E(Sc12);
-	AF_INIT_E(Fr11);
-	AF_INIT_E(Sc11);
-	AF_INIT_E(Fir8);
-	AF_INIT_E(Sec8);
-	AF_INIT_E(Fir2);
-	AF_INIT_E(Sec2);
-	AF_INIT_E(Fir9);
-	AF_INIT_E(Sec9);
-	AF_INIT_E(Fir5);
-	AF_INIT_E(Sec5);
-	AF_INIT_E(Fr13);
-	AF_INIT_E(Sc13);
-	AF_INIT_E(Fr14);
-	AF_INIT_E(Sc14);
-	AF_INIT_E(Fr15);
-	AF_INIT_E(Sc15);
-	AF_INIT_E(Fr16);
-	AF_INIT_E(Sc16);
-	AF_INIT_E(Fr17);
-	AF_INIT_E(Sc17);
-	AF_INIT_E(Fr18);
-	AF_INIT_E(Sc18);
-	AF_INIT_E(Fr21);
-	AF_INIT_E(Sc21);
-	AF_INIT_E(Fr22);
-	AF_INIT_E(Sc22);
-	AF_INIT_E(Fr23);
-	AF_INIT_E(Sc23);
-	AF_INIT_E(Fr24);
-	AF_INIT_E(Sc24);
-	AF_INIT_N(Sele);
-	AF_INIT_N(Layr);
-	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
-	AF_INIT_S(Prev, 0x50726576u, bool);
-	AF_INIT_S(ArtC, 0x41727443u, bool);
-	AF_INIT_S(AAtC, 0x41417443u, bool);
-	AF_INIT_S(CArC, 0x43417243u, bool);
-	AF_INIT_E(Fr25);
-	AF_INIT_E(Sc25);
-	AF_INIT_E(Fr19);
-	AF_INIT_E(Sc19);
-	AF_INIT_E(Fr26);
-	AF_INIT_E(Sc26);
+	AF_INIT_S(kind, 0x6B696E64u, AffinityReader::EnumT);
+	AF_INIT_S(luid, 0x6C756964u, uint32_t);
+	AF_INIT_S(type, 0x74797065u, uint32_t);
 }
 
-AF_STRUCT_INIT(BaseAdjustment)
+AF_STRUCT_INIT(v_00DS)
 {
-	AF_INIT_V(Weig, 0x57656967u, AffinityReader::SharedArray<float>);
-	AF_INIT_S(Gamm, 0x47616D6Du, float);
-	AF_INIT_S(Vers, 0x56657273u, uint16_t);
+	AF_INIT_BASE(BaseFlDS);
 }
-
-AF_STRUCT_INIT(BaseBitm) {}
 
 AF_STRUCT_INIT(v_3DLA)
 {
@@ -1339,17 +1386,17 @@ AF_STRUCT_INIT(AFAt)
 {
 	AF_INIT_BASE(BaseAtt);
 
-	AF_INIT_S(MxWC, 0x4D785743u, int32_t);
 	AF_INIT_C(Left, 0x4C656674u, GStr);
+	AF_INIT_S(MxWC, 0x4D785743u, int32_t);
 }
 
 AF_STRUCT_INIT(AOSC)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_C(Styl, 0x5374796Cu, ObjS);
-	AF_INIT_E(OlTS);
 	AF_INIT_E(OTbl);
+	AF_INIT_E(OlTS);
+	AF_INIT_C(Styl, 0x5374796Cu, ObjS);
 	AF_INIT_S(isDD, 0x69734444u, bool);
 }
 
@@ -1357,14 +1404,26 @@ AF_STRUCT_INIT(ARCm)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_M(0x544E6F64u, {
-		AF_CASE_M(TNod, 0x42575241u, BWRA);
-		AF_CASE_M(TNod, 0x52737472u, Rstr);
-	});
 	AF_INIT_S(Empt, 0x456D7074u, bool);
-	AF_INIT_S(Mask, 0x4D61736Bu, bool);
 	AF_INIT_V(InvB, 0x496E7642u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
+	AF_INIT_S(Mask, 0x4D61736Bu, bool);
 	AF_INIT_C(OldS, 0x4F6C6453u, Sele);
+	AF_INIT_M(0x544E6F64u, {
+		AF_CASE_M(TNod, 0x42435241u, BCRA);
+		AF_CASE_M(TNod, 0x42575241u, BWRA);
+		AF_CASE_M(TNod, 0x43425241u, CBRA);
+		AF_CASE_M(TNod, 0x43725241u, CrRA);
+		AF_CASE_M(TNod, 0x45785241u, ExRA);
+		AF_CASE_M(TNod, 0x47725241u, GrRA);
+		AF_CASE_M(TNod, 0x48735241u, HsRA);
+		AF_CASE_M(TNod, 0x4C655241u, LeRA);
+		AF_CASE_M(TNod, 0x52737472u, Rstr);
+		AF_CASE_M(TNod, 0x53435241u, SCRA);
+		AF_CASE_M(TNod, 0x53485241u, SHRA);
+		AF_CASE_M(TNod, 0x53705441u, SpTA);
+		AF_CASE_M(TNod, 0x56625241u, VbRA);
+		AF_CASE_M(TNod, 0x57425241u, WBRA);
+	});
 }
 
 AF_STRUCT_INIT(ARFC)
@@ -1372,6 +1431,13 @@ AF_STRUCT_INIT(ARFC)
 	AF_INIT_BASE(BaseCmd);
 
 	AF_INIT_C(Popp, 0x506F7070u, FilS);
+}
+
+AF_STRUCT_INIT(AROm)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_N(OldS);
 }
 
 AF_STRUCT_INIT(AbMp)
@@ -1405,13 +1471,13 @@ AF_STRUCT_INIT(Adjs)
 
 AF_STRUCT_INIT(ApVs)
 {
+	AF_INIT_S(Bild, 0x42696C64u, int32_t);
+	AF_INIT_S(Date, 0x44617465u, std::string);
 	AF_INIT_S(Majr, 0x4D616A72u, int32_t);
 	AF_INIT_S(Minr, 0x4D696E72u, int32_t);
-	AF_INIT_S(Bild, 0x42696C64u, int32_t);
-	AF_INIT_S(Revn, 0x5265766Eu, int32_t);
-	AF_INIT_S(Prod, 0x50726F64u, std::string);
 	AF_INIT_S(Plat, 0x506C6174u, std::string);
-	AF_INIT_S(Date, 0x44617465u, std::string);
+	AF_INIT_S(Prod, 0x50726F64u, std::string);
+	AF_INIT_S(Revn, 0x5265766Eu, int32_t);
 }
 
 AF_STRUCT_INIT(ArFr)
@@ -1426,20 +1492,43 @@ AF_STRUCT_INIT(AstP)
 {
 	AF_INIT_BASE(BaseProp);
 
+	AF_INIT_S(AstF, 0x41737446u, AffinityReader::EnumT);
 	AF_INIT_M(0x41737450u, {
 		AF_CASE_M(AstP, 0x436E734Eu, CnsN);
 		AF_CASE_M(AstP, 0x436F6D70u, Comp);
 		AF_CASE_M(AstP, 0x47727570u, Grup);
 		AF_CASE_M(AstP, 0x50437276u, PCrv);
+		AF_CASE_M(AstP, 0x52737472u, Rstr);
 		AF_CASE_M(AstP, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_S(AstF, 0x41737446u, AffinityReader::EnumT);
 	AF_INIT_S(DPI, 0x44504920u, double);
 }
 
 AF_STRUCT_INIT(AuFD)
 {
 	AF_INIT_BASE(BaseDels);
+}
+
+AF_STRUCT_INIT(Auth)
+{
+	AF_INIT_S(aEml, 0x61456D6Cu, std::string);
+	AF_INIT_S(aNam, 0x614E616Du, std::string);
+	AF_INIT_S(aUri, 0x61557269u, std::string);
+	AF_INIT_S(appv, 0x61707076u, std::string);
+	AF_INIT_S(chks, 0x63686B73u, uint64_t);
+	AF_INIT_S(devc, 0x64657663u, std::string);
+	AF_INIT_S(eUri, 0x65557269u, std::string);
+	AF_INIT_S(epoc, 0x65706F63u, int64_t);
+	AF_INIT_S(expr, 0x65787072u, int64_t);
+	AF_INIT_S(hwid, 0x68776964u, std::string);
+	AF_INIT_S(licn, 0x6C69636Eu, AffinityReader::EnumT);
+	AF_INIT_S(osvr, 0x6F737672u, std::string);
+	AF_INIT_S(rrat, 0x72726174u, int64_t);
+	AF_INIT_S(rrmd, 0x72726D64u, bool);
+	AF_INIT_S(sess, 0x73657373u, AffinityReader::EnumT);
+	AF_INIT_S(tokn, 0x746F6B6Eu, std::string);
+	AF_INIT_S(updT, 0x75706454u, int64_t);
+	AF_INIT_S(user, 0x75736572u, std::string);
 }
 
 AF_STRUCT_INIT(BCP_38)
@@ -1455,11 +1544,11 @@ AF_STRUCT_INIT(BWP_38)
 {
 	AF_INIT_BASE(BaseAdjustment);
 
-	AF_INIT_S(RedC, 0x52656443u, float);
-	AF_INIT_S(Gree, 0x47726565u, float);
 	AF_INIT_S(Blue, 0x426C7565u, float);
 	AF_INIT_S(Cyan, 0x4379616Eu, float);
+	AF_INIT_S(Gree, 0x47726565u, float);
 	AF_INIT_S(Mage, 0x4D616765u, float);
+	AF_INIT_S(RedC, 0x52656443u, float);
 	AF_INIT_S(Yell, 0x59656C6Cu, float);
 }
 
@@ -1468,13 +1557,41 @@ AF_STRUCT_INIT(BCRA)
 	AF_INIT_BASE(BaseLayer);
 }
 
+AF_STRUCT_INIT(BCoA)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_E(OldP);
+}
+
 AF_STRUCT_INIT(BGrd)
 {
-	AF_INIT_S(UGrd, 0x55477264u, bool);
-	AF_INIT_S(Strt, 0x53747274u, double);
-	AF_INIT_S(Spac, 0x53706163u, double);
-	AF_INIT_S(Rlto, 0x526C746Fu, AffinityReader::EnumT);
 	AF_INIT_S(Colr, 0x436F6C72u, AffinityReader::Color32);
+	AF_INIT_S(Rlto, 0x526C746Fu, AffinityReader::EnumT);
+	AF_INIT_S(Spac, 0x53706163u, double);
+	AF_INIT_S(Strt, 0x53747274u, double);
+	AF_INIT_S(UGrd, 0x55477264u, bool);
+}
+
+AF_STRUCT_INIT(BMCO)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_V(OldB, 0x4F6C6442u, AffinityReader::SharedArray<AffinityReader::EnumT>);
+}
+
+AF_STRUCT_INIT(BMGO)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_V(OldB, 0x4F6C6442u, AffinityReader::SharedArray<AffinityReader::EnumT>);
+}
+
+AF_STRUCT_INIT(BWAA)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_E(OldP);
 }
 
 AF_STRUCT_INIT(BWRA)
@@ -1486,33 +1603,33 @@ AF_STRUCT_INIT(BevE)
 {
 	AF_INIT_BASE(BaseEffect);
 
-	AF_INIT_S(Beve, 0x42657665u, AffinityReader::EnumT);
 	AF_INIT_S(Azim, 0x417A696Du, double);
+	AF_INIT_S(Beve, 0x42657665u, AffinityReader::EnumT);
 	AF_INIT_S(Elev, 0x456C6576u, double);
-	AF_INIT_S(Invt, 0x496E7674u, bool);
-	AF_INIT_S(ShBM, 0x5368424Du, AffinityReader::EnumT);
-	AF_INIT_S(ShOp, 0x53684F70u, double);
-	AF_INIT_M(0x5368436Cu, {
-		AF_CASE_M(ShCl, 0x48534C41u, HSLA);
-		AF_CASE_M(ShCl, 0x52474241u, RGBA);
-	});
 	AF_INIT_M(0x4869436Cu, {
 		AF_CASE_M(HiCl, 0x48534C41u, HSLA);
 		AF_CASE_M(HiCl, 0x52474241u, RGBA);
 	});
+	AF_INIT_S(Invt, 0x496E7674u, bool);
+	AF_INIT_S(ShBM, 0x5368424Du, AffinityReader::EnumT);
+	AF_INIT_M(0x5368436Cu, {
+		AF_CASE_M(ShCl, 0x48534C41u, HSLA);
+		AF_CASE_M(ShCl, 0x52474241u, RGBA);
+	});
+	AF_INIT_S(ShOp, 0x53684F70u, double);
 }
 
 AF_STRUCT_INIT(Blck)
 {
-	AF_INIT_A(Rect, 0x52656374u, AffinityReader::vec_i_t<4>, 4);
-	AF_INIT_A(IRct, 0x49526374u, AffinityReader::vec_i_t<4>, 4);
 	AF_INIT_S(Data, 0x44617461u, AffinityReader::EmbeddedData);
+	AF_INIT_A(IRct, 0x49526374u, AffinityReader::vec_i_t<4>, 4);
+	AF_INIT_A(Rect, 0x52656374u, AffinityReader::vec_i_t<4>, 4);
 }
 
 AF_STRUCT_INIT(BlnR)
 {
-	AF_INIT_S(BGam, 0x4247616Du, double);
 	AF_INIT_C(AGam, 0x4147616Du, CrvD);
+	AF_INIT_S(BGam, 0x4247616Du, double);
 	AF_INIT_C(SMSp, 0x534D5370u, Spln);
 }
 
@@ -1523,12 +1640,12 @@ AF_STRUCT_INIT(BmRB)
 
 AF_STRUCT_INIT(BrDy)
 {
-	AF_INIT_S(DynV, 0x44796E56u, float);
+	AF_INIT_S(DyVM, 0x4479564Du, AffinityReader::EnumT);
 	AF_INIT_S(DyVa, 0x44795661u, float);
 	AF_INIT_S(DynC, 0x44796E43u, AffinityReader::EnumT);
-	AF_INIT_S(DyVM, 0x4479564Du, AffinityReader::EnumT);
-	AF_INIT_C(Spln, 0x53706C6Eu, Spln);
 	AF_INIT_S(DynR, 0x44796E52u, AffinityReader::EnumT);
+	AF_INIT_S(DynV, 0x44796E56u, float);
+	AF_INIT_C(Spln, 0x53706C6Eu, Spln);
 }
 
 AF_STRUCT_INIT(BrGl)
@@ -1559,11 +1676,18 @@ AF_STRUCT_INIT(CBRA)
 	AF_INIT_BASE(BaseLayer);
 }
 
+AF_STRUCT_INIT(CBaA)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_E(OldP);
+}
+
 AF_STRUCT_INIT(CFPa)
 {
+	AF_INIT_S(Algn, 0x416C676Eu, AffinityReader::EnumT);
 	AF_INIT_V(ColW, 0x436F6C57u, AffinityReader::SharedArray<double>);
 	AF_INIT_V(GutW, 0x47757457u, AffinityReader::SharedArray<double>);
-	AF_INIT_S(Algn, 0x416C676Eu, AffinityReader::EnumT);
 	AF_INIT_A(Padd, 0x50616464u, AffinityReader::vec_d_t<4>, 4);
 }
 
@@ -1571,8 +1695,8 @@ AF_STRUCT_INIT(CIPP)
 {
 	AF_INIT_BASE(BaseAdjustment);
 
-	AF_INIT_S(SouP, 0x536F7550u, std::string);
 	AF_INIT_S(DesP, 0x44657350u, std::string);
+	AF_INIT_S(SouP, 0x536F7550u, std::string);
 }
 
 AF_STRUCT_INIT(CMRA)
@@ -1584,11 +1708,11 @@ AF_STRUCT_INIT(CMTC)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_A(Rect, 0x52656374u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(TrnT, 0x54726E54u, AffinityReader::EnumT);
-	AF_INIT_A(Tran, 0x5472616Eu, AffinityReader::vec_d_t<6>, 6);
 	AF_INIT_V(Area, 0x41726561u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
 	AF_INIT_S(NeeM, 0x4E65654Du, bool);
+	AF_INIT_A(Rect, 0x52656374u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_A(Tran, 0x5472616Eu, AffinityReader::vec_d_t<6>, 6);
+	AF_INIT_S(TrnT, 0x54726E54u, AffinityReader::EnumT);
 }
 
 AF_STRUCT_INIT(CMYK)
@@ -1608,13 +1732,13 @@ AF_STRUCT_INIT(CRGl)
 	AF_INIT_BASE(BaseCmd);
 
 	AF_INIT_N(Dlta);
-	AF_INIT_S(SLoc, 0x534C6F63u, uint64_t);
-	AF_INIT_S(SLen, 0x534C656Eu, uint64_t);
-	AF_INIT_S(RLoc, 0x524C6F63u, uint64_t);
-	AF_INIT_S(RLen, 0x524C656Eu, uint64_t);
 	AF_INIT_S(MkTx, 0x4D6B5478u, bool);
-	AF_INIT_S(PrCr, 0x50724372u, bool);
 	AF_INIT_C(OldS, 0x4F6C6453u, Sele);
+	AF_INIT_S(PrCr, 0x50724372u, bool);
+	AF_INIT_S(RLen, 0x524C656Eu, uint64_t);
+	AF_INIT_S(RLoc, 0x524C6F63u, uint64_t);
+	AF_INIT_S(SLen, 0x534C656Eu, uint64_t);
+	AF_INIT_S(SLoc, 0x534C6F63u, uint64_t);
 }
 
 AF_STRUCT_INIT(ChGl)
@@ -1631,7 +1755,7 @@ AF_STRUCT_INIT(ChMA)
 
 AF_STRUCT_INIT(Clar)
 {
-	AF_INIT_BASE(BaseFilt);
+	AF_INIT_BASE(BaseCmd);
 }
 
 AF_STRUCT_INIT(ClrX)
@@ -1643,7 +1767,7 @@ AF_STRUCT_INIT(ClrX)
 
 AF_STRUCT_INIT(Clrt)
 {
-	AF_INIT_BASE(BaseFilt);
+	AF_INIT_BASE(BaseCmd);
 
 	AF_INIT_S(Strn, 0x5374726Eu, double);
 }
@@ -1667,16 +1791,24 @@ AF_STRUCT_INIT(CoBP)
 {
 	AF_INIT_BASE(BaseAdjustment);
 
-	AF_INIT_S(ShCR, 0x53684352u, float);
-	AF_INIT_S(ShMG, 0x53684D47u, float);
-	AF_INIT_S(ShYB, 0x53685942u, float);
-	AF_INIT_S(MiCR, 0x4D694352u, float);
-	AF_INIT_S(MiMG, 0x4D694D47u, float);
-	AF_INIT_S(MiYB, 0x4D695942u, float);
 	AF_INIT_S(HiCR, 0x48694352u, float);
 	AF_INIT_S(HiMG, 0x48694D47u, float);
 	AF_INIT_S(HiYB, 0x48695942u, float);
+	AF_INIT_S(MiCR, 0x4D694352u, float);
+	AF_INIT_S(MiMG, 0x4D694D47u, float);
+	AF_INIT_S(MiYB, 0x4D695942u, float);
 	AF_INIT_S(PeLu, 0x50654C75u, bool);
+	AF_INIT_S(ShCR, 0x53684352u, float);
+	AF_INIT_S(ShMG, 0x53684D47u, float);
+	AF_INIT_S(ShYB, 0x53685942u, float);
+}
+
+AF_STRUCT_INIT(CoCO)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_C(Colr, 0x436F6C72u, HSLA);
+	AF_INIT_E(OldC);
 }
 
 AF_STRUCT_INIT(CoDe)
@@ -1702,8 +1834,8 @@ AF_STRUCT_INIT(CoFr)
 {
 	AF_INIT_BASE(BaseFrms);
 
-	AF_INIT_V(ColW, 0x436F6C57u, AffinityReader::SharedArray<double>);
 	AF_INIT_S(Algn, 0x416C676Eu, AffinityReader::EnumT);
+	AF_INIT_V(ColW, 0x436F6C57u, AffinityReader::SharedArray<double>);
 	AF_INIT_V(GutW, 0x47757457u, AffinityReader::SharedArray<double>);
 	AF_INIT_A(Padd, 0x50616464u, AffinityReader::vec_d_t<4>, 4);
 }
@@ -1734,22 +1866,22 @@ AF_STRUCT_INIT(CrSl)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_C(Sprd, 0x53707264u, Sprd);
-	AF_INIT_N(SlPg);
-	AF_INIT_C(Slic, 0x536C6963u, Slic);
 	AF_INIT_C(NSel, 0x4E53656Cu, Sele);
 	AF_INIT_C(Osel, 0x4F73656Cu, Sele);
 	AF_INIT_A(Rect, 0x52656374u, AffinityReader::vec_i_t<4>, 4);
 	AF_INIT_S(SNSl, 0x534E536Cu, bool);
+	AF_INIT_N(SlPg);
+	AF_INIT_C(Slic, 0x536C6963u, Slic);
+	AF_INIT_C(Sprd, 0x53707264u, Sprd);
 }
 
 AF_STRUCT_INIT(CrpP)
 {
-	AF_INIT_S(Wdth, 0x57647468u, double);
-	AF_INIT_S(Hght, 0x48676874u, double);
 	AF_INIT_S(Abs, 0x41627320u, bool);
-	AF_INIT_S(Unit, 0x556E6974u, uint8_t);
 	AF_INIT_S(DPI, 0x44504920u, double);
+	AF_INIT_S(Hght, 0x48676874u, double);
+	AF_INIT_S(Unit, 0x556E6974u, uint8_t);
+	AF_INIT_S(Wdth, 0x57647468u, double);
 }
 
 AF_STRUCT_INIT(CrvD)
@@ -1761,14 +1893,21 @@ AF_STRUCT_INIT(CrvP)
 {
 	AF_INIT_BASE(BaseAdjustment);
 
-	AF_INIT_C(Mast, 0x4D617374u, Spln);
 	AF_INIT_C(C1Sp, 0x43315370u, Spln);
 	AF_INIT_C(C2Sp, 0x43325370u, Spln);
 	AF_INIT_C(C3Sp, 0x43335370u, Spln);
 	AF_INIT_C(C4Sp, 0x43345370u, Spln);
 	AF_INIT_C(C5Sp, 0x43355370u, Spln);
-	AF_INIT_S(Min_, 0x4D696E5Fu, float);
+	AF_INIT_C(Mast, 0x4D617374u, Spln);
 	AF_INIT_S(Max_, 0x4D61785Fu, float);
+	AF_INIT_S(Min_, 0x4D696E5Fu, float);
+}
+
+AF_STRUCT_INIT(CurA)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_E(OldP);
 }
 
 AF_STRUCT_INIT(CvHS)
@@ -1788,49 +1927,52 @@ AF_STRUCT_INIT(DCCm)
 AF_STRUCT_INIT(DDFl)
 {
 	AF_INIT_C(DBFD, 0x44424644u, FDsc);
-	AF_INIT_C(FBFD, 0x46424644u, FDsc);
-	AF_INIT_C(DPFD, 0x44504644u, FDsc);
-	AF_INIT_C(FPFD, 0x46504644u, FDsc);
-	AF_INIT_C(DGA_, 0x4447415Fu, GAtt);
 	AF_INIT_C(DGAF, 0x44474146u, GAtt);
+	AF_INIT_C(DGA_, 0x4447415Fu, GAtt);
+	AF_INIT_C(DPFD, 0x44504644u, FDsc);
+	AF_INIT_C(FBFD, 0x46424644u, FDsc);
+	AF_INIT_C(FPFD, 0x46504644u, FDsc);
 }
 
 AF_STRUCT_INIT(DDef)
 {
-	AF_INIT_C(DLSD, 0x444C5344u, LDsc);
-	AF_INIT_C(FLSD, 0x464C5344u, LDsc);
-	AF_INIT_C(DBLS, 0x44424C53u, LDsc);
-	AF_INIT_C(DTFD, 0x44544644u, FDsc);
-	AF_INIT_C(FTFD, 0x46544644u, FDsc);
-	AF_INIT_C(DPFD, 0x44504644u, FDsc);
-	AF_INIT_C(FPFD, 0x46504644u, FDsc);
-	AF_INIT_C(DBFD, 0x44424644u, FDsc);
-	AF_INIT_C(FBFD, 0x46424644u, FDsc);
-	AF_INIT_C(DBLG, 0x44424C47u, BGrd);
-	AF_INIT_C(FBLG, 0x46424C47u, BGrd);
-	AF_INIT_C(DFFD, 0x44464644u, DFFO);
-	AF_INIT_C(DGA_, 0x4447415Fu, GAtt);
-	AF_INIT_C(DPA_, 0x4450415Fu, PAtt);
-	AF_INIT_C(DGAF, 0x44474146u, GAtt);
-	AF_INIT_C(DPAF, 0x44504146u, PAtt);
-	AF_INIT_C(RGA_, 0x5247415Fu, GAtt);
-	AF_INIT_C(RPA_, 0x5250415Fu, PAtt);
-	AF_INIT_C(RGAF, 0x52474146u, GAtt);
-	AF_INIT_C(RPAF, 0x52504146u, PAtt);
-	AF_INIT_N(TCGA);
 	AF_INIT_C(CTFP, 0x43544650u, CFPa);
-	AF_INIT_V(TFRC, 0x54465243u, AffinityReader::SharedArray<double>);
-	AF_INIT_V(TFGW, 0x54464757u, AffinityReader::SharedArray<double>);
-	AF_INIT_S(IgTW, 0x49675457u, bool);
+	AF_INIT_C(DBFD, 0x44424644u, FDsc);
+	AF_INIT_C(DBLG, 0x44424C47u, BGrd);
+	AF_INIT_C(DBLS, 0x44424C53u, LDsc);
+	AF_INIT_C(DFFD, 0x44464644u, DFFO);
+	AF_INIT_C(DGAF, 0x44474146u, GAtt);
+	AF_INIT_C(DGA_, 0x4447415Fu, GAtt);
+	AF_INIT_C(DLSD, 0x444C5344u, LDsc);
+	AF_INIT_C(DPAF, 0x44504146u, PAtt);
+	AF_INIT_C(DPA_, 0x4450415Fu, PAtt);
+	AF_INIT_C(DPFD, 0x44504644u, FDsc);
+	AF_INIT_C(DTFD, 0x44544644u, FDsc);
+	AF_INIT_C(DmDf, 0x446D4466u, DMdf);
+	AF_INIT_C(FBFD, 0x46424644u, FDsc);
+	AF_INIT_C(FBLG, 0x46424C47u, BGrd);
+	AF_INIT_C(FLSD, 0x464C5344u, LDsc);
+	AF_INIT_C(FPFD, 0x46504644u, FDsc);
+	AF_INIT_C(FTFD, 0x46544644u, FDsc);
+	AF_INIT_L(Fill, 0x46696C6Cu, DDFl);
 	AF_INIT_S(HOvr, 0x484F7672u, bool);
 	AF_INIT_S(IgBG, 0x49674247u, bool);
-	AF_INIT_A(TWBo, 0x5457426Fu, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(PFCT, 0x50464354u, uint32_t);
+	AF_INIT_S(IgTW, 0x49675457u, bool);
+	AF_INIT_S(PDFP, 0x50444650u, bool);
 	AF_INIT_S(PFAn, 0x5046416Eu, AffinityReader::EnumT);
-	AF_INIT_C(SNPR, 0x534E5052u, SNAR);
+	AF_INIT_S(PFCF, 0x50464346u, bool);
+	AF_INIT_S(PFCT, 0x50464354u, uint32_t);
+	AF_INIT_C(RGAF, 0x52474146u, GAtt);
+	AF_INIT_C(RGA_, 0x5247415Fu, GAtt);
+	AF_INIT_C(RPAF, 0x52504146u, PAtt);
+	AF_INIT_C(RPA_, 0x5250415Fu, PAtt);
 	AF_INIT_S(SNPI, 0x534E5049u, bool);
+	AF_INIT_C(SNPR, 0x534E5052u, SNAR);
+	AF_INIT_N(TCGA);
+	AF_INIT_V(TFGW, 0x54464757u, AffinityReader::SharedArray<double>);
+	AF_INIT_V(TFRC, 0x54465243u, AffinityReader::SharedArray<double>);
+	AF_INIT_A(TWBo, 0x5457426Fu, AffinityReader::vec_d_t<4>, 4);
 	AF_INIT_C(TbFm, 0x5462466Du, TbFt);
-	AF_INIT_L(Fill, 0x46696C6Cu, DDFl);
 }
 
 AF_STRUCT_INIT(DFFO)
@@ -1842,126 +1984,140 @@ AF_STRUCT_INIT(DFFO)
 AF_STRUCT_INIT(DHis)
 {
 	AF_INIT_S(Posi, 0x506F7369u, uint32_t);
-	AF_INIT_L(Stac, 0x53746163u, DcHI);
 	AF_INIT_L(RBa1, 0x52426131u, Rstr);
 	AF_INIT_L(RBa3, 0x52426133u, RBMI);
 	AF_INIT_V(RBaC, 0x52426143u, AffinityReader::SharedArray<int32_t>);
 	AF_INIT_S(SSHi, 0x53534869u, int32_t);
+	AF_INIT_L(Stac, 0x53746163u, DcHI);
+}
+
+AF_STRUCT_INIT(DMdf)
+{
+	AF_INIT_S(colm, 0x636F6C6Du, int32_t);
+	AF_INIT_S(frcr, 0x66726372u, AffinityReader::EnumT);
+	AF_INIT_S(gutt, 0x67757474u, double);
+	AF_INIT_S(lcfr, 0x6C636672u, bool);
+	AF_INIT_S(rcof, 0x72636F66u, int32_t);
+	AF_INIT_S(rows, 0x726F7773u, int32_t);
+	AF_INIT_S(rprc, 0x72707263u, int32_t);
 }
 
 AF_STRUCT_INIT(DNCm)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_S(Vald, 0x56616C64u, bool);
+	AF_INIT_S(CntA, 0x436E7441u, bool);
+	AF_INIT_S(HasR, 0x48617352u, bool);
+	AF_INIT_S(Ignr, 0x49676E72u, bool);
+	AF_INIT_C(OlSe, 0x4F6C5365u, Sele);
 	AF_INIT_X(0x4F6C6450u, {
 		AF_CASE_X(OldP, 0x5368704Eu, ShpN);
 		AF_CASE_X(OldP, 0x53707264u, Sprd);
 	});
-	AF_INIT_C(OlSe, 0x4F6C5365u, Sele);
-	AF_INIT_S(CntA, 0x436E7441u, bool);
-	AF_INIT_S(Ignr, 0x49676E72u, bool);
-	AF_INIT_S(HasR, 0x48617352u, bool);
-	AF_INIT_C(TxFl, 0x5478466Cu, TxFU);
 	AF_INIT_S(SFEM, 0x5346454Du, bool);
+	AF_INIT_S(Vald, 0x56616C64u, bool);
 }
 
 AF_STRUCT_INIT(DPOp)
 {
 	AF_INIT_BASE(BaseProp);
 
-	AF_INIT_S(unit, 0x756E6974u, uint8_t);
-	AF_INIT_S(imgP, 0x696D6750u, AffinityReader::EnumT);
-	AF_INIT_S(tran, 0x7472616Eu, bool);
-	AF_INIT_S(face, 0x66616365u, bool);
-	AF_INIT_S(vert, 0x76657274u, bool);
-	AF_INIT_S(dblS, 0x64626C53u, bool);
 	AF_INIT_S(Frmt, 0x46726D74u, AffinityReader::EnumT);
-	AF_INIT_S(iccP, 0x69636350u, std::string);
-	AF_INIT_S(cArt, 0x63417274u, bool);
-	AF_INIT_S(wdth, 0x77647468u, double);
-	AF_INIT_S(hght, 0x68676874u, double);
-	AF_INIT_S(dpiV, 0x64706956u, double);
-	AF_INIT_S(vDPI, 0x76445049u, double);
-	AF_INIT_S(incM, 0x696E634Du, bool);
-	AF_INIT_S(marL, 0x6D61724Cu, double);
-	AF_INIT_S(marR, 0x6D617252u, double);
-	AF_INIT_S(marT, 0x6D617254u, double);
-	AF_INIT_S(marB, 0x6D617242u, double);
+	AF_INIT_S(PPTy, 0x50505479u, AffinityReader::EnumT);
+	AF_INIT_S(bldB, 0x626C6442u, double);
 	AF_INIT_S(bldL, 0x626C644Cu, double);
 	AF_INIT_S(bldR, 0x626C6452u, double);
 	AF_INIT_S(bldT, 0x626C6454u, double);
-	AF_INIT_S(bldB, 0x626C6442u, double);
-	AF_INIT_S(PPTy, 0x50505479u, AffinityReader::EnumT);
+	AF_INIT_S(cArt, 0x63417274u, bool);
+	AF_INIT_S(dblS, 0x64626C53u, bool);
+	AF_INIT_S(dpiV, 0x64706956u, double);
+	AF_INIT_S(face, 0x66616365u, bool);
+	AF_INIT_S(hght, 0x68676874u, double);
+	AF_INIT_S(iccP, 0x69636350u, std::string);
+	AF_INIT_S(imgP, 0x696D6750u, AffinityReader::EnumT);
+	AF_INIT_S(incM, 0x696E634Du, bool);
+	AF_INIT_S(marB, 0x6D617242u, double);
+	AF_INIT_S(marL, 0x6D61724Cu, double);
+	AF_INIT_S(marR, 0x6D617252u, double);
+	AF_INIT_S(marT, 0x6D617254u, double);
+	AF_INIT_S(tran, 0x7472616Eu, bool);
+	AF_INIT_S(unit, 0x756E6974u, uint8_t);
+	AF_INIT_S(vDPI, 0x76445049u, double);
+	AF_INIT_S(vert, 0x76657274u, bool);
+	AF_INIT_S(wdth, 0x77647468u, double);
 }
 
 AF_STRUCT_INIT(DPro)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_S(Type, 0x54797065u, uint32_t);
-	AF_INIT_S(NRet, 0x4E526574u, bool);
-	AF_INIT_S(NPor, 0x4E506F72u, bool);
-	AF_INIT_S(NTrn, 0x4E54726Eu, bool);
-	AF_INIT_S(NSHi, 0x4E534869u, bool);
-	AF_INIT_S(NDPI, 0x4E445049u, double);
-	AF_INIT_S(NVDP, 0x4E564450u, double);
-	AF_INIT_S(NWid, 0x4E576964u, double);
-	AF_INIT_S(NHht, 0x4E486874u, double);
-	AF_INIT_V(NMar, 0x4E4D6172u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
-	AF_INIT_V(NPMr, 0x4E504D72u, AffinityReader::SharedArray<bool>);
-	AF_INIT_A(nbld, 0x6E626C64u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(NFor, 0x4E466F72u, AffinityReader::EnumT);
-	AF_INIT_C(NPro, 0x4E50726Fu, ICCP);
-	AF_INIT_S(NUnt, 0x4E556E74u, uint8_t);
-	AF_INIT_S(NIMr, 0x4E494D72u, bool);
-	AF_INIT_S(FPag, 0x46506167u, bool);
-	AF_INIT_S(LftS, 0x4C667453u, bool);
-	AF_INIT_S(VStk, 0x5653746Bu, bool);
-	AF_INIT_S(NIRP, 0x4E495250u, AffinityReader::EnumT);
-	AF_INIT_S(ORet, 0x4F526574u, bool);
-	AF_INIT_S(OPor, 0x4F506F72u, bool);
-	AF_INIT_S(OTrn, 0x4F54726Eu, bool);
-	AF_INIT_S(OSHi, 0x4F534869u, bool);
-	AF_INIT_S(ODPI, 0x4F445049u, double);
-	AF_INIT_S(OVDP, 0x4F564450u, double);
-	AF_INIT_S(OWid, 0x4F576964u, double);
-	AF_INIT_S(OHht, 0x4F486874u, double);
-	AF_INIT_V(OMar, 0x4F4D6172u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
-	AF_INIT_V(OPMr, 0x4F504D72u, AffinityReader::SharedArray<bool>);
-	AF_INIT_A(obld, 0x6F626C64u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(OFor, 0x4F466F72u, AffinityReader::EnumT);
-	AF_INIT_C(OPro, 0x4F50726Fu, ICCP);
-	AF_INIT_S(OUnt, 0x4F556E74u, uint8_t);
-	AF_INIT_S(OIMr, 0x4F494D72u, bool);
-	AF_INIT_S(OFPg, 0x4F465067u, bool);
-	AF_INIT_S(OLfS, 0x4F4C6653u, bool);
-	AF_INIT_S(OVSt, 0x4F565374u, bool);
-	AF_INIT_S(OIRP, 0x4F495250u, AffinityReader::EnumT);
-	AF_INIT_C(ConC, 0x436F6E43u, ForC);
+	AF_INIT_E(APCs);
+	AF_INIT_N(APgC);
 	AF_INIT_N(AssC);
 	AF_INIT_S(AssF, 0x41737346u, bool);
-	AF_INIT_S(achT, 0x61636854u, AffinityReader::EnumT);
-	AF_INIT_V(NewT, 0x4E657754u, AffinityReader::SharedArray<AffinityReader::vec_d_t<6>>);
-	AF_INIT_E(RsCs);
-	AF_INIT_E(OSBm);
-	AF_INIT_E(NSBm);
+	AF_INIT_E(BDCs);
+	AF_INIT_C(ConC, 0x436F6E43u, ForC);
+	AF_INIT_E(DPCs);
+	AF_INIT_N(DPgC);
+	AF_INIT_S(FPSc, 0x46505363u, int32_t);
+	AF_INIT_S(FPag, 0x46506167u, bool);
 	AF_INIT_V(GdsH, 0x47647348u, AffinityReader::SharedArray<double>);
 	AF_INIT_V(GdsV, 0x47647356u, AffinityReader::SharedArray<double>);
-	AF_INIT_N(DPgC);
-	AF_INIT_N(APgC);
-	AF_INIT_N(MPCC);
-	AF_INIT_N(SMPC);
-	AF_INIT_S(FPSc, 0x46505363u, int32_t);
-	AF_INIT_E(DPCs);
-	AF_INIT_E(APCs);
-	AF_INIT_E(MPCs);
-	AF_INIT_E(TfCs);
+	AF_INIT_S(LftS, 0x4C667453u, bool);
 	AF_INIT_E(MDCs);
-	AF_INIT_E(BDCs);
-	AF_INIT_S(Resa, 0x52657361u, AffinityReader::EnumT);
-	AF_INIT_S(RsRN, 0x5273524Eu, bool);
+	AF_INIT_N(MPCC);
+	AF_INIT_E(MPCs);
+	AF_INIT_N(NBFl);
+	AF_INIT_S(NDPI, 0x4E445049u, double);
+	AF_INIT_S(NFor, 0x4E466F72u, AffinityReader::EnumT);
+	AF_INIT_S(NHht, 0x4E486874u, double);
+	AF_INIT_S(NIMr, 0x4E494D72u, bool);
+	AF_INIT_S(NIRP, 0x4E495250u, AffinityReader::EnumT);
+	AF_INIT_E(NMFl);
+	AF_INIT_V(NMar, 0x4E4D6172u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
+	AF_INIT_V(NPMr, 0x4E504D72u, AffinityReader::SharedArray<bool>);
+	AF_INIT_S(NPor, 0x4E506F72u, bool);
+	AF_INIT_C(NPro, 0x4E50726Fu, ICCP);
+	AF_INIT_S(NRet, 0x4E526574u, bool);
+	AF_INIT_E(NSBm);
+	AF_INIT_S(NSHi, 0x4E534869u, bool);
+	AF_INIT_S(NTrn, 0x4E54726Eu, bool);
+	AF_INIT_S(NUnt, 0x4E556E74u, uint8_t);
+	AF_INIT_S(NVDP, 0x4E564450u, double);
+	AF_INIT_S(NWid, 0x4E576964u, double);
+	AF_INIT_V(NewT, 0x4E657754u, AffinityReader::SharedArray<AffinityReader::vec_d_t<6>>);
 	AF_INIT_N(OBBR);
+	AF_INIT_N(OBFl);
+	AF_INIT_S(ODPI, 0x4F445049u, double);
+	AF_INIT_S(OFPg, 0x4F465067u, bool);
+	AF_INIT_S(OFor, 0x4F466F72u, AffinityReader::EnumT);
+	AF_INIT_S(OHht, 0x4F486874u, double);
+	AF_INIT_S(OIMr, 0x4F494D72u, bool);
+	AF_INIT_S(OIRP, 0x4F495250u, AffinityReader::EnumT);
+	AF_INIT_S(OLfS, 0x4F4C6653u, bool);
+	AF_INIT_E(OMFl);
+	AF_INIT_V(OMar, 0x4F4D6172u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
+	AF_INIT_V(OPMr, 0x4F504D72u, AffinityReader::SharedArray<bool>);
+	AF_INIT_S(OPor, 0x4F506F72u, bool);
+	AF_INIT_C(OPro, 0x4F50726Fu, ICCP);
+	AF_INIT_S(ORet, 0x4F526574u, bool);
+	AF_INIT_E(OSBm);
+	AF_INIT_S(OSHi, 0x4F534869u, bool);
+	AF_INIT_S(OTrn, 0x4F54726Eu, bool);
+	AF_INIT_S(OUnt, 0x4F556E74u, uint8_t);
+	AF_INIT_S(OVDP, 0x4F564450u, double);
+	AF_INIT_S(OVSt, 0x4F565374u, bool);
+	AF_INIT_S(OWid, 0x4F576964u, double);
+	AF_INIT_S(Resa, 0x52657361u, AffinityReader::EnumT);
+	AF_INIT_E(RsCs);
+	AF_INIT_S(RsRN, 0x5273524Eu, bool);
+	AF_INIT_N(SMPC);
+	AF_INIT_E(TfCs);
+	AF_INIT_S(Type, 0x54797065u, uint32_t);
+	AF_INIT_S(VStk, 0x5653746Bu, bool);
+	AF_INIT_S(achT, 0x61636854u, AffinityReader::EnumT);
+	AF_INIT_A(nbld, 0x6E626C64u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_A(obld, 0x6F626C64u, AffinityReader::vec_d_t<4>, 4);
 }
 
 AF_STRUCT_INIT(DcHI)
@@ -1994,6 +2150,7 @@ AF_STRUCT_INIT(DcHI)
 		AF_CASE_M(Cmnd, 0x4578496Eu, ExIn);
 		AF_CASE_M(Cmnd, 0x46414648u, FAFH);
 		AF_CASE_M(Cmnd, 0x4646436Du, FFCm);
+		AF_CASE_M(Cmnd, 0x46544648u, FTFH);
 		AF_CASE_M(Cmnd, 0x466D5443u, FmTC);
 		AF_CASE_M(Cmnd, 0x47724D41u, GrMA);
 		AF_CASE_M(Cmnd, 0x47724E43u, GrNC);
@@ -2013,81 +2170,49 @@ AF_STRUCT_INIT(DcHI)
 		AF_CASE_M(Cmnd, 0x584D6743u, XMgC);
 		AF_CASE_M(Cmnd, 0x58537443u, XStC);
 	});
-	AF_INIT_S(Tim2, 0x54696D32u, uint64_t);
 	AF_INIT_L(Futu, 0x46757475u, Futr);
 	AF_INIT_S(Thum, 0x5468756Du, AffinityReader::BinaryData);
+	AF_INIT_S(Tim2, 0x54696D32u, uint64_t);
 }
 
 AF_STRUCT_INIT(DcMD)
 {
-	AF_INIT_S(XMPD, 0x584D5044u, std::string);
-	AF_INIT_V(AFRS, 0x41465253u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
 	AF_INIT_V(AFIF, 0x41464946u, AffinityReader::SharedArray<int32_t>);
+	AF_INIT_V(AFRS, 0x41465253u, AffinityReader::SharedArray<AffinityReader::vec_d_t<4>>);
 	AF_INIT_V(AFSl, 0x4146536Cu, AffinityReader::SharedArray<int32_t>);
-	AF_INIT_S(FocM, 0x466F634Du, std::string);
+	AF_INIT_S(Auth, 0x41757468u, std::string);
+	AF_INIT_S(COC_, 0x434F435Fu, std::string);
+	AF_INIT_S(Cmnt, 0x436D6E74u, std::string);
+	AF_INIT_S(CrDt, 0x43724474u, int64_t);
+	AF_INIT_S(ExpB, 0x45787042u, std::string);
+	AF_INIT_S(FlNm, 0x466C4E6Du, std::string);
 	AF_INIT_S(FocB, 0x466F6342u, std::string);
+	AF_INIT_S(FocD, 0x466F6344u, std::string);
+	AF_INIT_S(FocM, 0x466F634Du, std::string);
 	AF_INIT_S(FocP, 0x466F6350u, std::string);
 	AF_INIT_S(FocV, 0x466F6356u, std::string);
-	AF_INIT_S(COC_, 0x434F435Fu, std::string);
 	AF_INIT_S(HypF, 0x48797046u, std::string);
-	AF_INIT_S(ExpB, 0x45787042u, std::string);
 	AF_INIT_S(ISOE, 0x49534F45u, std::string);
-	AF_INIT_S(FocD, 0x466F6344u, std::string);
 	AF_INIT_S(Lens, 0x4C656E73u, std::string);
-	AF_INIT_S(Auth, 0x41757468u, std::string);
-	AF_INIT_S(SMBy, 0x534D4279u, std::string);
 	AF_INIT_S(MfBy, 0x4D664279u, std::string);
-	AF_INIT_S(Tags, 0x54616773u, std::string);
-	AF_INIT_S(Cmnt, 0x436D6E74u, std::string);
-	AF_INIT_S(Titl, 0x5469746Cu, std::string);
-	AF_INIT_S(Revn, 0x5265766Eu, std::string);
-	AF_INIT_S(CrDt, 0x43724474u, int64_t);
-	AF_INIT_S(SvDt, 0x53764474u, int64_t);
-	AF_INIT_S(PtDt, 0x50744474u, int64_t);
-	AF_INIT_S(SvCt, 0x53764374u, int32_t);
-	AF_INIT_S(FlNm, 0x466C4E6Du, std::string);
 	AF_INIT_S(Path, 0x50617468u, std::string);
+	AF_INIT_S(PtDt, 0x50744474u, int64_t);
+	AF_INIT_S(Revn, 0x5265766Eu, std::string);
+	AF_INIT_S(SMBy, 0x534D4279u, std::string);
 	AF_INIT_S(Subj, 0x5375626Au, std::string);
+	AF_INIT_S(SvCt, 0x53764374u, int32_t);
+	AF_INIT_S(SvDt, 0x53764474u, int64_t);
+	AF_INIT_S(Tags, 0x54616773u, std::string);
+	AF_INIT_S(Titl, 0x5469746Cu, std::string);
+	AF_INIT_S(XMPD, 0x584D5044u, std::string);
 }
 
 AF_STRUCT_INIT(DeSy)
 {
-	AF_INIT_E(UDMC);
-	AF_INIT_E(RDMC);
-	AF_INIT_E(UDNC);
-	AF_INIT_E(RDDC);
-	AF_INIT_E(UDGN);
-	AF_INIT_E(RDGN);
-	AF_INIT_S(cnmi, 0x636E6D69u, bool);
-	AF_INIT_S(unrc, 0x756E7263u, AffinityReader::EnumT);
-	AF_INIT_S(dtid, 0x64746964u, bool);
-	AF_INIT_V(olgd, 0x6F6C6764u, AffinityReader::SharedArray<std::string>);
-	AF_INIT_L(Fir3, 0x46697233u, ShpN);
-	AF_INIT_L(Sec3, 0x53656333u, PSRe);
-	AF_INIT_X(0x46697234u, {
-		AF_CASE_X(Fir4, 0x47727570u, Grup);
-		AF_CASE_X(Fir4, 0x50437276u, PCrv);
-		AF_CASE_X(Fir4, 0x52737472u, Rstr);
-		AF_CASE_X(Fir4, 0x53636F70u, Scop);
-		AF_CASE_X(Fir4, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sec4, 0x53656334u, PSRe);
-	AF_INIT_X(0x46697236u, {
-		AF_CASE_X(Fir6, 0x47727570u, Grup);
-		AF_CASE_X(Fir6, 0x50437276u, PCrv);
-		AF_CASE_X(Fir6, 0x52737472u, Rstr);
-		AF_CASE_X(Fir6, 0x53636F70u, Scop);
-		AF_CASE_X(Fir6, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sec6, 0x53656336u, PSRe);
-	AF_INIT_X(0x46697237u, {
-		AF_CASE_X(Fir7, 0x47727570u, Grup);
-		AF_CASE_X(Fir7, 0x50437276u, PCrv);
-		AF_CASE_X(Fir7, 0x52737472u, Rstr);
-		AF_CASE_X(Fir7, 0x53636F70u, Scop);
-		AF_CASE_X(Fir7, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sec7, 0x53656337u, PSRe);
+	AF_INIT_S(AAtC, 0x41417443u, bool);
+	AF_INIT_S(ArtC, 0x41727443u, bool);
+	AF_INIT_S(CArC, 0x43417243u, bool);
+	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
 	AF_INIT_X(0x46697231u, {
 		AF_CASE_X(Fir1, 0x47727570u, Grup);
 		AF_CASE_X(Fir1, 0x50437276u, PCrv);
@@ -2095,61 +2220,50 @@ AF_STRUCT_INIT(DeSy)
 		AF_CASE_X(Fir1, 0x53636F70u, Scop);
 		AF_CASE_X(Fir1, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sec1, 0x53656331u, PSRe);
+	AF_INIT_E(Fir2);
+	AF_INIT_L(Fir3, 0x46697233u, ShpN);
+	AF_INIT_X(0x46697234u, {
+		AF_CASE_X(Fir4, 0x47727570u, Grup);
+		AF_CASE_X(Fir4, 0x50437276u, PCrv);
+		AF_CASE_X(Fir4, 0x52737472u, Rstr);
+		AF_CASE_X(Fir4, 0x53636F70u, Scop);
+		AF_CASE_X(Fir4, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_E(Fir5);
+	AF_INIT_X(0x46697236u, {
+		AF_CASE_X(Fir6, 0x47727570u, Grup);
+		AF_CASE_X(Fir6, 0x50437276u, PCrv);
+		AF_CASE_X(Fir6, 0x52737472u, Rstr);
+		AF_CASE_X(Fir6, 0x53636F70u, Scop);
+		AF_CASE_X(Fir6, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_X(0x46697237u, {
+		AF_CASE_X(Fir7, 0x47727570u, Grup);
+		AF_CASE_X(Fir7, 0x50437276u, PCrv);
+		AF_CASE_X(Fir7, 0x52737472u, Rstr);
+		AF_CASE_X(Fir7, 0x53636F70u, Scop);
+		AF_CASE_X(Fir7, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_L(Fir8, 0x46697238u, PCrv);
+	AF_INIT_E(Fir9);
 	AF_INIT_X(0x46723130u, {
 		AF_CASE_X(Fr10, 0x47727570u, Grup);
 		AF_CASE_X(Fr10, 0x50437276u, PCrv);
 		AF_CASE_X(Fr10, 0x53636F70u, Scop);
 		AF_CASE_X(Fr10, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sc10, 0x53633130u, PSRe);
-	AF_INIT_X(0x46723132u, {
-		AF_CASE_X(Fr12, 0x47727570u, Grup);
-		AF_CASE_X(Fr12, 0x50437276u, PCrv);
-		AF_CASE_X(Fr12, 0x53636F70u, Scop);
-		AF_CASE_X(Fr12, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sc12, 0x53633132u, PSRe);
 	AF_INIT_X(0x46723131u, {
 		AF_CASE_X(Fr11, 0x47727570u, Grup);
 		AF_CASE_X(Fr11, 0x50437276u, PCrv);
 		AF_CASE_X(Fr11, 0x53636F70u, Scop);
 		AF_CASE_X(Fr11, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sc11, 0x53633131u, PSRe);
-	AF_INIT_L(Fir8, 0x46697238u, PCrv);
-	AF_INIT_L(Sec8, 0x53656338u, PSRe);
-	AF_INIT_E(Fir9);
-	AF_INIT_E(Sec9);
-	AF_INIT_E(Fir5);
-	AF_INIT_E(Sec5);
-	AF_INIT_X(0x46723134u, {
-		AF_CASE_X(Fr14, 0x47727570u, Grup);
-		AF_CASE_X(Fr14, 0x50437276u, PCrv);
-		AF_CASE_X(Fr14, 0x52737472u, Rstr);
-		AF_CASE_X(Fr14, 0x53636F70u, Scop);
-		AF_CASE_X(Fr14, 0x5368704Eu, ShpN);
+	AF_INIT_X(0x46723132u, {
+		AF_CASE_X(Fr12, 0x47727570u, Grup);
+		AF_CASE_X(Fr12, 0x50437276u, PCrv);
+		AF_CASE_X(Fr12, 0x53636F70u, Scop);
+		AF_CASE_X(Fr12, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sc14, 0x53633134u, PSRe);
-	AF_INIT_E(Fr16);
-	AF_INIT_E(Sc16);
-	AF_INIT_E(Fr25);
-	AF_INIT_E(Sc25);
-	AF_INIT_E(Fr17);
-	AF_INIT_E(Sc17);
-	AF_INIT_X(0x46723138u, {
-		AF_CASE_X(Fr18, 0x50437276u, PCrv);
-		AF_CASE_X(Fr18, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sc18, 0x53633138u, PSRe);
-	AF_INIT_X(0x46723139u, {
-		AF_CASE_X(Fr19, 0x47727570u, Grup);
-		AF_CASE_X(Fr19, 0x50437276u, PCrv);
-		AF_CASE_X(Fr19, 0x52737472u, Rstr);
-		AF_CASE_X(Fr19, 0x53636F70u, Scop);
-		AF_CASE_X(Fr19, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sc19, 0x53633139u, PSRe);
 	AF_INIT_X(0x46723133u, {
 		AF_CASE_X(Fr13, 0x47727570u, Grup);
 		AF_CASE_X(Fr13, 0x50437276u, PCrv);
@@ -2157,41 +2271,13 @@ AF_STRUCT_INIT(DeSy)
 		AF_CASE_X(Fr13, 0x53636F70u, Scop);
 		AF_CASE_X(Fr13, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sc13, 0x53633133u, PSRe);
-	AF_INIT_X(0x46723231u, {
-		AF_CASE_X(Fr21, 0x47727570u, Grup);
-		AF_CASE_X(Fr21, 0x50437276u, PCrv);
-		AF_CASE_X(Fr21, 0x52737472u, Rstr);
-		AF_CASE_X(Fr21, 0x53636F70u, Scop);
-		AF_CASE_X(Fr21, 0x5368704Eu, ShpN);
+	AF_INIT_X(0x46723134u, {
+		AF_CASE_X(Fr14, 0x47727570u, Grup);
+		AF_CASE_X(Fr14, 0x50437276u, PCrv);
+		AF_CASE_X(Fr14, 0x52737472u, Rstr);
+		AF_CASE_X(Fr14, 0x53636F70u, Scop);
+		AF_CASE_X(Fr14, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sc21, 0x53633231u, PSRe);
-	AF_INIT_X(0x46723232u, {
-		AF_CASE_X(Fr22, 0x47727570u, Grup);
-		AF_CASE_X(Fr22, 0x50437276u, PCrv);
-		AF_CASE_X(Fr22, 0x52737472u, Rstr);
-		AF_CASE_X(Fr22, 0x53636F70u, Scop);
-		AF_CASE_X(Fr22, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sc22, 0x53633232u, PSRe);
-	AF_INIT_X(0x46723233u, {
-		AF_CASE_X(Fr23, 0x50437276u, PCrv);
-		AF_CASE_X(Fr23, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sc23, 0x53633233u, PSRe);
-	AF_INIT_X(0x46723234u, {
-		AF_CASE_X(Fr24, 0x47727570u, Grup);
-		AF_CASE_X(Fr24, 0x50437276u, PCrv);
-		AF_CASE_X(Fr24, 0x52737472u, Rstr);
-		AF_CASE_X(Fr24, 0x53636F70u, Scop);
-		AF_CASE_X(Fr24, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sc24, 0x53633234u, PSRe);
-	AF_INIT_X(0x46723236u, {
-		AF_CASE_X(Fr26, 0x50437276u, PCrv);
-		AF_CASE_X(Fr26, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_L(Sc26, 0x53633236u, PSRe);
 	AF_INIT_X(0x46723135u, {
 		AF_CASE_X(Fr15, 0x47727570u, Grup);
 		AF_CASE_X(Fr15, 0x50437276u, PCrv);
@@ -2199,36 +2285,114 @@ AF_STRUCT_INIT(DeSy)
 		AF_CASE_X(Fr15, 0x53636F70u, Scop);
 		AF_CASE_X(Fr15, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_L(Sc15, 0x53633135u, PSRe);
-	AF_INIT_E(lnkd);
-	AF_INIT_E(ulkd);
-	AF_INIT_C(Sele, 0x53656C65u, Sele);
+	AF_INIT_E(Fr16);
+	AF_INIT_E(Fr17);
+	AF_INIT_X(0x46723138u, {
+		AF_CASE_X(Fr18, 0x50437276u, PCrv);
+		AF_CASE_X(Fr18, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_X(0x46723139u, {
+		AF_CASE_X(Fr19, 0x47727570u, Grup);
+		AF_CASE_X(Fr19, 0x50437276u, PCrv);
+		AF_CASE_X(Fr19, 0x52737472u, Rstr);
+		AF_CASE_X(Fr19, 0x53636F70u, Scop);
+		AF_CASE_X(Fr19, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_X(0x46723231u, {
+		AF_CASE_X(Fr21, 0x47727570u, Grup);
+		AF_CASE_X(Fr21, 0x50437276u, PCrv);
+		AF_CASE_X(Fr21, 0x52737472u, Rstr);
+		AF_CASE_X(Fr21, 0x53636F70u, Scop);
+		AF_CASE_X(Fr21, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_X(0x46723232u, {
+		AF_CASE_X(Fr22, 0x47727570u, Grup);
+		AF_CASE_X(Fr22, 0x50437276u, PCrv);
+		AF_CASE_X(Fr22, 0x52737472u, Rstr);
+		AF_CASE_X(Fr22, 0x53636F70u, Scop);
+		AF_CASE_X(Fr22, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_X(0x46723233u, {
+		AF_CASE_X(Fr23, 0x50437276u, PCrv);
+		AF_CASE_X(Fr23, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_X(0x46723234u, {
+		AF_CASE_X(Fr24, 0x47727570u, Grup);
+		AF_CASE_X(Fr24, 0x50437276u, PCrv);
+		AF_CASE_X(Fr24, 0x52737472u, Rstr);
+		AF_CASE_X(Fr24, 0x53636F70u, Scop);
+		AF_CASE_X(Fr24, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_E(Fr25);
+	AF_INIT_X(0x46723236u, {
+		AF_CASE_X(Fr26, 0x50437276u, PCrv);
+		AF_CASE_X(Fr26, 0x5368704Eu, ShpN);
+	});
+	AF_INIT_E(Fr27);
+	AF_INIT_E(Fr28);
 	AF_INIT_M(0x4C617972u, {
 		AF_CASE_M(Layr, 0x53636F70u, Scop);
 		AF_CASE_M(Layr, 0x5368704Eu, ShpN);
 		AF_CASE_M(Layr, 0x53707264u, Sprd);
 	});
-	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
 	AF_INIT_S(Prev, 0x50726576u, bool);
-	AF_INIT_S(ArtC, 0x41727443u, bool);
-	AF_INIT_S(AAtC, 0x41417443u, bool);
-	AF_INIT_S(CArC, 0x43417243u, bool);
+	AF_INIT_E(RDDC);
+	AF_INIT_E(RDGN);
+	AF_INIT_E(RDMC);
+	AF_INIT_L(Sc10, 0x53633130u, PSRe);
+	AF_INIT_L(Sc11, 0x53633131u, PSRe);
+	AF_INIT_L(Sc12, 0x53633132u, PSRe);
+	AF_INIT_L(Sc13, 0x53633133u, PSRe);
+	AF_INIT_L(Sc14, 0x53633134u, PSRe);
+	AF_INIT_L(Sc15, 0x53633135u, PSRe);
+	AF_INIT_E(Sc16);
+	AF_INIT_E(Sc17);
+	AF_INIT_L(Sc18, 0x53633138u, PSRe);
+	AF_INIT_L(Sc19, 0x53633139u, PSRe);
+	AF_INIT_L(Sc21, 0x53633231u, PSRe);
+	AF_INIT_L(Sc22, 0x53633232u, PSRe);
+	AF_INIT_L(Sc23, 0x53633233u, PSRe);
+	AF_INIT_L(Sc24, 0x53633234u, PSRe);
+	AF_INIT_E(Sc25);
+	AF_INIT_L(Sc26, 0x53633236u, PSRe);
+	AF_INIT_E(Sc27);
+	AF_INIT_E(Sc28);
+	AF_INIT_L(Sec1, 0x53656331u, PSRe);
+	AF_INIT_E(Sec2);
+	AF_INIT_L(Sec3, 0x53656333u, PSRe);
+	AF_INIT_L(Sec4, 0x53656334u, PSRe);
+	AF_INIT_E(Sec5);
+	AF_INIT_L(Sec6, 0x53656336u, PSRe);
+	AF_INIT_L(Sec7, 0x53656337u, PSRe);
+	AF_INIT_L(Sec8, 0x53656338u, PSRe);
+	AF_INIT_E(Sec9);
+	AF_INIT_C(Sele, 0x53656C65u, Sele);
+	AF_INIT_E(UDGN);
+	AF_INIT_E(UDMC);
+	AF_INIT_E(UDNC);
+	AF_INIT_S(cnmi, 0x636E6D69u, bool);
+	AF_INIT_S(dtid, 0x64746964u, bool);
+	AF_INIT_E(lnkd);
 	AF_INIT_E(mapo);
+	AF_INIT_V(olgd, 0x6F6C6764u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_S(slcr, 0x736C6372u, bool);
+	AF_INIT_E(ulkd);
+	AF_INIT_S(unrc, 0x756E7263u, AffinityReader::EnumT);
 }
 
 AF_STRUCT_INIT(DecP)
 {
-	AF_INIT_S(Mask, 0x4D61736Bu, int32_t);
-	AF_INIT_C(LinS, 0x4C696E53u, LDsc);
 	AF_INIT_C(BruS, 0x42727553u, FDsc);
-	AF_INIT_C(PenS, 0x50656E53u, FDsc);
-	AF_INIT_C(Tran, 0x5472616Eu, FDsc);
-	AF_INIT_A(Indt, 0x496E6474u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(RLft, 0x524C6674u, int32_t);
-	AF_INIT_S(RTop, 0x52546F70u, int32_t);
-	AF_INIT_S(RRgt, 0x52526774u, int32_t);
-	AF_INIT_S(RBot, 0x52426F74u, int32_t);
 	AF_INIT_S(CmBx, 0x436D4278u, bool);
+	AF_INIT_A(Indt, 0x496E6474u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_C(LinS, 0x4C696E53u, LDsc);
+	AF_INIT_S(Mask, 0x4D61736Bu, int32_t);
+	AF_INIT_C(PenS, 0x50656E53u, FDsc);
+	AF_INIT_S(RBot, 0x52426F74u, int32_t);
+	AF_INIT_S(RLft, 0x524C6674u, int32_t);
+	AF_INIT_S(RRgt, 0x52526774u, int32_t);
+	AF_INIT_S(RTop, 0x52546F70u, int32_t);
+	AF_INIT_C(Tran, 0x5472616Eu, FDsc);
 }
 
 AF_STRUCT_INIT(Deco)
@@ -2240,61 +2404,64 @@ AF_STRUCT_INIT(Deco)
 
 AF_STRUCT_INIT(DocN)
 {
-	AF_INIT_S(TrCn, 0x5472436Eu, int32_t);
-	AF_INIT_S(TrAn, 0x5472416Eu, AffinityReader::EnumT);
-	AF_INIT_A(TrFP, 0x54724650u, AffinityReader::vec_d_t<2>, 2);
-	AF_INIT_S(TrFV, 0x54724656u, bool);
-	AF_INIT_S(Blnd, 0x426C6E64u, AffinityReader::EnumT);
-	AF_INIT_S(PasT, 0x50617354u, bool);
-	AF_INIT_C(BlRa, 0x426C5261u, BlnR);
-	AF_INIT_A(SrBx, 0x53724278u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_A(SrPB, 0x53725042u, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(Desc, 0x44657363u, std::string);
-	AF_INIT_S(DefD, 0x44656644u, std::string);
-	AF_INIT_N(TagC);
-	AF_INIT_S(Visi, 0x56697369u, bool);
-	AF_INIT_S(Opac, 0x4F706163u, float);
-	AF_INIT_S(FOpc, 0x464F7063u, float);
-	AF_INIT_E(FiEf);
-	AF_INIT_S(Edtb, 0x45647462u, bool);
-	AF_INIT_S(CEdb, 0x43456462u, bool);
-	AF_INIT_S(MEtb, 0x4D457462u, bool);
-	AF_INIT_N(Data);
-	AF_INIT_V(Frst, 0x46727374u, AffinityReader::SharedArray<std::string>);
-	AF_INIT_V(Scnd, 0x53636E64u, AffinityReader::SharedArray<std::string>);
-	AF_INIT_S(Hyty, 0x48797479u, AffinityReader::EnumT);
-	AF_INIT_S(Hypr, 0x48797072u, std::string);
-	AF_INIT_S(HyTr, 0x48795472u, AffinityReader::EnumT);
-	AF_INIT_S(TWSt, 0x54575374u, AffinityReader::EnumT);
-	AF_INIT_A(TWBo, 0x5457426Fu, AffinityReader::vec_d_t<4>, 4);
-	AF_INIT_S(CLiT, 0x434C6954u, AffinityReader::EnumT);
-	AF_INIT_L(Chld, 0x43686C64u, Sprd);
-	AF_INIT_L(MpCh, 0x4D704368u, Sprd);
+	AF_INIT_N(AncD);
 	AF_INIT_S(BFCr, 0x42464372u, uint32_t);
 	AF_INIT_L(BFFl, 0x4246466Cu, FDsc);
-	AF_INIT_S(LICr, 0x4C494372u, uint32_t);
-	AF_INIT_L(LILn, 0x4C494C6Eu, LDsc);
-	AF_INIT_L(LIFl, 0x4C49466Cu, FDsc);
-	AF_INIT_C(Opts, 0x4F707473u, BGrd);
-	AF_INIT_S(DORT, 0x444F5254u, float);
-	AF_INIT_A(DfSz, 0x4466537Au, AffinityReader::vec_d_t<2>, 2);
-	AF_INIT_S(FcPa, 0x46635061u, bool);
-	AF_INIT_S(LPSt, 0x4C505374u, bool);
-	AF_INIT_S(VtSt, 0x56745374u, bool);
+	AF_INIT_C(BlRa, 0x426C5261u, BlnR);
+	AF_INIT_S(Blnd, 0x426C6E64u, AffinityReader::EnumT);
+	AF_INIT_S(CEdb, 0x43456462u, bool);
+	AF_INIT_S(CLiT, 0x434C6954u, AffinityReader::EnumT);
+	AF_INIT_L(Chld, 0x43686C64u, Sprd);
 	AF_INIT_C(DCMD, 0x44434D44u, DcMD);
+	AF_INIT_S(DORT, 0x444F5254u, float);
 	AF_INIT_L(DSec, 0x44536563u, DocS);
-	AF_INIT_L(VPts, 0x56507473u, VwPD);
+	AF_INIT_N(Data);
+	AF_INIT_S(DefD, 0x44656644u, std::string);
+	AF_INIT_S(Desc, 0x44657363u, std::string);
+	AF_INIT_A(DfSz, 0x4466537Au, AffinityReader::vec_d_t<2>, 2);
+	AF_INIT_E(DmSt);
+	AF_INIT_S(Edtb, 0x45647462u, bool);
+	AF_INIT_S(FOpc, 0x464F7063u, float);
 	AF_INIT_C(FTxR, 0x46547852u, FTXR);
+	AF_INIT_S(FcPa, 0x46635061u, bool);
+	AF_INIT_E(FiEf);
+	AF_INIT_V(Frst, 0x46727374u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_S(HyTr, 0x48795472u, AffinityReader::EnumT);
+	AF_INIT_S(Hypr, 0x48797072u, std::string);
+	AF_INIT_S(Hyty, 0x48797479u, AffinityReader::EnumT);
 	AF_INIT_C(Indx, 0x496E6478u, Indx);
+	AF_INIT_S(LICr, 0x4C494372u, uint32_t);
+	AF_INIT_L(LIFl, 0x4C49466Cu, FDsc);
+	AF_INIT_L(LILn, 0x4C494C6Eu, LDsc);
+	AF_INIT_S(LPSt, 0x4C505374u, bool);
+	AF_INIT_S(MEtb, 0x4D457462u, bool);
+	AF_INIT_L(MpCh, 0x4D704368u, Sprd);
+	AF_INIT_S(Opac, 0x4F706163u, float);
+	AF_INIT_C(Opts, 0x4F707473u, BGrd);
+	AF_INIT_S(PasT, 0x50617354u, bool);
+	AF_INIT_V(Scnd, 0x53636E64u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_A(SrBx, 0x53724278u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_A(SrPB, 0x53725042u, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_A(TWBo, 0x5457426Fu, AffinityReader::vec_d_t<4>, 4);
+	AF_INIT_S(TWSt, 0x54575374u, AffinityReader::EnumT);
+	AF_INIT_N(TagC);
+	AF_INIT_S(TrAn, 0x5472416Eu, AffinityReader::EnumT);
+	AF_INIT_S(TrCn, 0x5472436Eu, int32_t);
+	AF_INIT_A(TrFP, 0x54724650u, AffinityReader::vec_d_t<2>, 2);
+	AF_INIT_S(TrFV, 0x54724656u, bool);
 	AF_INIT_S(TraC, 0x54726143u, int32_t);
+	AF_INIT_L(VPts, 0x56507473u, VwPD);
+	AF_INIT_S(Visi, 0x56697369u, bool);
+	AF_INIT_S(VtSt, 0x56745374u, bool);
+	AF_INIT_S(avin, 0x6176696Eu, uint32_t);
 }
 
 AF_STRUCT_INIT(DocS)
 {
-	AF_INIT_S(StId, 0x53744964u, uint32_t);
-	AF_INIT_S(NbFr, 0x4E624672u, int32_t);
-	AF_INIT_S(Name, 0x4E616D65u, std::string);
 	AF_INIT_S(Frmt, 0x46726D74u, AffinityReader::EnumT);
+	AF_INIT_S(Name, 0x4E616D65u, std::string);
+	AF_INIT_S(NbFr, 0x4E624672u, int32_t);
+	AF_INIT_S(StId, 0x53744964u, uint32_t);
 }
 
 AF_STRUCT_INIT(DrCp)
@@ -2313,90 +2480,23 @@ AF_STRUCT_INIT(DrpD)
 
 AF_STRUCT_INIT(Dupl)
 {
-	AF_INIT_E(UndR);
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_S(ASnC, 0x41536E43u, bool);
 	AF_INIT_S(Link, 0x4C696E6Bu, bool);
-	AF_INIT_C(IRec, 0x49526563u, SpRV);
-	AF_INIT_X(0x556E646Fu, {
-		AF_CASE_X(Undo, 0x50437276u, PCrv);
-		AF_CASE_X(Undo, 0x5368704Eu, ShpN);
-	});
+	AF_INIT_S(MdSp, 0x4D645370u, bool);
+	AF_INIT_S(ObRS, 0x4F625253u, bool);
+	AF_INIT_C(OldS, 0x4F6C6453u, Sele);
+	AF_INIT_E(RedL);
+	AF_INIT_E(Redo);
+	AF_INIT_A(Trns, 0x54726E73u, AffinityReader::vec_d_t<6>, 6);
 	AF_INIT_X(0x556E644Cu, {
 		AF_CASE_X(UndL, 0x50437276u, PCrv);
 		AF_CASE_X(UndL, 0x5368704Eu, ShpN);
 	});
-	AF_INIT_E(Redo);
-	AF_INIT_E(RedL);
-	AF_INIT_C(NewS, 0x4E657753u, Sele);
-	AF_INIT_C(OldS, 0x4F6C6453u, Sele);
-	AF_INIT_A(Trns, 0x54726E73u, AffinityReader::vec_d_t<6>, 6);
-	AF_INIT_S(ObRS, 0x4F625253u, bool);
-	AF_INIT_S(ASnC, 0x41536E43u, bool);
-	AF_INIT_S(MdSp, 0x4D645370u, bool);
-	AF_INIT_S(MdTc, 0x4D645463u, bool);
-	AF_INIT_E(Fir3);
-	AF_INIT_E(Sec3);
-	AF_INIT_E(Fir4);
-	AF_INIT_E(Sec4);
-	AF_INIT_E(Fir6);
-	AF_INIT_E(Sec6);
-	AF_INIT_E(Fir7);
-	AF_INIT_E(Sec7);
-	AF_INIT_E(Fir1);
-	AF_INIT_E(Sec1);
-	AF_INIT_E(Fr10);
-	AF_INIT_E(Sc10);
-	AF_INIT_E(Fr12);
-	AF_INIT_E(Sc12);
-	AF_INIT_E(Fr11);
-	AF_INIT_E(Sc11);
-	AF_INIT_E(Fir8);
-	AF_INIT_E(Sec8);
-	AF_INIT_E(Fir9);
-	AF_INIT_E(Sec9);
-	AF_INIT_E(Fir5);
-	AF_INIT_E(Sec5);
-	AF_INIT_E(Fr14);
-	AF_INIT_E(Sc14);
-	AF_INIT_E(Fr16);
-	AF_INIT_E(Sc16);
-	AF_INIT_E(Fr25);
-	AF_INIT_E(Sc25);
-	AF_INIT_E(Fr17);
-	AF_INIT_E(Sc17);
-	AF_INIT_E(Fr18);
-	AF_INIT_E(Sc18);
-	AF_INIT_E(Fr19);
-	AF_INIT_E(Sc19);
-	AF_INIT_E(Fr13);
-	AF_INIT_E(Sc13);
-	AF_INIT_E(Fr21);
-	AF_INIT_E(Sc21);
-	AF_INIT_E(Fr22);
-	AF_INIT_E(Sc22);
-	AF_INIT_E(Fr23);
-	AF_INIT_E(Sc23);
-	AF_INIT_E(Fr24);
-	AF_INIT_E(Sc24);
-	AF_INIT_E(Fr26);
-	AF_INIT_E(Sc26);
-	AF_INIT_E(Fr15);
-	AF_INIT_E(Sc15);
-	AF_INIT_E(lnkd);
-	AF_INIT_L(ulkd, 0x756C6B64u, ShpN);
-	AF_INIT_C(Sele, 0x53656C65u, Sele);
-	AF_INIT_M(0x4C617972u, {
-		AF_CASE_M(Layr, 0x53636F70u, Scop);
-		AF_CASE_M(Layr, 0x5368704Eu, ShpN);
-	});
-	AF_INIT_S(Dire, 0x44697265u, AffinityReader::EnumT);
-	AF_INIT_S(Prev, 0x50726576u, bool);
-	AF_INIT_S(ArtC, 0x41727443u, bool);
-	AF_INIT_S(AAtC, 0x41417443u, bool);
-	AF_INIT_S(CArC, 0x43417243u, bool);
-	AF_INIT_X(0x6D61706Fu, {
-		AF_CASE_X(mapo, 0x50437276u, PCrv);
-		AF_CASE_X(mapo, 0x53635072u, ScPr);
-		AF_CASE_X(mapo, 0x5368704Eu, ShpN);
+	AF_INIT_X(0x556E646Fu, {
+		AF_CASE_X(Undo, 0x50437276u, PCrv);
+		AF_CASE_X(Undo, 0x5368704Eu, ShpN);
 	});
 }
 
@@ -2404,178 +2504,185 @@ AF_STRUCT_INIT(DyBm)
 {
 	AF_INIT_BASE(BaseBitm);
 
-	AF_INIT_S(Frmt, 0x46726D74u, AffinityReader::EnumT);
-	AF_INIT_S(BmpW, 0x426D7057u, int32_t);
-	AF_INIT_S(BmpH, 0x426D7048u, int32_t);
 	AF_INIT_S(Bckg, 0x42636B67u, AffinityReader::EmbeddedData);
-	AF_INIT_C(Prof, 0x50726F66u, ICC);
+	AF_INIT_S(BmpH, 0x426D7048u, int32_t);
+	AF_INIT_S(BmpW, 0x426D7057u, int32_t);
 	AF_INIT_S(DelA, 0x44656C41u, bool);
-	AF_INIT_S(MipM, 0x4D69704Du, AffinityReader::EnumT);
-	AF_INIT_S(LInf, 0x4C496E66u, int32_t);
-	AF_INIT_S(TInf, 0x54496E66u, int32_t);
+	AF_INIT_S(Frmt, 0x46726D74u, AffinityReader::EnumT);
 	AF_INIT_L(Idx1, 0x49647831u, Blck);
-	AF_INIT_V(Sta1, 0x53746131u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(Idx2, 0x49647832u, Blck);
-	AF_INIT_V(Sta2, 0x53746132u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(Idx3, 0x49647833u, Blck);
-	AF_INIT_V(Sta3, 0x53746133u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(Idx4, 0x49647834u, Blck);
-	AF_INIT_V(Sta4, 0x53746134u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(Idx5, 0x49647835u, Blck);
-	AF_INIT_V(Sta5, 0x53746135u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_S(LInf, 0x4C496E66u, int32_t);
 	AF_INIT_L(MI1_1, 0x4D490131u, Blck);
-	AF_INIT_V(MT1_1, 0x4D540131u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_1, 0x4D490132u, Blck);
-	AF_INIT_V(MT2_1, 0x4D540132u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_1, 0x4D490133u, Blck);
-	AF_INIT_V(MT3_1, 0x4D540133u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_1, 0x4D490134u, Blck);
-	AF_INIT_V(MT4_1, 0x4D540134u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI5_1, 0x4D490135u, Blck);
-	AF_INIT_V(MT5_1, 0x4D540135u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI1_2, 0x4D490231u, Blck);
-	AF_INIT_V(MT1_2, 0x4D540231u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_2, 0x4D490232u, Blck);
-	AF_INIT_V(MT2_2, 0x4D540232u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_2, 0x4D490233u, Blck);
-	AF_INIT_V(MT3_2, 0x4D540233u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_2, 0x4D490234u, Blck);
-	AF_INIT_V(MT4_2, 0x4D540234u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI5_2, 0x4D490235u, Blck);
-	AF_INIT_V(MT5_2, 0x4D540235u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI1_3, 0x4D490331u, Blck);
-	AF_INIT_V(MT1_3, 0x4D540331u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_3, 0x4D490332u, Blck);
-	AF_INIT_V(MT2_3, 0x4D540332u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_3, 0x4D490333u, Blck);
-	AF_INIT_V(MT3_3, 0x4D540333u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_3, 0x4D490334u, Blck);
-	AF_INIT_V(MT4_3, 0x4D540334u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI5_3, 0x4D490335u, Blck);
-	AF_INIT_V(MT5_3, 0x4D540335u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI1_4, 0x4D490431u, Blck);
-	AF_INIT_V(MT1_4, 0x4D540431u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_4, 0x4D490432u, Blck);
-	AF_INIT_V(MT2_4, 0x4D540432u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_4, 0x4D490433u, Blck);
-	AF_INIT_V(MT3_4, 0x4D540433u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_4, 0x4D490434u, Blck);
-	AF_INIT_V(MT4_4, 0x4D540434u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI5_4, 0x4D490435u, Blck);
-	AF_INIT_V(MT5_4, 0x4D540435u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI1_5, 0x4D490531u, Blck);
-	AF_INIT_V(MT1_5, 0x4D540531u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_5, 0x4D490532u, Blck);
-	AF_INIT_V(MT2_5, 0x4D540532u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_5, 0x4D490533u, Blck);
-	AF_INIT_V(MT3_5, 0x4D540533u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_5, 0x4D490534u, Blck);
-	AF_INIT_V(MT4_5, 0x4D540534u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI5_5, 0x4D490535u, Blck);
-	AF_INIT_V(MT5_5, 0x4D540535u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI1_6, 0x4D490631u, Blck);
-	AF_INIT_V(MT1_6, 0x4D540631u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_6, 0x4D490632u, Blck);
-	AF_INIT_V(MT2_6, 0x4D540632u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_6, 0x4D490633u, Blck);
-	AF_INIT_V(MT3_6, 0x4D540633u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_6, 0x4D490634u, Blck);
-	AF_INIT_V(MT4_6, 0x4D540634u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI5_6, 0x4D490635u, Blck);
-	AF_INIT_V(MT5_6, 0x4D540635u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI1_7, 0x4D490731u, Blck);
-	AF_INIT_V(MT1_7, 0x4D540731u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI1_8, 0x4D490831u, Blck);
-	AF_INIT_V(MT1_8, 0x4D540831u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI2_8, 0x4D490832u, Blck);
-	AF_INIT_V(MT2_8, 0x4D540832u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI3_8, 0x4D490833u, Blck);
-	AF_INIT_V(MT3_8, 0x4D540833u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI4_8, 0x4D490834u, Blck);
-	AF_INIT_V(MT4_8, 0x4D540834u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI5_8, 0x4D490835u, Blck);
-	AF_INIT_V(MT5_8, 0x4D540835u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI1_9, 0x4D490931u, Blck);
-	AF_INIT_V(MT1_9, 0x4D540931u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI2_9, 0x4D490932u, Blck);
-	AF_INIT_V(MT2_9, 0x4D540932u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI3_9, 0x4D490933u, Blck);
-	AF_INIT_V(MT3_9, 0x4D540933u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI4_9, 0x4D490934u, Blck);
-	AF_INIT_V(MT4_9, 0x4D540934u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI5_9, 0x4D490935u, Blck);
-	AF_INIT_V(MT5_9, 0x4D540935u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI1_10, 0x4D490A31u, Blck);
-	AF_INIT_V(MT1_10, 0x4D540A31u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI2_10, 0x4D490A32u, Blck);
-	AF_INIT_V(MT2_10, 0x4D540A32u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI3_10, 0x4D490A33u, Blck);
-	AF_INIT_V(MT3_10, 0x4D540A33u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI4_10, 0x4D490A34u, Blck);
-	AF_INIT_V(MT4_10, 0x4D540A34u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI5_10, 0x4D490A35u, Blck);
-	AF_INIT_V(MT5_10, 0x4D540A35u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI1_11, 0x4D490B31u, Blck);
-	AF_INIT_V(MT1_11, 0x4D540B31u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI2_11, 0x4D490B32u, Blck);
-	AF_INIT_V(MT2_11, 0x4D540B32u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI3_11, 0x4D490B33u, Blck);
-	AF_INIT_V(MT3_11, 0x4D540B33u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI4_11, 0x4D490B34u, Blck);
-	AF_INIT_V(MT4_11, 0x4D540B34u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI1_12, 0x4D490C31u, Blck);
-	AF_INIT_V(MT1_12, 0x4D540C31u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI2_12, 0x4D490C32u, Blck);
-	AF_INIT_V(MT2_12, 0x4D540C32u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI3_12, 0x4D490C33u, Blck);
-	AF_INIT_V(MT3_12, 0x4D540C33u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI4_12, 0x4D490C34u, Blck);
-	AF_INIT_V(MT4_12, 0x4D540C34u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_E(MI1_13);
-	AF_INIT_V(MT1_13, 0x4D540D31u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_E(MI2_13);
-	AF_INIT_V(MT2_13, 0x4D540D32u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_E(MI3_13);
-	AF_INIT_V(MT3_13, 0x4D540D33u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_L(MI4_13, 0x4D490D34u, Blck);
-	AF_INIT_V(MT4_13, 0x4D540D34u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_E(MI1_14);
-	AF_INIT_V(MT1_14, 0x4D540E31u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_E(MI2_14);
-	AF_INIT_V(MT2_14, 0x4D540E32u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_E(MI3_14);
-	AF_INIT_V(MT3_14, 0x4D540E33u, AffinityReader::SharedArray<uint8_t>);
-	AF_INIT_E(MI4_14);
-	AF_INIT_V(MT4_14, 0x4D540E34u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI2_7, 0x4D490732u, Blck);
-	AF_INIT_V(MT2_7, 0x4D540732u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI3_7, 0x4D490733u, Blck);
-	AF_INIT_V(MT3_7, 0x4D540733u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI4_7, 0x4D490734u, Blck);
-	AF_INIT_V(MT4_7, 0x4D540734u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_L(MI5_7, 0x4D490735u, Blck);
+	AF_INIT_L(MI1_8, 0x4D490831u, Blck);
+	AF_INIT_L(MI2_8, 0x4D490832u, Blck);
+	AF_INIT_L(MI3_8, 0x4D490833u, Blck);
+	AF_INIT_L(MI4_8, 0x4D490834u, Blck);
+	AF_INIT_L(MI5_8, 0x4D490835u, Blck);
+	AF_INIT_L(MI1_9, 0x4D490931u, Blck);
+	AF_INIT_L(MI2_9, 0x4D490932u, Blck);
+	AF_INIT_L(MI3_9, 0x4D490933u, Blck);
+	AF_INIT_L(MI4_9, 0x4D490934u, Blck);
+	AF_INIT_L(MI5_9, 0x4D490935u, Blck);
+	AF_INIT_L(MI1_10, 0x4D490A31u, Blck);
+	AF_INIT_L(MI2_10, 0x4D490A32u, Blck);
+	AF_INIT_L(MI3_10, 0x4D490A33u, Blck);
+	AF_INIT_L(MI4_10, 0x4D490A34u, Blck);
+	AF_INIT_L(MI5_10, 0x4D490A35u, Blck);
+	AF_INIT_L(MI1_11, 0x4D490B31u, Blck);
+	AF_INIT_L(MI2_11, 0x4D490B32u, Blck);
+	AF_INIT_L(MI3_11, 0x4D490B33u, Blck);
+	AF_INIT_L(MI4_11, 0x4D490B34u, Blck);
+	AF_INIT_L(MI5_11, 0x4D490B35u, Blck);
+	AF_INIT_L(MI1_12, 0x4D490C31u, Blck);
+	AF_INIT_L(MI2_12, 0x4D490C32u, Blck);
+	AF_INIT_L(MI3_12, 0x4D490C33u, Blck);
+	AF_INIT_L(MI4_12, 0x4D490C34u, Blck);
+	AF_INIT_E(MI5_12);
+	AF_INIT_L(MI1_13, 0x4D490D31u, Blck);
+	AF_INIT_L(MI2_13, 0x4D490D32u, Blck);
+	AF_INIT_L(MI3_13, 0x4D490D33u, Blck);
+	AF_INIT_L(MI4_13, 0x4D490D34u, Blck);
+	AF_INIT_E(MI5_13);
+	AF_INIT_E(MI1_14);
+	AF_INIT_E(MI2_14);
+	AF_INIT_E(MI3_14);
+	AF_INIT_E(MI4_14);
+	AF_INIT_V(MT1_1, 0x4D540131u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_1, 0x4D540132u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_1, 0x4D540133u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_1, 0x4D540134u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_1, 0x4D540135u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_2, 0x4D540231u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_2, 0x4D540232u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_2, 0x4D540233u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_2, 0x4D540234u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_2, 0x4D540235u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_3, 0x4D540331u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_3, 0x4D540332u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_3, 0x4D540333u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_3, 0x4D540334u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_3, 0x4D540335u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_4, 0x4D540431u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_4, 0x4D540432u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_4, 0x4D540433u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_4, 0x4D540434u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_4, 0x4D540435u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_5, 0x4D540531u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_5, 0x4D540532u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_5, 0x4D540533u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_5, 0x4D540534u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_5, 0x4D540535u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_6, 0x4D540631u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_6, 0x4D540632u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_6, 0x4D540633u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_6, 0x4D540634u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_6, 0x4D540635u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_7, 0x4D540731u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_7, 0x4D540732u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_7, 0x4D540733u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_7, 0x4D540734u, AffinityReader::SharedArray<uint8_t>);
 	AF_INIT_V(MT5_7, 0x4D540735u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_8, 0x4D540831u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_8, 0x4D540832u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_8, 0x4D540833u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_8, 0x4D540834u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_8, 0x4D540835u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_9, 0x4D540931u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_9, 0x4D540932u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_9, 0x4D540933u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_9, 0x4D540934u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_9, 0x4D540935u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_10, 0x4D540A31u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_10, 0x4D540A32u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_10, 0x4D540A33u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_10, 0x4D540A34u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_10, 0x4D540A35u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_11, 0x4D540B31u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_11, 0x4D540B32u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_11, 0x4D540B33u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_11, 0x4D540B34u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_11, 0x4D540B35u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_12, 0x4D540C31u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_12, 0x4D540C32u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_12, 0x4D540C33u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_12, 0x4D540C34u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_12, 0x4D540C35u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_13, 0x4D540D31u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_13, 0x4D540D32u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_13, 0x4D540D33u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_13, 0x4D540D34u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT5_13, 0x4D540D35u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT1_14, 0x4D540E31u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT2_14, 0x4D540E32u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT3_14, 0x4D540E33u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(MT4_14, 0x4D540E34u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_S(MipM, 0x4D69704Du, AffinityReader::EnumT);
+	AF_INIT_C(Prof, 0x50726F66u, ICC);
+	AF_INIT_V(Sta1, 0x53746131u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(Sta2, 0x53746132u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(Sta3, 0x53746133u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(Sta4, 0x53746134u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_V(Sta5, 0x53746135u, AffinityReader::SharedArray<uint8_t>);
+	AF_INIT_S(TInf, 0x54496E66u, int32_t);
 }
 
 AF_STRUCT_INIT(EDfP)
 {
+	AF_INIT_BASE(BaseAdjustment);
+
+	AF_INIT_A(Cent, 0x43656E74u, AffinityReader::vec_d_t<2>, 2);
+	AF_INIT_S(Clar, 0x436C6172u, double);
+	AF_INIT_S(InFo, 0x496E466Fu, double);
 	AF_INIT_S(RadX, 0x52616458u, double);
 	AF_INIT_S(RadY, 0x52616459u, double);
-	AF_INIT_S(InFo, 0x496E466Fu, double);
-	AF_INIT_S(Rota, 0x526F7461u, double);
-	AF_INIT_A(Cent, 0x43656E74u, AffinityReader::vec_d_t<2>, 2);
 	AF_INIT_S(Radi, 0x52616469u, double);
-	AF_INIT_S(Vibr, 0x56696272u, int32_t);
-	AF_INIT_S(Clar, 0x436C6172u, double);
+	AF_INIT_S(Rota, 0x526F7461u, double);
 }
 
 AF_STRUCT_INIT(EOEp)
 {
 	AF_INIT_BASE(BaseExport);
 
-	AF_INIT_S(Qlty, 0x516C7479u, int32_t);
-	AF_INIT_S(PSLv, 0x50534C76u, int32_t);
 	AF_INIT_S(MnSz, 0x4D6E537Au, bool);
+	AF_INIT_S(PSLv, 0x50534C76u, int32_t);
+	AF_INIT_S(Qlty, 0x516C7479u, int32_t);
 }
 
 AF_STRUCT_INIT(EOGf)
@@ -2592,44 +2699,45 @@ AF_STRUCT_INIT(EOJp)
 {
 	AF_INIT_BASE(BaseExport);
 
-	AF_INIT_S(Qlty, 0x516C7479u, uint8_t);
-	AF_INIT_S(Prog, 0x50726F67u, bool);
 	AF_INIT_S(E2Ph, 0x45325068u, bool);
+	AF_INIT_S(Prog, 0x50726F67u, bool);
+	AF_INIT_S(Qlty, 0x516C7479u, uint8_t);
 }
 
 AF_STRUCT_INIT(EOPS)
 {
 	AF_INIT_BASE(BaseExport);
 
+	AF_INIT_S(adju, 0x61646A75u, AffinityReader::EnumT);
+	AF_INIT_S(blnd, 0x626C6E64u, AffinityReader::EnumT);
 	AF_INIT_S(comp, 0x636F6D70u, bool);
-	AF_INIT_S(smll, 0x736D6C6Cu, bool);
+	AF_INIT_S(effc, 0x65666663u, AffinityReader::EnumT);
 	AF_INIT_S(fltn, 0x666C746Eu, bool);
 	AF_INIT_S(grad, 0x67726164u, AffinityReader::EnumT);
-	AF_INIT_S(adju, 0x61646A75u, AffinityReader::EnumT);
-	AF_INIT_S(effc, 0x65666663u, AffinityReader::EnumT);
 	AF_INIT_S(line, 0x6C696E65u, AffinityReader::EnumT);
-	AF_INIT_S(blnd, 0x626C6E64u, AffinityReader::EnumT);
+	AF_INIT_S(smll, 0x736D6C6Cu, bool);
 }
 
 AF_STRUCT_INIT(EOPd)
 {
 	AF_INIT_BASE(BaseExport);
 
-	AF_INIT_S(Qlty, 0x516C7479u, int32_t);
-	AF_INIT_S(CoSp, 0x436F5370u, AffinityReader::EnumT);
-	AF_INIT_S(EmFo, 0x456D466Fu, AffinityReader::EnumT);
-	AF_INIT_S(SubF, 0x53756246u, bool);
 	AF_INIT_S(AAdv, 0x41416476u, bool);
-	AF_INIT_S(Spot, 0x53706F74u, bool);
-	AF_INIT_S(OvPB, 0x4F765042u, bool);
+	AF_INIT_S(CnvI, 0x436E7649u, bool);
+	AF_INIT_S(CoSp, 0x436F5370u, AffinityReader::EnumT);
+	AF_INIT_S(EBok, 0x45426F6Bu, bool);
 	AF_INIT_S(EHyp, 0x45487970u, bool);
 	AF_INIT_S(ELay, 0x454C6179u, bool);
-	AF_INIT_S(CnvI, 0x436E7649u, bool);
+	AF_INIT_S(EmFo, 0x456D466Fu, AffinityReader::EnumT);
 	AF_INIT_S(IPrM, 0x4950724Du, bool);
+	AF_INIT_S(OvPB, 0x4F765042u, bool);
 	AF_INIT_S(PMCB, 0x504D4342u, bool);
-	AF_INIT_S(PMRM, 0x504D524Du, bool);
 	AF_INIT_S(PMCM, 0x504D434Du, bool);
 	AF_INIT_S(PMPI, 0x504D5049u, bool);
+	AF_INIT_S(PMRM, 0x504D524Du, bool);
+	AF_INIT_S(Qlty, 0x516C7479u, int32_t);
+	AF_INIT_S(Spot, 0x53706F74u, bool);
+	AF_INIT_S(SubF, 0x53756246u, bool);
 }
 
 AF_STRUCT_INIT(EOPn)
@@ -2643,11 +2751,11 @@ AF_STRUCT_INIT(EOSv)
 
 	AF_INIT_S(Qlty, 0x516C7479u, int32_t);
 	AF_INIT_S(arco, 0x6172636Fu, bool);
-	AF_INIT_S(flat, 0x666C6174u, bool);
 	AF_INIT_S(cutp, 0x63757470u, bool);
+	AF_INIT_S(flat, 0x666C6174u, bool);
 	AF_INIT_S(isvb, 0x69737662u, bool);
-	AF_INIT_S(newl, 0x6E65776Cu, bool);
 	AF_INIT_S(ltxp, 0x6C747870u, bool);
+	AF_INIT_S(newl, 0x6E65776Cu, bool);
 }
 
 AF_STRUCT_INIT(EOTf)
@@ -2666,44 +2774,51 @@ AF_STRUCT_INIT(EOXR)
 {
 	AF_INIT_BASE(BaseExport);
 
-	AF_INIT_S(LyMd, 0x4C794D64u, bool);
-	AF_INIT_S(CSFF, 0x43534646u, bool);
 	AF_INIT_S(v_32Im, 0x3332496Du, bool);
-	AF_INIT_S(v_32Sp, 0x33325370u, bool);
 	AF_INIT_S(v_32Ot, 0x33324F74u, bool);
+	AF_INIT_S(v_32Sp, 0x33325370u, bool);
+	AF_INIT_S(CSFF, 0x43534646u, bool);
 	AF_INIT_S(IULT, 0x49554C54u, bool);
+	AF_INIT_S(LyMd, 0x4C794D64u, bool);
 }
 
 AF_STRUCT_INIT(EmbC)
 {
+	AF_INIT_S(EmbC, 0x456D6243u, AffinityReader::EmbeddedData);
+	AF_INIT_N(FCac);
+	AF_INIT_N(FPro);
 	AF_INIT_S(File, 0x46696C65u, std::string);
 	AF_INIT_S(Link, 0x4C696E6Bu, bool);
-	AF_INIT_S(EmbC, 0x456D6243u, AffinityReader::EmbeddedData);
+	AF_INIT_S(PDFD, 0x50444644u, AffinityReader::EmbeddedData);
 }
 
 AF_STRUCT_INIT(EmbN)
 {
 	AF_INIT_BASE(BaseLayer);
 
-	AF_INIT_C(EmCn, 0x456D436Eu, EmbC);
-	AF_INIT_S(back, 0x6261636Bu, int32_t);
-	AF_INIT_S(PBBx, 0x50424278u, AffinityReader::EnumT);
-	AF_INIT_S(EmSp, 0x456D5370u, std::string);
-	AF_INIT_S(EmAC, 0x456D4143u, bool);
-	AF_INIT_S(SIdx, 0x53496478u, int32_t);
-	AF_INIT_S(IsMs, 0x49734D73u, bool);
 	AF_INIT_S(AIdx, 0x41496478u, int32_t);
+	AF_INIT_S(EmAC, 0x456D4143u, bool);
+	AF_INIT_C(EmCn, 0x456D436Eu, EmbC);
+	AF_INIT_S(EmSp, 0x456D5370u, std::string);
+	AF_INIT_N(FCac);
+	AF_INIT_N(FPro);
+	AF_INIT_S(IsMs, 0x49734D73u, bool);
+	AF_INIT_S(PBBx, 0x50424278u, AffinityReader::EnumT);
+	AF_INIT_S(RDPI, 0x52445049u, double);
+	AF_INIT_S(SIdx, 0x53496478u, int32_t);
+	AF_INIT_S(back, 0x6261636Bu, int32_t);
 }
 
 AF_STRUCT_INIT(EmbR)
 {
 	AF_INIT_BASE(BaseBitm);
 
-	AF_INIT_C(EmCn, 0x456D436Eu, EmbC);
-	AF_INIT_S(back, 0x6261636Bu, int32_t);
-	AF_INIT_S(PBBx, 0x50424278u, AffinityReader::EnumT);
-	AF_INIT_S(EmSp, 0x456D5370u, std::string);
 	AF_INIT_S(EmAC, 0x456D4143u, bool);
+	AF_INIT_C(EmCn, 0x456D436Eu, EmbC);
+	AF_INIT_S(EmSp, 0x456D5370u, std::string);
+	AF_INIT_S(PBBx, 0x50424278u, AffinityReader::EnumT);
+	AF_INIT_S(PssT, 0x50737354u, bool);
+	AF_INIT_S(back, 0x6261636Bu, int32_t);
 }
 
 AF_STRUCT_INIT(EnBE)
@@ -2763,21 +2878,21 @@ AF_STRUCT_INIT(ExBB)
 
 AF_STRUCT_INIT(ExBF)
 {
-	AF_INIT_S(RtOy, 0x52744F79u, bool);
-	AF_INIT_S(Srch, 0x53726368u, AffinityReader::EnumT);
-	AF_INIT_S(ORul, 0x4F52756Cu, AffinityReader::EnumT);
 	AF_INIT_S(FNme, 0x464E6D65u, std::string);
-	AF_INIT_S(Head, 0x48656164u, std::string);
 	AF_INIT_S(Foot, 0x466F6F74u, std::string);
+	AF_INIT_S(Head, 0x48656164u, std::string);
+	AF_INIT_S(ORul, 0x4F52756Cu, AffinityReader::EnumT);
+	AF_INIT_S(RtOy, 0x52744F79u, bool);
 	AF_INIT_L(Scts, 0x53637473u, Sctn);
+	AF_INIT_S(Srch, 0x53726368u, AffinityReader::EnumT);
 }
 
 AF_STRUCT_INIT(ExCI)
 {
 	AF_INIT_BASE(BaseExCsts);
 
-	AF_INIT_S(min, 0x6D696E20u, int32_t);
 	AF_INIT_S(max, 0x6D617820u, int32_t);
+	AF_INIT_S(min, 0x6D696E20u, int32_t);
 }
 
 AF_STRUCT_INIT(ExCS)
@@ -2848,9 +2963,9 @@ AF_STRUCT_INIT(ExRS)
 
 AF_STRUCT_INIT(ExSc)
 {
-	AF_INIT_S(SzTy, 0x537A5479u, AffinityReader::EnumT);
-	AF_INIT_S(Size, 0x53697A65u, double);
 	AF_INIT_S(Mult, 0x4D756C74u, double);
+	AF_INIT_S(Size, 0x53697A65u, double);
+	AF_INIT_S(SzTy, 0x537A5479u, AffinityReader::EnumT);
 }
 
 AF_STRUCT_INIT(ExV2)
@@ -2874,6 +2989,13 @@ AF_STRUCT_INIT(ExVR)
 	AF_INIT_S(val, 0x76616C20u, double);
 }
 
+AF_STRUCT_INIT(ExpA)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_E(OldP);
+}
+
 AF_STRUCT_INIT(ExpP)
 {
 	AF_INIT_BASE(BaseAdjustment);
@@ -2888,8 +3010,8 @@ AF_STRUCT_INIT(FAFH)
 
 	AF_INIT_S(Alph, 0x416C7068u, double);
 	AF_INIT_S(Cont, 0x436F6E74u, uint32_t);
-	AF_INIT_L(OldF, 0x4F6C6446u, FDsc);
 	AF_INIT_S(LSSl, 0x4C53536Cu, bool);
+	AF_INIT_L(OldF, 0x4F6C6446u, FDsc);
 }
 
 AF_STRUCT_INIT(FDsc)
@@ -2897,6 +3019,7 @@ AF_STRUCT_INIT(FDsc)
 	AF_INIT_BASE(BaseFill);
 
 	AF_INIT_M(0x46446546u, {
+		AF_CASE_M(FDeF, 0x46696C42u, FilB);
 		AF_CASE_M(FDeF, 0x46696C47u, FilG);
 		AF_CASE_M(FDeF, 0x46696C4Eu, FilN);
 		AF_CASE_M(FDeF, 0x46696C53u, FilS);
@@ -2908,8 +3031,8 @@ AF_STRUCT_INIT(FExO)
 {
 	AF_INIT_BASE(BaseExport);
 
-	AF_INIT_S(FTyp, 0x46547970u, AffinityReader::EnumT);
 	AF_INIT_S(BSFm, 0x4253466Du, AffinityReader::EnumT);
+	AF_INIT_S(FTyp, 0x46547970u, AffinityReader::EnumT);
 	AF_INIT_S(Qlty, 0x516C7479u, uint8_t);
 }
 
@@ -2917,7 +3040,7 @@ AF_STRUCT_INIT(FFCm)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_A(Poin, 0x506F696Eu, AffinityReader::vec_d_t<2>, 2);
+	AF_INIT_S(BleM, 0x426C654Du, AffinityReader::EnumT);
 	AF_INIT_M(0x436F6C6Fu, {
 		AF_CASE_M(Colo, 0x434D594Bu, CMYK);
 		AF_CASE_M(Colo, 0x47524159u, GRAY);
@@ -2926,11 +3049,8 @@ AF_STRUCT_INIT(FFCm)
 		AF_CASE_M(Colo, 0x52474241u, RGBA);
 	});
 	AF_INIT_S(Cont, 0x436F6E74u, bool);
+	AF_INIT_A(Poin, 0x506F696Eu, AffinityReader::vec_d_t<2>, 2);
 	AF_INIT_S(SamS, 0x53616D53u, AffinityReader::EnumT);
-	AF_INIT_S(BleM, 0x426C654Du, AffinityReader::EnumT);
-	AF_INIT_S(AbrP, 0x41627250u, bool);
-	AF_INIT_S(PMin, 0x504D696Eu, float);
-	AF_INIT_S(PMax, 0x504D6178u, float);
 }
 
 AF_STRUCT_INIT(FRst)
@@ -2942,8 +3062,17 @@ AF_STRUCT_INIT(FSDe)
 {
 	AF_INIT_BASE(BaseDels);
 
-	AF_INIT_C(Font, 0x466F6E74u, Font);
 	AF_INIT_S(Flds, 0x466C6473u, int32_t);
+	AF_INIT_C(Font, 0x466F6E74u, Font);
+}
+
+AF_STRUCT_INIT(FTFH)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_S(Cont, 0x436F6E74u, uint32_t);
+	AF_INIT_L(OldF, 0x4F6C6446u, FDsc);
+	AF_INIT_S(tint, 0x74696E74u, double);
 }
 
 AF_STRUCT_INIT(FTXR)
@@ -2952,12 +3081,22 @@ AF_STRUCT_INIT(FTXR)
 	AF_INIT_V(txts, 0x74787473u, AffinityReader::SharedArray<std::string>);
 }
 
+AF_STRUCT_INIT(FilB)
+{
+	AF_INIT_BASE(BaseFill);
+
+	AF_INIT_C(Bitm, 0x4269746Du, DyBm);
+	AF_INIT_S(ExtT, 0x45787454u, AffinityReader::EnumT);
+	AF_INIT_S(IgnA, 0x49676E41u, bool);
+	AF_INIT_S(ResT, 0x52657354u, AffinityReader::EnumT);
+}
+
 AF_STRUCT_INIT(FilG)
 {
 	AF_INIT_BASE(BaseFill);
 
-	AF_INIT_S(Type, 0x54797065u, AffinityReader::EnumT);
 	AF_INIT_C(Grad, 0x47726164u, Grad);
+	AF_INIT_S(Type, 0x54797065u, AffinityReader::EnumT);
 	AF_INIT_S(XCor, 0x58436F72u, bool);
 }
 
@@ -2993,16 +3132,28 @@ AF_STRUCT_INIT(Filp)
 	});
 }
 
+AF_STRUCT_INIT(FlDS)
+{
+	AF_INIT_BASE(BaseFlDS);
+
+	AF_INIT_S(Filn, 0x46696C6Eu, std::string);
+}
+
 AF_STRUCT_INIT(FlRN)
 {
 	AF_INIT_BASE(BaseLayer);
 
+	AF_INIT_A(CdXf, 0x43645866u, AffinityReader::vec_d_t<6>, 6);
 	AF_INIT_M(0x46696C74u, {
 		AF_CASE_M(Filt, 0x436C6172u, Clar);
 		AF_CASE_M(Filt, 0x436C7274u, Clrt);
+		AF_CASE_M(Filt, 0x52414E43u, RANC);
 		AF_CASE_M(Filt, 0x52444632u, RDF2);
+		AF_CASE_M(Filt, 0x52444743u, RDGC);
+		AF_CASE_M(Filt, 0x52444E43u, RDNC);
 		AF_CASE_M(Filt, 0x52474243u, RGBC);
 		AF_CASE_M(Filt, 0x52485043u, RHPC);
+		AF_CASE_M(Filt, 0x524C6243u, RLbC);
 		AF_CASE_M(Filt, 0x524C6443u, RLdC);
 		AF_CASE_M(Filt, 0x524C6967u, RLig);
 		AF_CASE_M(Filt, 0x52555343u, RUSC);
@@ -3015,9 +3166,9 @@ AF_STRUCT_INIT(FlrG)
 {
 	AF_INIT_BASE(BaseGlys);
 
-	AF_INIT_S(ScBg, 0x53634267u, int32_t);
-	AF_INIT_S(FiTy, 0x46695479u, int32_t);
 	AF_INIT_S(FStr, 0x46537472u, int32_t);
+	AF_INIT_S(FiTy, 0x46695479u, int32_t);
+	AF_INIT_S(ScBg, 0x53634267u, int32_t);
 }
 
 AF_STRUCT_INIT(FmTC)
@@ -3028,15 +3179,14 @@ AF_STRUCT_INIT(FmTC)
 		AF_CASE_M(Delt, 0x47415344u, GASD);
 		AF_CASE_M(Delt, 0x50414453u, PADS);
 	});
-	AF_INIT_S(TDfT, 0x54446654u, AffinityReader::EnumT);
-	AF_INIT_S(UPGE, 0x55504745u, bool);
 	AF_INIT_S(IgTX, 0x49675458u, bool);
-	AF_INIT_S(USty, 0x55537479u, bool);
+	AF_INIT_C(NewP, 0x4E657750u, PaAS);
+	AF_INIT_L(OItm, 0x4F49746Du, Stop);
 	AF_INIT_C(OldP, 0x4F6C6450u, PaAS);
 	AF_INIT_C(OldS, 0x4F6C6453u, SSAS);
-	AF_INIT_C(NewP, 0x4E657750u, PaAS);
-	AF_INIT_C(NewG, 0x4E657747u, GlAS);
-	AF_INIT_L(OItm, 0x4F49746Du, Stop);
+	AF_INIT_S(TDfT, 0x54446654u, AffinityReader::EnumT);
+	AF_INIT_S(UPGE, 0x55504745u, bool);
+	AF_INIT_S(USty, 0x55537479u, bool);
 }
 
 AF_STRUCT_INIT(FntM)
@@ -3046,44 +3196,44 @@ AF_STRUCT_INIT(FntM)
 
 AF_STRUCT_INIT(Font)
 {
-	AF_INIT_S(Post, 0x506F7374u, std::string);
 	AF_INIT_S(Famy, 0x46616D79u, std::string);
-	AF_INIT_S(Wegt, 0x57656774u, int32_t);
 	AF_INIT_S(Ital, 0x4974616Cu, bool);
-	AF_INIT_S(Widh, 0x57696468u, int32_t);
 	AF_INIT_C(Pano, 0x50616E6Fu, Pano);
+	AF_INIT_S(Post, 0x506F7374u, std::string);
+	AF_INIT_S(Wegt, 0x57656774u, int32_t);
+	AF_INIT_S(Widh, 0x57696468u, int32_t);
 }
 
 AF_STRUCT_INIT(ForC)
 {
 	AF_INIT_BASE(BaseCmd);
 
-	AF_INIT_S(NewF, 0x4E657746u, AffinityReader::EnumT);
-	AF_INIT_S(OldF, 0x4F6C6446u, AffinityReader::EnumT);
-	AF_INIT_C(NRGB, 0x4E524742u, ICCP);
 	AF_INIT_C(NCMY, 0x4E434D59u, ICCP);
+	AF_INIT_S(NFrC, 0x4E467243u, bool);
 	AF_INIT_C(NIAP, 0x4E494150u, ICCP);
 	AF_INIT_C(NLAB, 0x4E4C4142u, ICCP);
-	AF_INIT_C(ORGB, 0x4F524742u, ICCP);
+	AF_INIT_C(NRGB, 0x4E524742u, ICCP);
+	AF_INIT_S(NTBF, 0x4E544246u, bool);
+	AF_INIT_C(NTSt, 0x4E545374u, TStS);
+	AF_INIT_E(NeCB);
+	AF_INIT_E(NeCl);
+	AF_INIT_E(NeFl);
+	AF_INIT_S(NewF, 0x4E657746u, AffinityReader::EnumT);
 	AF_INIT_C(OCMY, 0x4F434D59u, ICCP);
 	AF_INIT_C(OIAP, 0x4F494150u, ICCP);
 	AF_INIT_C(OLAB, 0x4F4C4142u, ICCP);
-	AF_INIT_L(OldB, 0x4F6C6442u, DyBm);
+	AF_INIT_C(ORGB, 0x4F524742u, ICCP);
+	AF_INIT_C(OTSt, 0x4F545374u, TStS);
 	AF_INIT_L(OlCB, 0x4F6C4342u, DyBm);
-	AF_INIT_E(NeCB);
-	AF_INIT_L(OlFl, 0x4F6C466Cu, FDsc);
-	AF_INIT_E(NeFl);
 	AF_INIT_X(0x4F6C436Cu, {
 		AF_CASE_X(OlCl, 0x48534C41u, HSLA);
 		AF_CASE_X(OlCl, 0x52474241u, RGBA);
 	});
-	AF_INIT_E(NeCl);
+	AF_INIT_L(OlFl, 0x4F6C466Cu, FDsc);
 	AF_INIT_L(OlGl, 0x4F6C476Cu, GAtt);
 	AF_INIT_L(OlPr, 0x4F6C5072u, PAtt);
-	AF_INIT_S(NFrC, 0x4E467243u, bool);
-	AF_INIT_S(NTBF, 0x4E544246u, bool);
-	AF_INIT_C(OTSt, 0x4F545374u, TStS);
-	AF_INIT_C(NTSt, 0x4E545374u, TStS);
+	AF_INIT_L(OldB, 0x4F6C6442u, DyBm);
+	AF_INIT_S(OldF, 0x4F6C6446u, AffinityReader::EnumT);
 }
 
 AF_STRUCT_INIT(Futr)
@@ -3127,9 +3277,9 @@ AF_STRUCT_INIT(GASD)
 
 AF_STRUCT_INIT(GAtt)
 {
-	AF_INIT_V(Ints, 0x496E7473u, AffinityReader::SharedArray<int32_t>);
+	AF_INIT_C(DFnt, 0x44466E74u, Font);
 	AF_INIT_V(Doub, 0x446F7562u, AffinityReader::SharedArray<double>);
-	AF_INIT_V(Stri, 0x53747269u, AffinityReader::SharedArray<std::string>);
+	AF_INIT_V(Ints, 0x496E7473u, AffinityReader::SharedArray<int32_t>);
 	AF_INIT_X(0x4F626A73u, {
 		AF_CASE_X(Objs, 0x46447363u, FDsc);
 		AF_CASE_X(Objs, 0x486C6B41u, HlkA);
@@ -3137,8 +3287,22 @@ AF_STRUCT_INIT(GAtt)
 		AF_CASE_X(Objs, 0x4F704141u, OpAA);
 		AF_CASE_X(Objs, 0x4F744174u, OtAt);
 	});
-	AF_INIT_C(DFnt, 0x44466E74u, Font);
 	AF_INIT_C(RFnt, 0x52466E74u, Font);
+	AF_INIT_V(Stri, 0x53747269u, AffinityReader::SharedArray<std::string>);
+}
+
+AF_STRUCT_INIT(GOFl)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_E(OldF);
+}
+
+AF_STRUCT_INIT(GOTr)
+{
+	AF_INIT_BASE(BaseCmd);
+
+	AF_INIT_E(OldF);
 }
 
 AF_STRUCT_INIT(GRAY)
@@ -3161,8 +3325,8 @@ AF_STRUCT_INIT(GSSP)
 
 AF_STRUCT_INIT(GStr)
 {
-	AF_INIT_S(Utf8, 0x55746638u, std::string);
 	AF_INIT_L(Mixd, 0x4D697864u, GSSP);
+	AF_INIT_S(Utf8, 0x55746638u, std::string);
 }
 
 AF_STRUCT_INIT(Gaus)
@@ -3187,6 +3351,8 @@ AF_STRUCT_INIT(GrMA)
 {
 	AF_INIT_BASE(BaseCmd);
 
+	AF_INIT_L(NGOP, 0x4E474F50u, GraP);
+	AF_INIT_C(NGPa, 0x4E475061u, GraP);
 	AF_INIT_L(OldP, 0x4F6C6450u, GrMP);
 }
 
@@ -3203,6 +3369,11 @@ AF_STRUCT_INIT(GrNC)
 	AF_INIT_BASE(BaseCmd);
 
 	AF_INIT_C(Grou, 0x47726F75u, Grup);
+	AF_INIT_S(NCmG, 0x4E436D47u, bool);
+	AF_INIT_V(OlCT, 0x4F6C4354u, AffinityReader::SharedArray<AffinityReader::EnumT>);
+	AF_INIT_V(OlFT, 0x4F6C4654u, AffinityReader::SharedArray<AffinityReader::vec_d_t<6>>);
+	AF_INIT_C(OlSl, 0x4F6C536Cu, Sele);
+	AF_INIT_V(OlTr, 0x4F6C5472u, AffinityReader::SharedArray<AffinityReader::vec_d_t<6>>);
 	AF_INIT_X(0x4F6C6450u, {
 		AF_CASE_X(OldP, 0x53636F70u, Scop);
 		AF_CASE_X(OldP, 0x53707264u, Sprd);
@@ -3211,21 +3382,23 @@ AF_STRUCT_INIT(GrNC)
 		AF_CASE_X(OldS, 0x47727570u, Grup);
 		AF_CASE_X(OldS, 0x52737472u, Rstr);
 	});
-	AF_INIT_C(OlSl, 0x4F6C536Cu, Sele);
-	AF_INIT_V(OlCT, 0x4F6C4354u, AffinityReader::SharedArray<AffinityReader::EnumT>);
-	AF_INIT_V(OlTr, 0x4F6C5472u, AffinityReader::SharedArray<AffinityReader::vec_d_t<6>>);
-	AF_INIT_S(NCmG, 0x4E436D47u, bool);
 	AF_INIT_S(RACn, 0x5241436Eu, bool);
 }
 
 AF_STRUCT_INIT(GrRA)
 {
 	AF_INIT_BASE(BaseLayer);
+
+	AF_INIT_C(NAjP, 0x4E416A50u, GraP);
+}
+
+AF_STRUCT_INIT(GraP)
+{
+	AF_INIT_C(Grad, 0x47726164u, Grad);
 }
 
 AF_STRUCT_INIT(Grad)
 {
-	AF_INIT_V(Posn, 0x506F736Eu, AffinityReader::SharedArray<AffinityReader::vec_d_t<2>>);
 	AF_INIT_X(0x436F6C73u, {
 		AF_CASE_X(Cols, 0x434D594Bu, CMYK);
 		AF_CASE_X(Cols, 0x47524159u, GRAY);
@@ -3234,6 +3407,7 @@ AF_STRUCT_INIT(Grad)
 		AF_CASE_X(Cols, 0x50616E74u, Pant);
 		AF_CASE_X(Cols, 0x52474241u, RGBA);
 	});
+	AF_INIT_V(Posn, 0x506F736Eu, AffinityReader::SharedArray<AffinityReader::vec_d_t<2>>);
 }
 
 AF_STRUCT_INIT(GrdO)

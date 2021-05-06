@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Vladimir Mamonov
+// Copyright (c) 2020-2021 Vladimir Mamonov
 // Licensed under the MIT license.
 
 #ifndef AFFINITY_CPPSTRUCTS_H
@@ -22,12 +22,19 @@ using string = std::string;
 template <class T, std::size_t N>
 using array = std::array<T, N>;
 
-struct BaseAdjustment;
-struct BaseEffect;
-struct BaseBitm;
-struct BaseFill;
-struct BaseShape;
-struct BaseFrms;
+struct BaseAtt;        // IWYU pragma: keep
+struct BaseLayer;      // IWYU pragma: keep
+struct BaseAdjustment; // IWYU pragma: keep
+struct BaseFill;       // IWYU pragma: keep
+struct BaseBitm;       // IWYU pragma: keep
+struct BaseEffect;     // IWYU pragma: keep
+struct BaseFlDS;       // IWYU pragma: keep
+struct BaseShape;      // IWYU pragma: keep
+struct BaseFrms;       // IWYU pragma: keep
+struct BaseColor;      // IWYU pragma: keep
+struct BaseBrush;      // IWYU pragma: keep
+struct BaseExport;     // IWYU pragma: keep
+struct BaseCmd;        // IWYU pragma: keep
 struct BGrd;
 struct BlnR;
 struct BrDy;
@@ -36,6 +43,7 @@ struct CoDe;
 struct CrpP;
 struct CrvD;
 struct DFFO;
+struct DMdf;
 struct DcHI;
 struct DocS;
 struct DyBm;
@@ -43,16 +51,15 @@ struct ExBF;
 struct FDsc;
 struct FTXR;
 struct FilS;
-struct Font;
 struct ForC;
 struct Futr;
 struct GAtt;
 struct GStr;
 struct GlAS;
 struct GrMP;
-struct Grad;
+struct GraP;
 struct Grup;
-struct IBRB;
+struct HSLA;
 struct ICC;
 struct ICCP;
 struct ILDO;
@@ -65,11 +72,11 @@ struct LStr;
 struct LSty;
 struct Layt;
 struct LigS;
-struct Macr;
 struct Matx;
 struct ObjS;
 struct OpAV;
 struct PAtt;
+struct PBxR;
 struct PCrv;
 struct PCvD;
 struct PLig;
@@ -78,15 +85,16 @@ struct PTCf;
 struct PTEq;
 struct PTNd;
 struct PaAS;
+struct PcRs;
 struct Per_42;
 struct PfPr;
-struct Prst;
 struct PthT;
 struct Quad;
 struct RBMI;
 struct RGBA;
 struct Rec;
 struct Rstr;
+struct SCRn;
 struct SNAR;
 struct SPst;
 struct SRst;
@@ -112,9 +120,9 @@ struct TexS;
 struct TxFU;
 struct TxFl;
 struct TxtA;
+struct UVCn;
 struct UnSR;
 struct UndR;
-struct Undo;
 struct VwPD;
 struct v_CB1;
 struct v_CB2;
@@ -123,381 +131,17 @@ struct v_CB4;
 struct v_CB5;
 struct v_C1;
 struct v_C2;
+struct ascp;
+struct bres;
+struct cibs;
+struct enty;
+struct erev;
+struct pack;
+struct pdsi;
+struct pmda;
+struct temp;
 
 #pragma pack(push, 1)
-
-struct BaseExport
-{
-	enum class Type
-	{
-		Unknown,
-		EOEp,
-		EOGf,
-		EOHD,
-		EOJp,
-		EOPS,
-		EOPd,
-		EOPn,
-		EOSv,
-		EOTf,
-		EOTg,
-		EOXR,
-		FExO,
-	};
-	Type base_type = Type::Unknown;
-
-	struct ICCP* ICCP;
-	bool         EmIP;
-	bool         EmMt;
-	RGBA*        Matt;
-	EnumT        Rsmp;
-	bool         Bled;
-	bool         TxCr;
-	bool         isds;
-	double       dadi;
-	bool         jpeg;
-	bool         iurd;
-	double       rdpi;
-	EnumT        RaPo;
-	bool         isct;
-	bool         ahcl;
-	EnumT        PxFm;
-	EnumT        PlTy;
-	uint16_t     PlSz;
-	void*        UPlt;
-	EnumT        Comp;
-	bool         Plts;
-};
-
-struct BaseLayer
-{
-	enum class Type
-	{
-		Unknown,
-		BCRA,
-		BWRA,
-		CBRA,
-		Comp,
-		CrRA,
-		EmbN,
-		FRst,
-		FlRN,
-		Grup,
-		HsRA,
-		ImgN,
-		LeRA,
-		MPIN,
-		PCrv,
-		PfRA,
-		Rstr,
-		SCRA,
-		SHRA,
-		Scop,
-		ShpN,
-		StkN,
-		TxtA,
-		TxtF,
-		TxtT,
-		VbRA,
-		WBRA,
-		Sprd,
-		v_3DLA, /* NOLINT(readability-identifier-naming) */
-		CMRA,
-		GrRA,
-		InRA,
-		MRst,
-		OCRN,
-		PoRA,
-		SPRA,
-		SpTA,
-		ThRA,
-		CnsN,
-		CPTx,
-		ExRA,
-		RcRA,
-		SNEN,
-		TxtS,
-		SlcP,
-		Slic,
-		SNRR,
-		ShRN,
-		ScPr,
-		ObjS,
-	};
-	Type base_type = Type::Unknown;
-
-	/* v_3DLP*, BCP_38*, BWP_38*, CIPP*, CnMP*, CoBP*, CrvP*, ExpP*, GrMP*, HSSP*, LeFP*, LevP*, PosP*, RecP*, SCoP*, SHiP*, STPa*, SoPP*,
-	 * ThrP*, VibP*, WhBP* */
-	BaseAdjustment* AdjP;
-	int32_t         TrCn;
-	EnumT           TrAn;
-	int32_t         TraC;
-	double          TrFP[2];
-	bool            TrFV;
-	double          Xfrm[6];
-	double          SrBx[4];
-	double          SrPB[4];
-	double          FTxS[6];
-	EnumT           Blnd;
-	bool            PasT;
-	BlnR*           BlRa;
-	string          Desc;
-	RGBA*           TagC;
-	string          DefD;
-	bool            Visi;
-	float           Opac;
-	float           FOpc;
-	/* BevE*, ColO*, Gaus*, GrdO*, InnG*, InnS*, OutG*, PhgB*, Shad*, Strk* */
-	vector<BaseEffect*> FiEf;
-	bool                Edtb;
-	bool                MEtb;
-	void*               Data;
-	bool                CEdb;
-	vector<string>      Frst;
-	vector<string>      Scnd;
-	EnumT               Hyty;
-	string              Hypr;
-	EnumT               HyTr;
-	EnumT               CLiT;
-	EnumT               TWSt;
-	double              TWBo[4];
-	/* DyBm*, EmbR* */
-	BaseBitm* Bitm;
-	int32_t   BitR[4];
-	int32_t   BitI[4];
-	int32_t   CMsk;
-	EnumT     ProT;
-	void*     Unpr;
-	Matx*     WRot;
-	double    Lati;
-	double    Long;
-	double    Roll;
-	double    FOV;
-	Per_42*   Psp_42;
-	bool      ExtE;
-	Quad*     Pspv;
-	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, FlRN*, GrRA*, Grup*, HsRA*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*, RcRA*,
-	 * Rstr*, SCRA*, SHRA*, SPRA*, ShpN*, SpTA*, ThRA*, VbRA*, WBRA* */
-	vector<BaseLayer*> AdCh;
-	EnumT              ComO;
-	ILTI*              TLnk;
-	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
-	BaseLayer* BlMM;
-	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
-	BaseLayer* VisM;
-	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
-	BaseLayer* FiEM;
-	ILSN*      SLnk;
-	ILGI*      GLnk;
-	/* BCRA*, BWRA*, CBRA*, CMRA*, CPTx*, CnsN*, Comp*, CrRA*, EmbN*, ExRA*, FRst*, FlRN*, Grup*, HsRA*, ImgN*, LeRA*, MPIN*, MRst*, PCrv*,
-	 * PfRA*, RcRA*, Rstr*, SCRA*, SHRA*, SNEN*, SNRR*, Scop*, ShRN*, ShpN*, StkN*, TxtA*, TxtF*, TxtS*, TxtT*, VbRA*, WBRA* */
-	vector<BaseLayer*> Chld;
-	/* CnsN*, Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
-	BaseLayer* TWMa;
-	/* FDsc*, FilS* */
-	BaseFill* BFil;
-	LDsc*     LSty;
-	/* Comp*, Grup*, PCrv*, Scop*, ShpN*, TxtF* */
-	BaseLayer* VBFM;
-	/* Comp*, Grup*, PCrv*, Scop*, ShpN*, TxtF* */
-	BaseLayer* VTrM;
-	/* Comp*, Grup*, PCrv*, Scop*, ShpN*, TxtF* */
-	BaseLayer*    VLSM;
-	uint32_t      BFCr;
-	vector<FDsc*> BFFl;
-	/* FDsc*, FilS* */
-	BaseFill*     Trns;
-	uint32_t      LICr;
-	vector<LDsc*> LILn;
-	vector<FDsc*> LIFl;
-	bool          IsVF;
-	uint32_t      Ctrl;
-	EnumT         Anch;
-	double        OCRc[4];
-	vector<EnumT> DrwO;
-	EnumT         Spac;
-	EnumT         IPlc;
-	PthT*         Path;
-	uint64_t      Flsz;
-	int64_t       MfTm;
-	EnumT         FTyp;
-	PthT*         RPth;
-	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
-	BaseLayer* DsMa;
-	double     SrTr[6];
-	double     SrPT[6];
-	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
-	BaseLayer* EdMa;
-	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
-	BaseLayer* TMas;
-	string     GooI;
-	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
-	BaseLayer* HKMs;
-	/* FDsc*, FilS* */
-	BaseFill* PFil;
-	bool      HsFC;
-	/* PCrv*, ShpN* */
-	BaseLayer* PFMs;
-	ILDO*      DLnk;
-	PCvD*      Crvs;
-	double     CvsB[4];
-	EnumT      CvWi;
-	/* PCrv*, ShpN*, TxtF* */
-	BaseLayer*               BGMs;
-	BGrd*                    Opts;
-	vector<array<double, 4>> MrgA;
-	vector<bool>             UMgA;
-	string                   MiID;
-	vector<curve16_t>        CGds;
-	vector<bool>             UCGA;
-	/* MRst*, Rstr* */
-	BaseLayer* MRaM;
-	/* ShCR*, ShCg*, ShCl*, ShCr*, ShDA*, ShDS*, ShHt*, ShNR*, ShPi*, ShPy*, ShRR*, ShSS*, ShSg*, ShSt*, ShTr*, ShTz*, ShpD*, ShpE*, ShpT*
-	 */
-	BaseShape*     Shpe;
-	double         ShpB[4];
-	struct XCfg*   XCfg;
-	bool           ExIn;
-	string         ExFn;
-	bool           ABEn;
-	vector<double> GdsV;
-	bool           GdsA;
-	bool           USnG;
-	SnpG*          SGrd;
-	vector<double> GdsH;
-	/* TxtA*, TxtF* */
-	BaseLayer* StMa;
-	Stry*      StSt;
-	/* TxtA*, TxtF* */
-	BaseLayer* TxFM;
-	/* ArFr*, CoFr*, PaFr*, TbFr* */
-	BaseFrms* TxtH;
-	Layt*     TxtL;
-	bool      IgTW;
-	bool      IgBG;
-	TxFl*     Flow;
-};
-
-struct BaseBrush
-{
-	enum class Type
-	{
-		Unknown,
-		BmRB,
-		IBRB,
-		RRBr,
-		SRBr,
-	};
-	Type base_type = Type::Unknown;
-
-	vector<DyBm*>  TipT;
-	string         BUid;
-	float          Opac;
-	float          Spac;
-	EnumT          BlMo;
-	bool           SABM;
-	bool           WetE;
-	Spln*          WeES;
-	bool           SAWE;
-	BrDy*          Flow;
-	BrDy*          Accn;
-	BrDy*          Size;
-	BrDy*          Hard;
-	BrDy*          Shap;
-	BrDy*          Angl;
-	BrDy*          ScaX;
-	BrDy*          ScaY;
-	BrDy*          HueS;
-	BrDy*          SatS;
-	BrDy*          LumS;
-	BrDy*          TipC;
-	DyBm*          MskT;
-	EnumT          MkTM;
-	double         MkTS;
-	bool           Strk;
-	double         Head;
-	double         Tail;
-	bool           RptB;
-	EnumT          CnrS;
-	bool           SATI;
-	int32_t        ToID;
-	vector<IBRB*>  SubB;
-	EnumT          SMod;
-	EnumT          SSMd;
-	bool           SSSz;
-	bool           SSSp;
-	vector<string> Frst;
-	vector<string> Scnd;
-};
-
-struct BaseColor
-{
-	enum class Type
-	{
-		Unknown,
-		CMYK,
-		GRAY,
-		HSLA,
-		LABA,
-		Pant,
-		RGBA,
-		RegC,
-	};
-	Type base_type = Type::Unknown;
-
-	double v_nse;
-	string v_glb;
-	double v_tnt;
-};
-
-struct BaseFill
-{
-	enum class Type
-	{
-		Unknown,
-		FDsc,
-		HlkA,
-		LDsc,
-		OpAA,
-		OtAt,
-		FilG,
-		FilN,
-		FilS,
-	};
-	Type base_type = Type::Unknown;
-};
-
-struct BaseGlys
-{
-	enum class Type
-	{
-		Unknown,
-		BrGl,
-		FlrG,
-		LLGl,
-		PgNG,
-	};
-	Type base_type = Type::Unknown;
-};
-
-struct BaseAtt
-{
-	enum class Type
-	{
-		Unknown,
-		AFAt,
-		Deco,
-		DrCp,
-		LisA,
-		TabS,
-		TocA,
-	};
-	Type base_type = Type::Unknown;
-
-	bool   Enbl;
-	string SNam;
-	CoDe*  SDlt;
-};
 
 struct BaseDels
 {
@@ -513,10 +157,10 @@ struct BaseDels
 		GASD,
 		OTFD,
 		PADD,
+		PADS,
 		PAID,
 		PAOD,
 		SLAD,
-		PADS,
 	};
 	Type base_type = Type::Unknown;
 
@@ -526,45 +170,230 @@ struct BaseDels
 	int32_t  Key_; /* NOLINT(readability-identifier-naming) */
 };
 
-struct BaseShape
+struct BaseLayer
 {
 	enum class Type
 	{
 		Unknown,
-		ShCR,
-		ShCg,
-		ShCl,
-		ShCr,
-		ShDA,
-		ShDS,
-		ShHt,
-		ShNR,
-		ShPi,
-		ShPy,
-		ShSS,
-		ShSg,
-		ShSt,
-		ShTr,
-		ShTz,
-		ShpD,
-		ShpE,
-		ShpT,
-		ShCE,
-		ShRR,
+		v_3DLA, /* NOLINT(readability-identifier-naming) */
+		BCRA,
+		BWRA,
+		CBRA,
+		CMRA,
+		CPTx,
+		CnsN,
+		Comp,
+		CrRA,
+		EmbN,
+		ExRA,
+		FRst,
+		FlRN,
+		GrRA,
+		Grup,
+		HsRA,
+		ImgN,
+		InRA,
+		LeRA,
+		MPIN,
+		MRst,
+		OCRN,
+		ObjS,
+		PCrv,
+		PfRA,
+		PoRA,
+		RcRA,
+		Rstr,
+		SCRA,
+		SHRA,
+		SNEN,
+		SNRR,
+		SPRA,
+		ScPr,
+		Scop,
+		ShRN,
+		ShpN,
+		SlcP,
+		Slic,
+		SpTA,
+		Sprd,
+		StkN,
+		ThRA,
+		TxtA,
+		TxtF,
+		TxtS,
+		TxtT,
+		VbRA,
+		WBRA,
 	};
 	Type base_type = Type::Unknown;
 
-	bool     AbSz;
-	bool     Lock;
-	float    ShCR[4];
-	float    TlHg;
-	float    TlEP;
-	float    IRad;
-	float    Curv;
-	uint16_t Pnts;
-	float    IRae;
-	uint16_t Side;
-	float    Pos;
+	bool ABEn;
+	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, FlRN*, GrRA*, Grup*, HsRA*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*, RcRA*,
+	 * Rstr*, SCRA*, SHRA*, SPRA*, ShpN*, SpTA*, ThRA*, VbRA*, WBRA* */
+	vector<BaseLayer*> AdCh;
+	/* v_3DLP*, BCP_38*, BWP_38*, CIPP*, CnMP*, CoBP*, CrvP*, ExpP*, GrMP*, HSSP*, LeFP*, LevP*, PosP*, RecP*, SCoP*, SHiP*, STPa*, SoPP*,
+	 * ThrP*, VibP*, WhBP* */
+	BaseAdjustment* AdjP;
+	void*           AncD;
+	EnumT           Anch;
+	uint32_t        BFCr;
+	vector<FDsc*>   BFFl;
+	/* FDsc*, FilS* */
+	BaseFill* BFil;
+	/* PCrv*, ShpN*, TxtF* */
+	BaseLayer* BGMs;
+	int32_t    BitI[4];
+	int32_t    BitR[4];
+	/* DyBm*, EmbR* */
+	BaseBitm* Bitm;
+	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
+	BaseLayer*        BlMM;
+	BlnR*             BlRa;
+	EnumT             Blnd;
+	bool              CEdb;
+	vector<curve16_t> CGds;
+	EnumT             CLiT;
+	int32_t           CMsk;
+	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CPTx*, CnsN*, Comp*, CrRA*, EmbN*, ExRA*, FRst*, FlRN*, Grup*, HsRA*, ImgN*, LeRA*, MPIN*,
+	 * MRst*, PCrv*, PfRA*, RcRA*, Rstr*, SCRA*, SHRA*, SNEN*, SNRR*, Scop*, ShRN*, ShpN*, StkN*, TxtA*, TxtF*, TxtS*, TxtT*, VbRA*, WBRA*
+	 */
+	vector<BaseLayer*> Chld;
+	bool               ClrF;
+	bool               CnCl;
+	int32_t            CnCp;
+	int32_t            CnFm;
+	int32_t            CnJn;
+	double             CnML;
+	double             CnOf;
+	EnumT              ComO;
+	PCvD*              Crvs;
+	uint32_t           Ctrl;
+	EnumT              CvWi;
+	double             CvsB[4];
+	ILDO*              DLnk;
+	void*              Data;
+	string             DefD;
+	string             Desc;
+	string             DfId;
+	vector<EnumT>      DrwO;
+	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
+	BaseLayer* DsMa;
+	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
+	BaseLayer* EdMa;
+	bool       Edtb;
+	string     ExFn;
+	bool       ExIn;
+	bool       ExtE;
+	double     FOV;
+	float      FOpc;
+	double     FTxS[6];
+	EnumT      FTyp;
+	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
+	BaseLayer* FiEM;
+	/* BevE*, ColO*, Gaus*, GrdO*, InnG*, InnS*, OutG*, PhgB*, Shad*, Strk* */
+	vector<BaseEffect*> FiEf;
+	TxFl*               Flow;
+	uint64_t            Flsz;
+	vector<string>      Frst;
+	ILGI*               GLnk;
+	bool                GdsA;
+	vector<double>      GdsH;
+	vector<double>      GdsV;
+	string              GooI;
+	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
+	BaseLayer* HKMs;
+	bool       HsFC;
+	EnumT      HyTr;
+	string     Hypr;
+	EnumT      Hyty;
+	EnumT      IPlc;
+	/* v_00DS*, FlDS* */
+	BaseFlDS*     IRDS;
+	bool          IgBG;
+	bool          IgTW;
+	bool          IsVF;
+	uint32_t      LICr;
+	vector<FDsc*> LIFl;
+	vector<LDsc*> LILn;
+	LDsc*         LSty;
+	double        Lati;
+	double        Long;
+	bool          MEtb;
+	/* MRst*, Rstr* */
+	BaseLayer*               MRaM;
+	int64_t                  MfTm;
+	string                   MiID;
+	vector<array<double, 4>> MrgA;
+	vector<void*>            MrgF;
+	double                   OCRc[4];
+	int32_t                  ODPI;
+	float                    Opac;
+	BGrd*                    Opts;
+	/* PCrv*, ShpN* */
+	BaseLayer* PFMs;
+	/* FDsc*, FilS* */
+	BaseFill*      PFil;
+	bool           PasT;
+	PthT*          Path;
+	EnumT          ProT;
+	Per_42*        Psp_42;
+	Quad*          Pspv;
+	PthT*          RPth;
+	double         Roll;
+	SnpG*          SGrd;
+	ILSN*          SLnk;
+	vector<string> Scnd;
+	double         ShpB[4];
+	/* ShCR*, ShCg*, ShCl*, ShCr*, ShDA*, ShDS*, ShHt*, ShNR*, ShPi*, ShPy*, ShRR*, ShSS*, ShSg*, ShSt*, ShTr*, ShTz*, ShpD*, ShpE*, ShpT*
+	 */
+	BaseShape* Shpe;
+	EnumT      Spac;
+	double     SrBx[4];
+	double     SrPB[4];
+	double     SrPT[6];
+	double     SrTr[6];
+	/* TxtA*, TxtF* */
+	BaseLayer* StMa;
+	Stry*      StSt;
+	ILTI*      TLnk;
+	/* Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtF* */
+	BaseLayer* TMas;
+	double     TWBo[4];
+	/* CnsN*, Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
+	BaseLayer* TWMa;
+	EnumT      TWSt;
+	RGBA*      TagC;
+	EnumT      TrAn;
+	int32_t    TrCn;
+	double     TrFP[2];
+	bool       TrFV;
+	int32_t    TraC;
+	/* FDsc*, FilS* */
+	BaseFill* Trns;
+	/* TxtA*, TxtF* */
+	BaseLayer* TxFM;
+	/* ArFr*, CoFr*, PaFr*, TbFr* */
+	BaseFrms*    TxtH;
+	Layt*        TxtL;
+	vector<bool> UCGA;
+	vector<bool> UMgA;
+	bool         USnG;
+	vector<bool> UmgF;
+	void*        Unpr;
+	/* Comp*, Grup*, PCrv*, Scop*, ShpN*, TxtF* */
+	BaseLayer* VBFM;
+	/* Comp*, Grup*, PCrv*, Scop*, ShpN*, TxtF* */
+	BaseLayer* VLSM;
+	/* Comp*, Grup*, PCrv*, Scop*, ShpN*, TxtF* */
+	BaseLayer* VTrM;
+	/* Comp*, Grup*, MRst*, PCrv*, Rstr*, Scop*, ShpN*, TxtA*, TxtF* */
+	BaseLayer*   VisM;
+	bool         Visi;
+	Matx*        WRot;
+	struct XCfg* XCfg;
+	double       Xfrm[6];
+	uint32_t     avin;
+	PBxR*        bbxs;
 };
 
 struct BaseEffect
@@ -585,32 +414,95 @@ struct BaseEffect
 	};
 	Type base_type = Type::Unknown;
 
-	bool   Enab;
+	double Angl;
 	EnumT  BlnM;
-	double Opac;
-	bool   SclO;
-	double Dept;
-	double Radi;
-	bool   Disr;
-	double Sftn;
-	Spln*  Prof;
 	/* CMYK*, HSLA*, LABA*, RGBA* */
 	BaseColor* Colr;
-	FDsc*      GrFl;
 	double     Comp;
+	double     Dept;
+	bool       Disr;
+	bool       Enab;
+	FDsc*      GrFl;
 	double     Offs;
-	double     Angl;
+	double     Opac;
+	Spln*      Prof;
+	double     Radi;
+	bool       SclO;
+	double     Sftn;
 };
 
-struct BaseSubSel
+struct BaseGlys
 {
 	enum class Type
 	{
 		Unknown,
-		CvHS,
-		TexS,
+		BrGl,
+		FlrG,
+		LLGl,
+		PgNG,
 	};
 	Type base_type = Type::Unknown;
+};
+
+struct BaseColor
+{
+	enum class Type
+	{
+		Unknown,
+		CMYK,
+		GRAY,
+		HSLA,
+		LABA,
+		Pant,
+		RGBA,
+		RegC,
+	};
+	Type base_type = Type::Unknown;
+
+	string v_glb;
+	double v_nse;
+	double v_tnt;
+};
+
+struct BaseShape
+{
+	enum class Type
+	{
+		Unknown,
+		ShCE,
+		ShCR,
+		ShCg,
+		ShCl,
+		ShCr,
+		ShDA,
+		ShDS,
+		ShHt,
+		ShNR,
+		ShPi,
+		ShPy,
+		ShRR,
+		ShSS,
+		ShSg,
+		ShSt,
+		ShTr,
+		ShTz,
+		ShpD,
+		ShpE,
+		ShpT,
+	};
+	Type base_type = Type::Unknown;
+
+	bool     AbSz;
+	float    Curv;
+	float    IRad;
+	float    IRae;
+	bool     Lock;
+	uint16_t Pnts;
+	float    Pos;
+	float    ShCR[4];
+	uint16_t Side;
+	float    TlEP;
+	float    TlHg;
 };
 
 struct BaseProp
@@ -638,33 +530,6 @@ struct BaseProp
 	Type base_type = Type::Unknown;
 };
 
-struct BaseExCsts
-{
-	enum class Type
-	{
-		Unknown,
-		ExCI,
-		ExCt,
-	};
-	Type base_type = Type::Unknown;
-
-	EnumT  type;
-	string cnst;
-	string desc;
-};
-
-struct BaseExVals
-{
-	enum class Type
-	{
-		Unknown,
-		ExV2,
-		ExVI,
-		ExVR,
-	};
-	Type base_type = Type::Unknown;
-};
-
 struct BaseFrms
 {
 	enum class Type
@@ -680,371 +545,6 @@ struct BaseFrms
 	double FrmB[4];
 };
 
-struct BaseCmd
-{
-	enum class Type
-	{
-		Unknown,
-		AAAC,
-		AAMC,
-		AARC,
-		ACCm,
-		AESC,
-		AOSC,
-		ARCm,
-		CRGl,
-		ChMA,
-		CmCm,
-		CrSl,
-		DCCm,
-		DNCm,
-		DPro,
-		EnBE,
-		EnCO,
-		EnGA,
-		EnGO,
-		EnIS,
-		EnIg,
-		EnOg,
-		EnPB,
-		EnSh,
-		EnSt,
-		ExIn,
-		FAFH,
-		FFCm,
-		FmTC,
-		GrMA,
-		GrNC,
-		InGl,
-		MC2C,
-		MvNC,
-		SBMC,
-		SDeC,
-		SLsC,
-		SSNS,
-		SSaC,
-		SViC,
-		SetE,
-		TrCm,
-		TrSl,
-		UANC,
-		XMgC,
-		XStC,
-		ARFC,
-		PNoC,
-		PRNS,
-		RRFC,
-		SCER,
-		SF2C,
-		SSFH,
-		SSLF,
-		CMTC,
-		ClrX,
-		ForC,
-		MgDC,
-		CASC,
-	};
-	Type base_type = Type::Unknown;
-
-	bool Assi;
-	/* CASC*, CmCm* */
-	BaseCmd* Innr;
-	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, GrRA*, HsRA*, InRA*, LeRA*, MRst*, OCRN*, PfRA*, PoRA*, RcRA*, SCRA*, SHRA*,
-	 * SPRA*, SpTA*, ThRA*, VbRA*, WBRA* */
-	BaseLayer* Node;
-	LStr*      LDsc;
-	bool       Opaq;
-	bool       UsRS;
-	EnumT      Dire;
-	bool       Prev;
-	bool       ArtC;
-	bool       AAtC;
-	bool       CArC;
-	bool       Work;
-	bool       Done;
-	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, GrRA*, HsRA*, ImgN*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*, RcRA*,
-	 * Rstr*, SCRA*, SHRA*, SPRA*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
-	vector<BaseLayer*> NodA;
-	bool               AdSC;
-	bool               AppD;
-	bool               TTTa;
-	bool               UBLS;
-	void*              Pres;
-	bool               AndS;
-	struct Sele*       NewS;
-	int32_t            FrcC;
-	bool               UsFl;
-	bool               ANme;
-	double             InRc[4];
-	bool               AARp;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN*, Sprd*, TxtA*, WBRA* */
-	BaseLayer*    InsT;
-	EnumT         InsM;
-	EnumT         CLis;
-	EnumT         OInM;
-	EnumT         NInM;
-	bool          MdTc;
-	struct Sele*  OSCo;
-	vector<void*> Fir3;
-	vector<void*> Sec3;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fir4;
-	vector<PSRe*>      Sec4;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fir6;
-	vector<PSRe*>      Sec6;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fir7;
-	vector<PSRe*>      Sec7;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fir1;
-	vector<PSRe*>      Sec1;
-	/* Grup*, Scop* */
-	vector<BaseLayer*> Fr10;
-	vector<PSRe*>      Sc10;
-	/* Grup*, Scop* */
-	vector<BaseLayer*> Fr12;
-	vector<PSRe*>      Sc12;
-	/* Grup*, Scop* */
-	vector<BaseLayer*> Fr11;
-	vector<PSRe*>      Sc11;
-	vector<void*>      Fir8;
-	vector<void*>      Sec8;
-	vector<void*>      Fir9;
-	vector<void*>      Sec9;
-	vector<void*>      Fir5;
-	vector<void*>      Sec5;
-	/* Grup*, Scop*, ShpN*, Sprd* */
-	vector<BaseLayer*> Fr14;
-	vector<PSRe*>      Sc14;
-	vector<void*>      Fr16;
-	vector<void*>      Sc16;
-	vector<void*>      Fr25;
-	vector<void*>      Sc25;
-	vector<void*>      Fr17;
-	vector<void*>      Sc17;
-	vector<void*>      Fr18;
-	vector<void*>      Sc18;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fr19;
-	vector<PSRe*>      Sc19;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fr13;
-	vector<PSRe*>      Sc13;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fr21;
-	vector<PSRe*>      Sc21;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fr22;
-	vector<PSRe*>      Sc22;
-	vector<void*>      Fr23;
-	vector<void*>      Sc23;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fr24;
-	vector<PSRe*>      Sc24;
-	vector<Sprd*>      Fr26;
-	vector<PSRe*>      Sc26;
-	/* Grup*, Scop*, Sprd* */
-	vector<BaseLayer*> Fr15;
-	vector<PSRe*>      Sc15;
-	vector<void*>      lnkd;
-	/* CMRA*, GrRA*, Grup*, ImgN*, Rstr*, Scop*, ShpN*, TxtA* */
-	vector<BaseLayer*> ulkd;
-	struct Sele*       Sele;
-	/* Scop*, ShpN*, Sprd* */
-	BaseLayer* Layr;
-	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, GrRA*, Grup*, HsRA*, ImgN*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*,
-	 * RcRA*, Rstr*, SCRA*, SHRA*, SPRA*, ScPr*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
-	vector<BaseLayer*> mapo;
-	bool               UsTS;
-	/* Grup*, ObjS*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> OldN;
-	vector<GlAS*>      OlGA;
-	vector<PaAS*>      OlPA;
-	vector<void*>      Fir2;
-	vector<void*>      Sec2;
-	void*              SrUC;
-	GStr*              Glyp;
-	vector<void*>      NwTV;
-	vector<void*>      OdTV;
-	vector<PAtt*>      OPBV;
-	vector<PAtt*>      OPAV;
-	vector<GAtt*>      OGAV;
-	EnumT              SeNT;
-	UnSR*              OlTR;
-	UnSR*              NwTR;
-	void*              CGlA;
-	GAtt*              OTGA;
-	bool               TocC;
-	bool               NoIn;
-	SpRV*              IRec;
-	/* CnMP*, GrMP* */
-	BaseAdjustment* Para;
-	bool            Stac;
-	/* ACCm*, ARFC*, ExIn*, PNoC*, PRNS*, RRFC*, SCER*, SF2C*, SSFH*, SSLF*, SSNS* */
-	vector<BaseCmd*> Objs;
-	bool             Prog;
-	bool             GnHT;
-	int32_t          DIdx;
-	/* Grup*, PCrv*, Rstr*, ShpN* */
-	vector<BaseLayer*>       OlPS;
-	vector<void*>            NewB;
-	vector<array<double, 6>> OldT;
-	bool                     Enab;
-	vector<bool>             OldE;
-	bool                     EnID;
-	vector<bool>             OlE2;
-	vector<GlAS*>            OldG;
-	vector<void*>            Fak1;
-	vector<void*>            Fak2;
-	bool                     VsCh;
-	bool                     VsRs;
-	double                   Tole;
-	vector<DyBm*>            RedT;
-	PAtt*                    RPA0;
-	PAtt*                    RPA1;
-	GAtt*                    RGA0;
-	GAtt*                    RGA1;
-	double                   InvR[4];
-	bool                     RasS;
-	bool                     CMSl;
-	int32_t                  DefM;
-	bool                     uTSl;
-	bool                     eTSl;
-	bool                     Vali;
-	vector<struct UndR*>     UndR;
-	bool                     Defs;
-	void*                    NDef;
-	void*                    ODef;
-	bool                     AThm;
-	bool                     IINS;
-	/* EOEp*, EOGf*, EOHD*, EOJp*, EOPS*, EOPd*, EOPn*, EOSv*, EOTf*, EOTg*, EOXR* */
-	BaseExport* ExOp;
-	bool        DidD;
-	/* FilG*, FilS* */
-	BaseFill*            Fill;
-	uint32_t             FilI;
-	bool                 CopT;
-	bool                 ClrS;
-	bool                 CSDf;
-	bool                 Crct;
-	int32_t              FMsk;
-	FDsc*                SFDe;
-	vector<struct LDsc*> OldL;
-	vector<struct LDsc*> NewL;
-	vector<void*>        NwBm;
-};
-
-struct BaseScObjs
-{
-	enum class Type
-	{
-		Unknown,
-		ScAN,
-		ScIN,
-		ScRN,
-	};
-	Type base_type = Type::Unknown;
-
-	/* Grup*, Scop*, ShpN*, Sprd*, WBRA* */
-	BaseLayer* pnde;
-	EnumT      nclt;
-	bool       frnt;
-	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, GrRA*, Grup*, HsRA*, ImgN*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*,
-	 * RcRA*, Rstr*, SCRA*, SHRA*, SPRA*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
-	BaseLayer* node;
-	EnumT      Dire;
-	bool       Prev;
-	bool       ArtC;
-	bool       AAtC;
-	bool       CArC;
-};
-
-struct BaseFilt
-{
-	enum class Type
-	{
-		Unknown,
-		Clar,
-		Clrt,
-		RDF2,
-		RGBC,
-		RHPC,
-		RLdC,
-		RLig,
-		RUSC,
-		RVgC,
-	};
-	Type base_type = Type::Unknown;
-
-	double        Radi;
-	vector<void*> OlCm;
-	void*         NwCm;
-	bool          Live;
-	bool          AbrP;
-	SpRV*         IRec;
-	vector<void*> RedT;
-	float         PMin;
-	float         PMax;
-	vector<void*> Fir3;
-	vector<void*> Sec3;
-	vector<void*> Fir4;
-	vector<void*> Sec4;
-	vector<void*> Fir6;
-	vector<void*> Sec6;
-	vector<void*> Fir7;
-	vector<void*> Sec7;
-	vector<void*> Fir1;
-	vector<void*> Sec1;
-	vector<void*> Fr10;
-	vector<void*> Sc10;
-	vector<void*> Fr12;
-	vector<void*> Sc12;
-	vector<void*> Fr11;
-	vector<void*> Sc11;
-	vector<void*> Fir8;
-	vector<void*> Sec8;
-	vector<void*> Fir2;
-	vector<void*> Sec2;
-	vector<void*> Fir9;
-	vector<void*> Sec9;
-	vector<void*> Fir5;
-	vector<void*> Sec5;
-	vector<void*> Fr13;
-	vector<void*> Sc13;
-	vector<void*> Fr14;
-	vector<void*> Sc14;
-	vector<void*> Fr15;
-	vector<void*> Sc15;
-	vector<void*> Fr16;
-	vector<void*> Sc16;
-	vector<void*> Fr17;
-	vector<void*> Sc17;
-	vector<void*> Fr18;
-	vector<void*> Sc18;
-	vector<void*> Fr21;
-	vector<void*> Sc21;
-	vector<void*> Fr22;
-	vector<void*> Sc22;
-	vector<void*> Fr23;
-	vector<void*> Sc23;
-	vector<void*> Fr24;
-	vector<void*> Sc24;
-	void*         Sele;
-	void*         Layr;
-	EnumT         Dire;
-	bool          Prev;
-	bool          ArtC;
-	bool          AAtC;
-	bool          CArC;
-	vector<void*> Fr25;
-	vector<void*> Sc25;
-	vector<void*> Fr19;
-	vector<void*> Sc19;
-	vector<void*> Fr26;
-	vector<void*> Sc26;
-};
-
 struct BaseAdjustment
 {
 	enum class Type
@@ -1057,6 +557,7 @@ struct BaseAdjustment
 		CnMP,
 		CoBP,
 		CrvP,
+		EDfP,
 		ExpP,
 		GrMP,
 		HSSP,
@@ -1074,9 +575,434 @@ struct BaseAdjustment
 	};
 	Type base_type = Type::Unknown;
 
-	vector<float> Weig;
 	float         Gamm;
 	uint16_t      Vers;
+	int32_t       Vibr;
+	vector<float> Weig;
+};
+
+struct BaseFill
+{
+	enum class Type
+	{
+		Unknown,
+		FDsc,
+		FilB,
+		FilG,
+		FilN,
+		FilS,
+		HlkA,
+		LDsc,
+		OpAA,
+		OtAt,
+	};
+	Type base_type = Type::Unknown;
+};
+
+struct BaseBrush
+{
+	enum class Type
+	{
+		Unknown,
+		BmRB,
+		IBRB,
+		RRBr,
+		SRBr,
+	};
+	Type base_type = Type::Unknown;
+
+	BrDy*          Accn;
+	BrDy*          Angl;
+	string         BUid;
+	EnumT          BlMo;
+	EnumT          CnrS;
+	BrDy*          Flow;
+	vector<string> Frst;
+	BrDy*          Hard;
+	double         Head;
+	BrDy*          HueS;
+	BrDy*          LumS;
+	EnumT          MkTM;
+	double         MkTS;
+	DyBm*          MskT;
+	float          Opac;
+	bool           RptB;
+	bool           SABM;
+	bool           SATI;
+	bool           SAWE;
+	EnumT          SMod;
+	EnumT          SSMd;
+	bool           SSSp;
+	bool           SSSz;
+	BrDy*          SatS;
+	BrDy*          ScaX;
+	BrDy*          ScaY;
+	vector<string> Scnd;
+	BrDy*          Shap;
+	BrDy*          Size;
+	float          Spac;
+	bool           Strk;
+	/* IBRB*, RRBr* */
+	vector<BaseBrush*> SubB;
+	double             Tail;
+	BrDy*              TipC;
+	vector<DyBm*>      TipT;
+	int32_t            ToID;
+	Spln*              WeES;
+	bool               WetE;
+};
+
+struct BaseExCsts
+{
+	enum class Type
+	{
+		Unknown,
+		ExCI,
+		ExCt,
+	};
+	Type base_type = Type::Unknown;
+
+	string cnst;
+	string desc;
+	EnumT  type;
+};
+
+struct BaseCmd
+{
+	enum class Type
+	{
+		Unknown,
+		AAAC,
+		AAMC,
+		AARC,
+		ACCm,
+		AESC,
+		AOSC,
+		ARCm,
+		ARFC,
+		AROm,
+		BCoA,
+		BMCO,
+		BMGO,
+		BWAA,
+		CASC,
+		CBaA,
+		CMTC,
+		CRGl,
+		ChMA,
+		Clar,
+		ClrX,
+		Clrt,
+		CmCm,
+		CoCO,
+		CrSl,
+		CurA,
+		DCCm,
+		DNCm,
+		DPro,
+		Dupl,
+		EnBE,
+		EnCO,
+		EnGA,
+		EnGO,
+		EnIS,
+		EnIg,
+		EnOg,
+		EnPB,
+		EnSh,
+		EnSt,
+		ExIn,
+		ExpA,
+		FAFH,
+		FFCm,
+		FTFH,
+		FmTC,
+		ForC,
+		GOFl,
+		GOTr,
+		GrMA,
+		GrNC,
+		HslA,
+		InGl,
+		LevA,
+		MC2C,
+		MgDC,
+		MvNC,
+		OpCO,
+		OpGO,
+		PNoC,
+		PRNS,
+		RANC,
+		RDF2,
+		RDGC,
+		RDNC,
+		RDf2,
+		REqT,
+		RGBC,
+		RHPC,
+		RLbC,
+		RLdC,
+		RLig,
+		ROCm,
+		RRFC,
+		RUSC,
+		RVgC,
+		SBMC,
+		SCCM,
+		SCER,
+		SDDC,
+		SDeC,
+		SF2C,
+		SGOC,
+		SHAA,
+		SLsC,
+		SOBE,
+		SOCO,
+		SOGA,
+		SOGO,
+		SOIS,
+		SOIg,
+		SOOg,
+		SOPB,
+		SOSh,
+		SOSt,
+		SRlC,
+		SSFH,
+		SSLF,
+		SSNS,
+		SSaC,
+		STAA,
+		SViC,
+		SecA,
+		SetE,
+		SflP,
+		TrCm,
+		TrSl,
+		UANC,
+		VibA,
+		WBaA,
+		XMgC,
+		XStC,
+	};
+	Type base_type = Type::Unknown;
+
+	bool    AARp;
+	bool    AAtC;
+	bool    ANme;
+	bool    AThm;
+	bool    AbrP;
+	bool    AcWP;
+	bool    AdSC;
+	bool    AndS;
+	bool    AppD;
+	bool    ArtC;
+	bool    Assi;
+	EnumT   BlnM;
+	bool    CArC;
+	void*   CGlA;
+	EnumT   CLis;
+	bool    CMSl;
+	bool    CSDf;
+	bool    ClrS;
+	bool    CopT;
+	bool    Crct;
+	int32_t DIdx;
+	int32_t DefM;
+	/* Grup*, Rstr*, Scop*, ShpN* */
+	BaseLayer* Dest;
+	bool       DidD;
+	EnumT      Dire;
+	bool       Done;
+	bool       EnID;
+	bool       Enab;
+	/* EOEp*, EOGf*, EOHD*, EOJp*, EOPS*, EOPd*, EOPn*, EOSv*, EOTf*, EOTg*, EOXR* */
+	BaseExport*   ExOp;
+	double        Expo;
+	int32_t       FMsk;
+	vector<void*> Fak1;
+	vector<void*> Fak2;
+	uint32_t      FilI;
+	/* FilG*, FilS* */
+	BaseFill* Fill;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fir1;
+	vector<void*>      Fir2;
+	vector<void*>      Fir3;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fir4;
+	vector<void*>      Fir5;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fir6;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fir7;
+	vector<void*>      Fir8;
+	vector<void*>      Fir9;
+	/* Grup*, Scop* */
+	vector<BaseLayer*> Fr10;
+	/* Grup*, Scop* */
+	vector<BaseLayer*> Fr11;
+	/* Grup*, Scop* */
+	vector<BaseLayer*> Fr12;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fr13;
+	/* Grup*, Scop*, ShpN*, Sprd* */
+	vector<BaseLayer*> Fr14;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fr15;
+	vector<void*>      Fr16;
+	vector<void*>      Fr17;
+	vector<void*>      Fr18;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fr19;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fr21;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fr22;
+	vector<void*>      Fr23;
+	/* Grup*, Scop*, Sprd* */
+	vector<BaseLayer*> Fr24;
+	vector<void*>      Fr25;
+	vector<Sprd*>      Fr26;
+	vector<void*>      Fr27;
+	vector<void*>      Fr28;
+	int32_t            FrcC;
+	GStr*              Glyp;
+	bool               GnHT;
+	bool               IINS;
+	SpRV*              IRec;
+	double             InRc[4];
+	/* CASC*, CmCm* */
+	BaseCmd* Innr;
+	EnumT    InsM;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN*, Sprd*, TxtA*, WBRA* */
+	BaseLayer* InsT;
+	double     Inte;
+	double     InvR[4];
+	LStr*      LDsc;
+	/* Scop*, ShpN*, Sprd* */
+	BaseLayer*           Layr;
+	bool                 Live;
+	bool                 MdTc;
+	EnumT                Mode;
+	bool                 Mono;
+	void*                NDef;
+	EnumT                NInM;
+	vector<void*>        NewB;
+	vector<GlAS*>        NewG;
+	vector<struct LDsc*> NewL;
+	struct Sele*         NewS;
+	bool                 NoIn;
+	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, GrRA*, HsRA*, ImgN*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*, RcRA*,
+	 * Rstr*, SCRA*, SHRA*, SPRA*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
+	vector<BaseLayer*> NodA;
+	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, FlRN*, GrRA*, HsRA*, InRA*, LeRA*, MRst*, OCRN*, PfRA*, PoRA*, RcRA*, SCRA*,
+	 * SHRA*, SPRA*, SpTA*, ThRA*, VbRA*, WBRA* */
+	BaseLayer*    Node;
+	vector<void*> NwBm;
+	void*         NwCm;
+	UnSR*         NwTR;
+	vector<void*> NwTV;
+	void*         ODef;
+	vector<GAtt*> OGAV;
+	EnumT         OInM;
+	vector<PAtt*> OPAV;
+	vector<PAtt*> OPBV;
+	struct Sele*  OSCo;
+	GAtt*         OTGA;
+	/* ACCm*, ARFC*, ExIn*, PNoC*, PRNS*, RRFC*, SCER*, SF2C*, SOBE*, SOCO*, SOGA*, SOGO*, SOIS*, SOIg*, SOOg*, SOPB*, SOSh*, SOSt*, SSFH*,
+	 * SSLF*, SSNS* */
+	vector<BaseCmd*> Objs;
+	vector<void*>    OdTV;
+	vector<void*>    OlCm;
+	vector<bool>     OlE2;
+	vector<GlAS*>    OlGA;
+	vector<PaAS*>    OlPA;
+	/* Grup*, PCrv*, Rstr*, ShpN* */
+	vector<BaseLayer*>   OlPS;
+	void*                OlSp;
+	UnSR*                OlTR;
+	vector<bool>         OldE;
+	vector<GlAS*>        OldG;
+	vector<struct LDsc*> OldL;
+	/* Grup*, ObjS*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*>       OldN;
+	vector<double>           OldO;
+	vector<array<double, 6>> OldT;
+	bool                     Opaq;
+	double                   Orig[2];
+	float                    PMax;
+	float                    PMin;
+	/* BCP_38*, BWP_38*, CnMP*, CoBP*, CrvP*, EDfP*, ExpP*, GrMP*, HSSP*, LevP*, SCoP*, SHiP*, STPa*, VibP*, WhBP* */
+	BaseAdjustment*      Para;
+	void*                Pres;
+	bool                 Prev;
+	bool                 Prog;
+	GAtt*                RGA0;
+	GAtt*                RGA1;
+	PAtt*                RPA0;
+	PAtt*                RPA1;
+	vector<void*>        RSw2;
+	double               Radi;
+	bool                 RasS;
+	vector<DyBm*>        RedT;
+	FDsc*                SFDe;
+	vector<PSRe*>        Sc10;
+	vector<PSRe*>        Sc11;
+	vector<PSRe*>        Sc12;
+	vector<PSRe*>        Sc13;
+	vector<PSRe*>        Sc14;
+	vector<PSRe*>        Sc15;
+	vector<void*>        Sc16;
+	vector<void*>        Sc17;
+	vector<void*>        Sc18;
+	vector<PSRe*>        Sc19;
+	vector<PSRe*>        Sc21;
+	vector<PSRe*>        Sc22;
+	vector<void*>        Sc23;
+	vector<PSRe*>        Sc24;
+	vector<void*>        Sc25;
+	vector<PSRe*>        Sc26;
+	vector<void*>        Sc27;
+	vector<void*>        Sc28;
+	EnumT                SeNT;
+	vector<PSRe*>        Sec1;
+	vector<void*>        Sec2;
+	vector<void*>        Sec3;
+	vector<PSRe*>        Sec4;
+	vector<void*>        Sec5;
+	vector<PSRe*>        Sec6;
+	vector<PSRe*>        Sec7;
+	vector<void*>        Sec8;
+	vector<void*>        Sec9;
+	struct Sele*         Sele;
+	void*                Sour;
+	void*                SrUC;
+	bool                 Stac;
+	bool                 TTTa;
+	bool                 TocC;
+	double               Tole;
+	TxFU*                TxFl;
+	bool                 UBLS;
+	vector<void*>        USw2;
+	vector<struct UndR*> UndR;
+	bool                 UsFl;
+	bool                 UsRS;
+	bool                 UsTS;
+	bool                 Vali;
+	bool                 VsCh;
+	bool                 VsRs;
+	bool                 Work;
+	double               Xfrm[6];
+	bool                 eTSl;
+	vector<void*>        lnkd;
+	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, GrRA*, Grup*, HsRA*, ImgN*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*,
+	 * RcRA*, Rstr*, SCRA*, SHRA*, SPRA*, ScPr*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
+	vector<BaseLayer*> mapo;
+	bool               uTSl;
+	/* CMRA*, GrRA*, Grup*, ImgN*, PCrv*, Rstr*, Scop*, ShpN*, TxtA* */
+	vector<BaseLayer*> ulkd;
+	vector<double>     uscl;
+	vector<uint32_t>   usof;
 };
 
 struct BaseBitm
@@ -1088,6 +1014,150 @@ struct BaseBitm
 		EmbR,
 	};
 	Type base_type = Type::Unknown;
+};
+
+struct BaseAtt
+{
+	enum class Type
+	{
+		Unknown,
+		AFAt,
+		Deco,
+		DrCp,
+		LisA,
+		TabS,
+		TocA,
+	};
+	Type base_type = Type::Unknown;
+
+	bool   Enbl;
+	CoDe*  SDlt;
+	string SNam;
+};
+
+struct BaseExport
+{
+	enum class Type
+	{
+		Unknown,
+		EOEp,
+		EOGf,
+		EOHD,
+		EOJp,
+		EOPS,
+		EOPd,
+		EOPn,
+		EOSv,
+		EOTf,
+		EOTg,
+		EOXR,
+		FExO,
+	};
+	Type base_type = Type::Unknown;
+
+	bool         Bled;
+	EnumT        Comp;
+	bool         EmIP;
+	bool         EmMt;
+	struct ICCP* ICCP;
+	RGBA*        Matt;
+	uint16_t     PlSz;
+	EnumT        PlTy;
+	bool         Plts;
+	EnumT        PxFm;
+	EnumT        RaPo;
+	EnumT        Rsmp;
+	bool         TxCr;
+	void*        UPlt;
+	bool         ahcl;
+	double       dadi;
+	bool         isct;
+	bool         isds;
+	bool         iurd;
+	bool         jpeg;
+	double       rdpi;
+};
+
+struct BaseExVals
+{
+	enum class Type
+	{
+		Unknown,
+		ExV2,
+		ExVI,
+		ExVR,
+	};
+	Type base_type = Type::Unknown;
+};
+
+struct BaseScObjs
+{
+	enum class Type
+	{
+		Unknown,
+		ScAN,
+		ScIN,
+		ScRN,
+	};
+	Type base_type = Type::Unknown;
+
+	bool  AAtC;
+	bool  ArtC;
+	bool  CArC;
+	EnumT Dire;
+	bool  Prev;
+	bool  frnt;
+	EnumT nclt;
+	/* v_3DLA*, BCRA*, BWRA*, CBRA*, CMRA*, CrRA*, ExRA*, GrRA*, Grup*, HsRA*, ImgN*, InRA*, LeRA*, MRst*, OCRN*, PCrv*, PfRA*, PoRA*,
+	 * RcRA*, Rstr*, SCRA*, SHRA*, SPRA*, Scop*, ShpN*, SpTA*, ThRA*, TxtA*, VbRA*, WBRA* */
+	BaseLayer* node;
+	/* Grup*, Scop*, ShpN*, Sprd*, WBRA* */
+	BaseLayer* pnde;
+};
+
+struct BaseSubSel
+{
+	enum class Type
+	{
+		Unknown,
+		CvHS,
+		TexS,
+	};
+	Type base_type = Type::Unknown;
+};
+
+struct BaseFlDS
+{
+	enum class Type
+	{
+		Unknown,
+		v_00DS, /* NOLINT(readability-identifier-naming) */
+		FlDS,
+	};
+	Type base_type = Type::Unknown;
+};
+
+struct BaseCrf
+{
+	enum class Type
+	{
+		Unknown,
+		crfA, /* NOLINT(readability-identifier-naming) */
+		crfM, /* NOLINT(readability-identifier-naming) */
+		crfR, /* NOLINT(readability-identifier-naming) */
+		crfT, /* NOLINT(readability-identifier-naming) */
+		crfW, /* NOLINT(readability-identifier-naming) */
+	};
+	Type base_type = Type::Unknown;
+
+	EnumT    kind;
+	uint32_t luid;
+	uint32_t type;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct v_00DS: public BaseFlDS
+{
 };
 
 /* NOLINTNEXTLINE(readability-identifier-naming) */
@@ -1131,31 +1201,36 @@ struct AESC: public BaseCmd
 
 struct AFAt: public BaseAtt
 {
-	int32_t MxWC;
 	GStr*   Left;
+	int32_t MxWC;
 };
 
 struct AOSC: public BaseCmd
 {
-	ObjS*         Styl;
-	vector<void*> OlTS;
 	vector<void*> OTbl;
+	vector<void*> OlTS;
+	ObjS*         Styl;
 	bool          isDD;
 };
 
 struct ARCm: public BaseCmd
 {
-	/* BWRA*, Rstr* */
-	BaseLayer*               TNod;
 	bool                     Empt;
-	bool                     Mask;
 	vector<array<double, 4>> InvB;
+	bool                     Mask;
 	struct Sele*             OldS;
+	/* BCRA*, BWRA*, CBRA*, CrRA*, ExRA*, GrRA*, HsRA*, LeRA*, Rstr*, SCRA*, SHRA*, SpTA*, VbRA*, WBRA* */
+	BaseLayer* TNod;
 };
 
 struct ARFC: public BaseCmd
 {
 	FilS* Popp;
+};
+
+struct AROm: public BaseCmd
+{
+	void* OldS;
 };
 
 struct AbMp: public BaseProp
@@ -1171,13 +1246,13 @@ struct Adjs: public BaseProp
 
 struct ApVs
 {
+	int32_t Bild;
+	string  Date;
 	int32_t Majr;
 	int32_t Minr;
-	int32_t Bild;
-	int32_t Revn;
-	string  Prod;
 	string  Plat;
-	string  Date;
+	string  Prod;
+	int32_t Revn;
 };
 
 struct ArFr: public BaseFrms
@@ -1188,14 +1263,36 @@ struct ArFr: public BaseFrms
 
 struct AstP: public BaseProp
 {
-	/* CnsN*, Comp*, Grup*, PCrv*, ShpN* */
+	EnumT AstF;
+	/* CnsN*, Comp*, Grup*, PCrv*, Rstr*, ShpN* */
 	BaseLayer* AstP;
-	EnumT      AstF;
 	double     DPI;
 };
 
 struct AuFD: public BaseDels
 {
+};
+
+struct Auth
+{
+	string   aEml;
+	string   aNam;
+	string   aUri;
+	string   appv;
+	uint64_t chks;
+	string   devc;
+	string   eUri;
+	int64_t  epoc;
+	int64_t  expr;
+	string   hwid;
+	EnumT    licn;
+	string   osvr;
+	int64_t  rrat;
+	bool     rrmd;
+	EnumT    sess;
+	string   tokn;
+	int64_t  updT;
+	string   user;
 };
 
 /* NOLINTNEXTLINE(readability-identifier-naming) */
@@ -1209,11 +1306,11 @@ struct BCP_38: public BaseAdjustment
 /* NOLINTNEXTLINE(readability-identifier-naming) */
 struct BWP_38: public BaseAdjustment
 {
-	float RedC;
-	float Gree;
 	float Blue;
 	float Cyan;
+	float Gree;
 	float Mage;
+	float RedC;
 	float Yell;
 };
 
@@ -1221,13 +1318,33 @@ struct BCRA: public BaseLayer
 {
 };
 
+struct BCoA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct BGrd
 {
-	bool    UGrd;
-	double  Strt;
-	double  Spac;
-	EnumT   Rlto;
 	Color32 Colr;
+	EnumT   Rlto;
+	double  Spac;
+	double  Strt;
+	bool    UGrd;
+};
+
+struct BMCO: public BaseCmd
+{
+	vector<EnumT> OldB;
+};
+
+struct BMGO: public BaseCmd
+{
+	vector<EnumT> OldB;
+};
+
+struct BWAA: public BaseCmd
+{
+	vector<void*> OldP;
 };
 
 struct BWRA: public BaseLayer
@@ -1236,29 +1353,29 @@ struct BWRA: public BaseLayer
 
 struct BevE: public BaseEffect
 {
-	EnumT  Beve;
 	double Azim;
+	EnumT  Beve;
 	double Elev;
-	bool   Invt;
-	EnumT  ShBM;
-	double ShOp;
-	/* HSLA*, RGBA* */
-	BaseColor* ShCl;
 	/* HSLA*, RGBA* */
 	BaseColor* HiCl;
+	bool       Invt;
+	EnumT      ShBM;
+	/* HSLA*, RGBA* */
+	BaseColor* ShCl;
+	double     ShOp;
 };
 
 struct Blck
 {
-	int32_t      Rect[4];
-	int32_t      IRct[4];
 	EmbeddedData Data;
+	int32_t      IRct[4];
+	int32_t      Rect[4];
 };
 
 struct BlnR
 {
-	double BGam;
 	CrvD*  AGam;
+	double BGam;
 	Spln*  SMSp;
 };
 
@@ -1268,12 +1385,12 @@ struct BmRB: public BaseBrush
 
 struct BrDy
 {
-	float        DynV;
+	EnumT        DyVM;
 	float        DyVa;
 	EnumT        DynC;
-	EnumT        DyVM;
-	struct Spln* Spln;
 	EnumT        DynR;
+	float        DynV;
+	struct Spln* Spln;
 };
 
 struct BrGl: public BaseGlys
@@ -1295,18 +1412,23 @@ struct CBRA: public BaseLayer
 {
 };
 
+struct CBaA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct CFPa
 {
+	EnumT          Algn;
 	vector<double> ColW;
 	vector<double> GutW;
-	EnumT          Algn;
 	double         Padd[4];
 };
 
 struct CIPP: public BaseAdjustment
 {
-	string SouP;
 	string DesP;
+	string SouP;
 };
 
 struct CMRA: public BaseLayer
@@ -1315,11 +1437,11 @@ struct CMRA: public BaseLayer
 
 struct CMTC: public BaseCmd
 {
-	double                   Rect[4];
-	EnumT                    TrnT;
-	double                   Tran[6];
 	vector<array<double, 4>> Area;
 	bool                     NeeM;
+	double                   Rect[4];
+	double                   Tran[6];
+	EnumT                    TrnT;
 };
 
 struct CMYK: public BaseColor
@@ -1334,13 +1456,13 @@ struct CPTx: public BaseLayer
 struct CRGl: public BaseCmd
 {
 	void*        Dlta;
-	uint64_t     SLoc;
-	uint64_t     SLen;
-	uint64_t     RLoc;
-	uint64_t     RLen;
 	bool         MkTx;
-	bool         PrCr;
 	struct Sele* OldS;
+	bool         PrCr;
+	uint64_t     RLen;
+	uint64_t     RLoc;
+	uint64_t     SLen;
+	uint64_t     SLoc;
 };
 
 struct ChGl
@@ -1353,7 +1475,7 @@ struct ChMA: public BaseCmd
 	vector<CnMP*> OldP;
 };
 
-struct Clar: public BaseFilt
+struct Clar: public BaseCmd
 {
 };
 
@@ -1362,7 +1484,7 @@ struct ClrX: public BaseCmd
 	string OMet;
 };
 
-struct Clrt: public BaseFilt
+struct Clrt: public BaseCmd
 {
 	double Strn;
 };
@@ -1381,16 +1503,22 @@ struct CnsN: public BaseLayer
 
 struct CoBP: public BaseAdjustment
 {
-	float ShCR;
-	float ShMG;
-	float ShYB;
-	float MiCR;
-	float MiMG;
-	float MiYB;
 	float HiCR;
 	float HiMG;
 	float HiYB;
+	float MiCR;
+	float MiMG;
+	float MiYB;
 	bool  PeLu;
+	float ShCR;
+	float ShMG;
+	float ShYB;
+};
+
+struct CoCO: public BaseCmd
+{
+	HSLA*         Colr;
+	vector<void*> OldC;
 };
 
 struct CoDe
@@ -1402,8 +1530,8 @@ struct CoDe
 
 struct CoFr: public BaseFrms
 {
-	vector<double> ColW;
 	EnumT          Algn;
+	vector<double> ColW;
 	vector<double> GutW;
 	double         Padd[4];
 };
@@ -1427,22 +1555,22 @@ struct CrRA: public BaseLayer
 
 struct CrSl: public BaseCmd
 {
-	Sprd*        Sprd;
-	void*        SlPg;
-	Slic*        Slic;
 	struct Sele* NSel;
 	struct Sele* Osel;
 	int32_t      Rect[4];
 	bool         SNSl;
+	void*        SlPg;
+	struct Slic* Slic;
+	struct Sprd* Sprd;
 };
 
 struct CrpP
 {
-	double  Wdth;
-	double  Hght;
 	bool    Abs;
-	uint8_t Unit;
 	double  DPI;
+	double  Hght;
+	uint8_t Unit;
+	double  Wdth;
 };
 
 struct CrvD
@@ -1452,14 +1580,19 @@ struct CrvD
 
 struct CrvP: public BaseAdjustment
 {
-	Spln* Mast;
 	Spln* C1Sp;
 	Spln* C2Sp;
 	Spln* C3Sp;
 	Spln* C4Sp;
 	Spln* C5Sp;
-	float Min_; /* NOLINT(readability-identifier-naming) */
+	Spln* Mast;
 	float Max_; /* NOLINT(readability-identifier-naming) */
+	float Min_; /* NOLINT(readability-identifier-naming) */
+};
+
+struct CurA: public BaseCmd
+{
+	vector<void*> OldP;
 };
 
 struct CvHS: public BaseSubSel
@@ -1475,49 +1608,52 @@ struct DCCm: public BaseCmd
 struct DDFl
 {
 	FDsc* DBFD;
-	FDsc* FBFD;
-	FDsc* DPFD;
-	FDsc* FPFD;
-	GAtt* DGA_; /* NOLINT(readability-identifier-naming) */
 	GAtt* DGAF;
+	GAtt* DGA_; /* NOLINT(readability-identifier-naming) */
+	FDsc* DPFD;
+	FDsc* FBFD;
+	FDsc* FPFD;
 };
 
 struct DDef
 {
-	LDsc*          DLSD;
-	LDsc*          FLSD;
-	LDsc*          DBLS;
-	FDsc*          DTFD;
-	FDsc*          FTFD;
-	FDsc*          DPFD;
-	FDsc*          FPFD;
-	FDsc*          DBFD;
-	FDsc*          FBFD;
-	BGrd*          DBLG;
-	BGrd*          FBLG;
-	DFFO*          DFFD;
-	GAtt*          DGA_; /* NOLINT(readability-identifier-naming) */
-	PAtt*          DPA_; /* NOLINT(readability-identifier-naming) */
-	GAtt*          DGAF;
-	PAtt*          DPAF;
-	GAtt*          RGA_; /* NOLINT(readability-identifier-naming) */
-	PAtt*          RPA_; /* NOLINT(readability-identifier-naming) */
-	GAtt*          RGAF;
-	PAtt*          RPAF;
-	void*          TCGA;
 	CFPa*          CTFP;
-	vector<double> TFRC;
-	vector<double> TFGW;
-	bool           IgTW;
+	FDsc*          DBFD;
+	BGrd*          DBLG;
+	LDsc*          DBLS;
+	DFFO*          DFFD;
+	GAtt*          DGAF;
+	GAtt*          DGA_; /* NOLINT(readability-identifier-naming) */
+	LDsc*          DLSD;
+	PAtt*          DPAF;
+	PAtt*          DPA_; /* NOLINT(readability-identifier-naming) */
+	FDsc*          DPFD;
+	FDsc*          DTFD;
+	DMdf*          DmDf;
+	FDsc*          FBFD;
+	BGrd*          FBLG;
+	LDsc*          FLSD;
+	FDsc*          FPFD;
+	FDsc*          FTFD;
+	vector<DDFl*>  Fill;
 	bool           HOvr;
 	bool           IgBG;
-	double         TWBo[4];
-	uint32_t       PFCT;
+	bool           IgTW;
+	bool           PDFP;
 	EnumT          PFAn;
-	SNAR*          SNPR;
+	bool           PFCF;
+	uint32_t       PFCT;
+	GAtt*          RGAF;
+	GAtt*          RGA_; /* NOLINT(readability-identifier-naming) */
+	PAtt*          RPAF;
+	PAtt*          RPA_; /* NOLINT(readability-identifier-naming) */
 	bool           SNPI;
+	SNAR*          SNPR;
+	void*          TCGA;
+	vector<double> TFGW;
+	vector<double> TFRC;
+	double         TWBo[4];
 	TbFt*          TbFm;
-	vector<DDFl*>  Fill;
 };
 
 struct DFFO
@@ -1529,266 +1665,287 @@ struct DFFO
 struct DHis
 {
 	uint32_t        Posi;
-	vector<DcHI*>   Stac;
 	vector<Rstr*>   RBa1;
 	vector<RBMI*>   RBa3;
 	vector<int32_t> RBaC;
 	int32_t         SSHi;
+	vector<DcHI*>   Stac;
+};
+
+struct DMdf
+{
+	int32_t colm;
+	EnumT   frcr;
+	double  gutt;
+	bool    lcfr;
+	int32_t rcof;
+	int32_t rows;
+	int32_t rprc;
 };
 
 struct DNCm: public BaseCmd
 {
-	bool Vald;
+	bool         CntA;
+	bool         HasR;
+	bool         Ignr;
+	struct Sele* OlSe;
 	/* ShpN*, Sprd* */
 	vector<BaseLayer*> OldP;
-	struct Sele*       OlSe;
-	bool               CntA;
-	bool               Ignr;
-	bool               HasR;
-	TxFU*              TxFl;
 	bool               SFEM;
+	bool               Vald;
 };
 
 struct DPOp: public BaseProp
 {
-	uint8_t unit;
-	EnumT   imgP;
-	bool    tran;
-	bool    face;
-	bool    vert;
-	bool    dblS;
 	EnumT   Frmt;
-	string  iccP;
-	bool    cArt;
-	double  wdth;
-	double  hght;
-	double  dpiV;
-	double  vDPI;
-	bool    incM;
-	double  marL;
-	double  marR;
-	double  marT;
-	double  marB;
+	EnumT   PPTy;
+	double  bldB;
 	double  bldL;
 	double  bldR;
 	double  bldT;
-	double  bldB;
-	EnumT   PPTy;
+	bool    cArt;
+	bool    dblS;
+	double  dpiV;
+	bool    face;
+	double  hght;
+	string  iccP;
+	EnumT   imgP;
+	bool    incM;
+	double  marB;
+	double  marL;
+	double  marR;
+	double  marT;
+	bool    tran;
+	uint8_t unit;
+	double  vDPI;
+	bool    vert;
+	double  wdth;
 };
 
 struct DPro: public BaseCmd
 {
-	uint32_t                 Type;
-	bool                     NRet;
-	bool                     NPor;
-	bool                     NTrn;
-	bool                     NSHi;
-	double                   NDPI;
-	double                   NVDP;
-	double                   NWid;
-	double                   NHht;
-	vector<array<double, 4>> NMar;
-	vector<bool>             NPMr;
-	double                   nbld[4];
-	EnumT                    NFor;
-	ICCP*                    NPro;
-	uint8_t                  NUnt;
-	bool                     NIMr;
-	bool                     FPag;
-	bool                     LftS;
-	bool                     VStk;
-	EnumT                    NIRP;
-	bool                     ORet;
-	bool                     OPor;
-	bool                     OTrn;
-	bool                     OSHi;
-	double                   ODPI;
-	double                   OVDP;
-	double                   OWid;
-	double                   OHht;
-	vector<array<double, 4>> OMar;
-	vector<bool>             OPMr;
-	double                   obld[4];
-	EnumT                    OFor;
-	ICCP*                    OPro;
-	uint8_t                  OUnt;
-	bool                     OIMr;
-	bool                     OFPg;
-	bool                     OLfS;
-	bool                     OVSt;
-	EnumT                    OIRP;
-	ForC*                    ConC;
+	vector<void*>            APCs;
+	void*                    APgC;
 	void*                    AssC;
 	bool                     AssF;
-	EnumT                    achT;
-	vector<array<double, 6>> NewT;
-	vector<void*>            RsCs;
-	vector<void*>            OSBm;
-	vector<void*>            NSBm;
+	vector<void*>            BDCs;
+	ForC*                    ConC;
+	vector<void*>            DPCs;
+	void*                    DPgC;
+	int32_t                  FPSc;
+	bool                     FPag;
 	vector<double>           GdsH;
 	vector<double>           GdsV;
-	void*                    DPgC;
-	void*                    APgC;
-	void*                    MPCC;
-	void*                    SMPC;
-	int32_t                  FPSc;
-	vector<void*>            DPCs;
-	vector<void*>            APCs;
-	vector<void*>            MPCs;
-	vector<void*>            TfCs;
+	bool                     LftS;
 	vector<void*>            MDCs;
-	vector<void*>            BDCs;
-	EnumT                    Resa;
-	bool                     RsRN;
+	void*                    MPCC;
+	vector<void*>            MPCs;
+	void*                    NBFl;
+	double                   NDPI;
+	EnumT                    NFor;
+	double                   NHht;
+	bool                     NIMr;
+	EnumT                    NIRP;
+	vector<void*>            NMFl;
+	vector<array<double, 4>> NMar;
+	vector<bool>             NPMr;
+	bool                     NPor;
+	ICCP*                    NPro;
+	bool                     NRet;
+	vector<void*>            NSBm;
+	bool                     NSHi;
+	bool                     NTrn;
+	uint8_t                  NUnt;
+	double                   NVDP;
+	double                   NWid;
+	vector<array<double, 6>> NewT;
 	void*                    OBBR;
+	void*                    OBFl;
+	double                   ODPI;
+	bool                     OFPg;
+	EnumT                    OFor;
+	double                   OHht;
+	bool                     OIMr;
+	EnumT                    OIRP;
+	bool                     OLfS;
+	vector<void*>            OMFl;
+	vector<array<double, 4>> OMar;
+	vector<bool>             OPMr;
+	bool                     OPor;
+	ICCP*                    OPro;
+	bool                     ORet;
+	vector<void*>            OSBm;
+	bool                     OSHi;
+	bool                     OTrn;
+	uint8_t                  OUnt;
+	double                   OVDP;
+	bool                     OVSt;
+	double                   OWid;
+	EnumT                    Resa;
+	vector<void*>            RsCs;
+	bool                     RsRN;
+	void*                    SMPC;
+	vector<void*>            TfCs;
+	uint32_t                 Type;
+	bool                     VStk;
+	EnumT                    achT;
+	double                   nbld[4];
+	double                   obld[4];
 };
 
 struct DcHI
 {
 	/* AAAC*, AAMC*, AARC*, ACCm*, AESC*, AOSC*, ARCm*, CRGl*, ChMA*, CmCm*, CrSl*, DCCm*, DNCm*, DPro*, EnBE*, EnCO*, EnGA*, EnGO*, EnIS*,
-	 * EnIg*, EnOg*, EnPB*, EnSh*, EnSt*, ExIn*, FAFH*, FFCm*, FmTC*, GrMA*, GrNC*, InGl*, MC2C*, MvNC*, SBMC*, SDeC*, SLsC*, SSNS*, SSaC*,
-	 * SViC*, SetE*, TrCm*, TrSl*, UANC*, XMgC*, XStC* */
+	 * EnIg*, EnOg*, EnPB*, EnSh*, EnSt*, ExIn*, FAFH*, FFCm*, FTFH*, FmTC*, GrMA*, GrNC*, InGl*, MC2C*, MvNC*, SBMC*, SDeC*, SLsC*, SSNS*,
+	 * SSaC*, SViC*, SetE*, TrCm*, TrSl*, UANC*, XMgC*, XStC* */
 	BaseCmd*      Cmnd;
-	uint64_t      Tim2;
 	vector<Futr*> Futu;
 	BinaryData    Thum;
+	uint64_t      Tim2;
 };
 
 struct DcMD
 {
-	string                   XMPD;
-	vector<array<double, 4>> AFRS;
 	vector<int32_t>          AFIF;
+	vector<array<double, 4>> AFRS;
 	vector<int32_t>          AFSl;
-	string                   FocM;
+	string                   Auth;
+	string                   COC_; /* NOLINT(readability-identifier-naming) */
+	string                   Cmnt;
+	int64_t                  CrDt;
+	string                   ExpB;
+	string                   FlNm;
 	string                   FocB;
+	string                   FocD;
+	string                   FocM;
 	string                   FocP;
 	string                   FocV;
-	string                   COC_; /* NOLINT(readability-identifier-naming) */
 	string                   HypF;
-	string                   ExpB;
 	string                   ISOE;
-	string                   FocD;
 	string                   Lens;
-	string                   Auth;
-	string                   SMBy;
 	string                   MfBy;
-	string                   Tags;
-	string                   Cmnt;
-	string                   Titl;
-	string                   Revn;
-	int64_t                  CrDt;
-	int64_t                  SvDt;
-	int64_t                  PtDt;
-	int32_t                  SvCt;
-	string                   FlNm;
 	string                   Path;
+	int64_t                  PtDt;
+	string                   Revn;
+	string                   SMBy;
 	string                   Subj;
+	int32_t                  SvCt;
+	int64_t                  SvDt;
+	string                   Tags;
+	string                   Titl;
+	string                   XMPD;
 };
 
 struct DeSy
 {
-	vector<void*>  UDMC;
-	vector<void*>  RDMC;
-	vector<void*>  UDNC;
-	vector<void*>  RDDC;
-	vector<void*>  UDGN;
-	vector<void*>  RDGN;
-	bool           cnmi;
-	EnumT          unrc;
-	bool           dtid;
-	vector<string> olgd;
-	vector<ShpN*>  Fir3;
-	vector<PSRe*>  Sec3;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fir4;
-	vector<PSRe*>      Sec4;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fir6;
-	vector<PSRe*>      Sec6;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fir7;
-	vector<PSRe*>      Sec7;
+	bool  AAtC;
+	bool  ArtC;
+	bool  CArC;
+	EnumT Dire;
 	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fir1;
-	vector<PSRe*>      Sec1;
+	vector<void*>      Fir2;
+	vector<ShpN*>      Fir3;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*> Fir4;
+	vector<void*>      Fir5;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*> Fir6;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*> Fir7;
+	vector<PCrv*>      Fir8;
+	vector<void*>      Fir9;
 	/* Grup*, PCrv*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr10;
-	vector<PSRe*>      Sc10;
-	/* Grup*, PCrv*, Scop*, ShpN* */
-	vector<BaseLayer*> Fr12;
-	vector<PSRe*>      Sc12;
 	/* Grup*, PCrv*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr11;
-	vector<PSRe*>      Sc11;
-	vector<PCrv*>      Fir8;
-	vector<PSRe*>      Sec8;
-	vector<void*>      Fir9;
-	vector<void*>      Sec9;
-	vector<void*>      Fir5;
-	vector<void*>      Sec5;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fr14;
-	vector<PSRe*>      Sc14;
-	vector<void*>      Fr16;
-	vector<void*>      Sc16;
-	vector<void*>      Fr25;
-	vector<void*>      Sc25;
-	vector<void*>      Fr17;
-	vector<void*>      Sc17;
-	/* PCrv*, ShpN* */
-	vector<BaseLayer*> Fr18;
-	vector<PSRe*>      Sc18;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fr19;
-	vector<PSRe*>      Sc19;
+	/* Grup*, PCrv*, Scop*, ShpN* */
+	vector<BaseLayer*> Fr12;
 	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr13;
-	vector<PSRe*>      Sc13;
 	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fr21;
-	vector<PSRe*>      Sc21;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fr22;
-	vector<PSRe*>      Sc22;
-	/* PCrv*, ShpN* */
-	vector<BaseLayer*> Fr23;
-	vector<PSRe*>      Sc23;
-	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
-	vector<BaseLayer*> Fr24;
-	vector<PSRe*>      Sc24;
-	/* PCrv*, ShpN* */
-	vector<BaseLayer*> Fr26;
-	vector<PSRe*>      Sc26;
+	vector<BaseLayer*> Fr14;
 	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	vector<BaseLayer*> Fr15;
-	vector<PSRe*>      Sc15;
-	vector<void*>      lnkd;
-	vector<void*>      ulkd;
-	struct Sele*       Sele;
+	vector<void*>      Fr16;
+	vector<void*>      Fr17;
+	/* PCrv*, ShpN* */
+	vector<BaseLayer*> Fr18;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*> Fr19;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*> Fr21;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*> Fr22;
+	/* PCrv*, ShpN* */
+	vector<BaseLayer*> Fr23;
+	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
+	vector<BaseLayer*> Fr24;
+	vector<void*>      Fr25;
+	/* PCrv*, ShpN* */
+	vector<BaseLayer*> Fr26;
+	vector<void*>      Fr27;
+	vector<void*>      Fr28;
 	/* Scop*, ShpN*, Sprd* */
-	BaseLayer*    Layr;
-	EnumT         Dire;
-	bool          Prev;
-	bool          ArtC;
-	bool          AAtC;
-	bool          CArC;
-	vector<void*> mapo;
+	BaseLayer*     Layr;
+	bool           Prev;
+	vector<void*>  RDDC;
+	vector<void*>  RDGN;
+	vector<void*>  RDMC;
+	vector<PSRe*>  Sc10;
+	vector<PSRe*>  Sc11;
+	vector<PSRe*>  Sc12;
+	vector<PSRe*>  Sc13;
+	vector<PSRe*>  Sc14;
+	vector<PSRe*>  Sc15;
+	vector<void*>  Sc16;
+	vector<void*>  Sc17;
+	vector<PSRe*>  Sc18;
+	vector<PSRe*>  Sc19;
+	vector<PSRe*>  Sc21;
+	vector<PSRe*>  Sc22;
+	vector<PSRe*>  Sc23;
+	vector<PSRe*>  Sc24;
+	vector<void*>  Sc25;
+	vector<PSRe*>  Sc26;
+	vector<void*>  Sc27;
+	vector<void*>  Sc28;
+	vector<PSRe*>  Sec1;
+	vector<void*>  Sec2;
+	vector<PSRe*>  Sec3;
+	vector<PSRe*>  Sec4;
+	vector<void*>  Sec5;
+	vector<PSRe*>  Sec6;
+	vector<PSRe*>  Sec7;
+	vector<PSRe*>  Sec8;
+	vector<void*>  Sec9;
+	struct Sele*   Sele;
+	vector<void*>  UDGN;
+	vector<void*>  UDMC;
+	vector<void*>  UDNC;
+	bool           cnmi;
+	bool           dtid;
+	vector<void*>  lnkd;
+	vector<void*>  mapo;
+	vector<string> olgd;
+	bool           slcr;
+	vector<void*>  ulkd;
+	EnumT          unrc;
 };
 
 struct DecP
 {
-	int32_t Mask;
-	LDsc*   LinS;
 	FDsc*   BruS;
-	FDsc*   PenS;
-	FDsc*   Tran;
-	double  Indt[4];
-	int32_t RLft;
-	int32_t RTop;
-	int32_t RRgt;
-	int32_t RBot;
 	bool    CmBx;
+	double  Indt[4];
+	LDsc*   LinS;
+	int32_t Mask;
+	FDsc*   PenS;
+	int32_t RBot;
+	int32_t RLft;
+	int32_t RRgt;
+	int32_t RTop;
+	FDsc*   Tran;
 };
 
 struct Deco: public BaseAtt
@@ -1798,61 +1955,64 @@ struct Deco: public BaseAtt
 
 struct DocN
 {
-	int32_t        TrCn;
-	EnumT          TrAn;
-	double         TrFP[2];
-	bool           TrFV;
-	EnumT          Blnd;
-	bool           PasT;
-	BlnR*          BlRa;
-	double         SrBx[4];
-	double         SrPB[4];
-	string         Desc;
-	string         DefD;
-	void*          TagC;
-	bool           Visi;
-	float          Opac;
-	float          FOpc;
-	vector<void*>  FiEf;
-	bool           Edtb;
-	bool           CEdb;
-	bool           MEtb;
-	void*          Data;
-	vector<string> Frst;
-	vector<string> Scnd;
-	EnumT          Hyty;
-	string         Hypr;
-	EnumT          HyTr;
-	EnumT          TWSt;
-	double         TWBo[4];
-	EnumT          CLiT;
-	vector<Sprd*>  Chld;
-	vector<Sprd*>  MpCh;
+	void*          AncD;
 	uint32_t       BFCr;
 	vector<FDsc*>  BFFl;
-	uint32_t       LICr;
-	vector<LDsc*>  LILn;
-	vector<FDsc*>  LIFl;
-	BGrd*          Opts;
-	float          DORT;
-	double         DfSz[2];
-	bool           FcPa;
-	bool           LPSt;
-	bool           VtSt;
+	BlnR*          BlRa;
+	EnumT          Blnd;
+	bool           CEdb;
+	EnumT          CLiT;
+	vector<Sprd*>  Chld;
 	DcMD*          DCMD;
+	float          DORT;
 	vector<DocS*>  DSec;
-	vector<VwPD*>  VPts;
+	void*          Data;
+	string         DefD;
+	string         Desc;
+	double         DfSz[2];
+	vector<void*>  DmSt;
+	bool           Edtb;
+	float          FOpc;
 	FTXR*          FTxR;
+	bool           FcPa;
+	vector<void*>  FiEf;
+	vector<string> Frst;
+	EnumT          HyTr;
+	string         Hypr;
+	EnumT          Hyty;
 	struct Indx*   Indx;
+	uint32_t       LICr;
+	vector<FDsc*>  LIFl;
+	vector<LDsc*>  LILn;
+	bool           LPSt;
+	bool           MEtb;
+	vector<Sprd*>  MpCh;
+	float          Opac;
+	BGrd*          Opts;
+	bool           PasT;
+	vector<string> Scnd;
+	double         SrBx[4];
+	double         SrPB[4];
+	double         TWBo[4];
+	EnumT          TWSt;
+	void*          TagC;
+	EnumT          TrAn;
+	int32_t        TrCn;
+	double         TrFP[2];
+	bool           TrFV;
 	int32_t        TraC;
+	vector<VwPD*>  VPts;
+	bool           Visi;
+	bool           VtSt;
+	uint32_t       avin;
 };
 
 struct DocS
 {
-	uint32_t StId;
-	int32_t  NbFr;
-	string   Name;
 	EnumT    Frmt;
+	string   Name;
+	int32_t  NbFr;
+	uint32_t StId;
 };
 
 struct DrCp: public BaseAtt
@@ -1866,258 +2026,199 @@ struct DrpD: public BaseDels
 {
 };
 
-struct Dupl
+struct Dupl: public BaseCmd
 {
-	vector<void*> UndR;
+	bool          ASnC;
 	bool          Link;
-	SpRV*         IRec;
-	/* PCrv*, ShpN* */
-	vector<BaseLayer*> Undo;
+	bool          MdSp;
+	bool          ObRS;
+	struct Sele*  OldS;
+	vector<void*> RedL;
+	vector<void*> Redo;
+	double        Trns[6];
 	/* PCrv*, ShpN* */
 	vector<BaseLayer*> UndL;
-	vector<void*>      Redo;
-	vector<void*>      RedL;
-	struct Sele*       NewS;
-	struct Sele*       OldS;
-	double             Trns[6];
-	bool               ObRS;
-	bool               ASnC;
-	bool               MdSp;
-	bool               MdTc;
-	vector<void*>      Fir3;
-	vector<void*>      Sec3;
-	vector<void*>      Fir4;
-	vector<void*>      Sec4;
-	vector<void*>      Fir6;
-	vector<void*>      Sec6;
-	vector<void*>      Fir7;
-	vector<void*>      Sec7;
-	vector<void*>      Fir1;
-	vector<void*>      Sec1;
-	vector<void*>      Fr10;
-	vector<void*>      Sc10;
-	vector<void*>      Fr12;
-	vector<void*>      Sc12;
-	vector<void*>      Fr11;
-	vector<void*>      Sc11;
-	vector<void*>      Fir8;
-	vector<void*>      Sec8;
-	vector<void*>      Fir9;
-	vector<void*>      Sec9;
-	vector<void*>      Fir5;
-	vector<void*>      Sec5;
-	vector<void*>      Fr14;
-	vector<void*>      Sc14;
-	vector<void*>      Fr16;
-	vector<void*>      Sc16;
-	vector<void*>      Fr25;
-	vector<void*>      Sc25;
-	vector<void*>      Fr17;
-	vector<void*>      Sc17;
-	vector<void*>      Fr18;
-	vector<void*>      Sc18;
-	vector<void*>      Fr19;
-	vector<void*>      Sc19;
-	vector<void*>      Fr13;
-	vector<void*>      Sc13;
-	vector<void*>      Fr21;
-	vector<void*>      Sc21;
-	vector<void*>      Fr22;
-	vector<void*>      Sc22;
-	vector<void*>      Fr23;
-	vector<void*>      Sc23;
-	vector<void*>      Fr24;
-	vector<void*>      Sc24;
-	vector<void*>      Fr26;
-	vector<void*>      Sc26;
-	vector<void*>      Fr15;
-	vector<void*>      Sc15;
-	vector<void*>      lnkd;
-	vector<ShpN*>      ulkd;
-	struct Sele*       Sele;
-	/* Scop*, ShpN* */
-	BaseLayer* Layr;
-	EnumT      Dire;
-	bool       Prev;
-	bool       ArtC;
-	bool       AAtC;
-	bool       CArC;
-	/* PCrv*, ScPr*, ShpN* */
-	vector<BaseLayer*> mapo;
+	/* PCrv*, ShpN* */
+	vector<BaseLayer*> Undo;
 };
 
 struct DyBm: public BaseBitm
 {
-	EnumT           Frmt;
-	int32_t         BmpW;
-	int32_t         BmpH;
 	EmbeddedData    Bckg;
-	ICC*            Prof;
+	int32_t         BmpH;
+	int32_t         BmpW;
 	bool            DelA;
-	EnumT           MipM;
-	int32_t         LInf;
-	int32_t         TInf;
+	EnumT           Frmt;
 	vector<Blck*>   Idx1;
-	vector<uint8_t> Sta1;
 	vector<Blck*>   Idx2;
-	vector<uint8_t> Sta2;
 	vector<Blck*>   Idx3;
-	vector<uint8_t> Sta3;
 	vector<Blck*>   Idx4;
-	vector<uint8_t> Sta4;
 	vector<Blck*>   Idx5;
-	vector<uint8_t> Sta5;
+	int32_t         LInf;
 	vector<Blck*>   MI1_1;
-	vector<uint8_t> MT1_1;
 	vector<Blck*>   MI2_1;
-	vector<uint8_t> MT2_1;
 	vector<Blck*>   MI3_1;
-	vector<uint8_t> MT3_1;
 	vector<Blck*>   MI4_1;
-	vector<uint8_t> MT4_1;
 	vector<Blck*>   MI5_1;
-	vector<uint8_t> MT5_1;
 	vector<Blck*>   MI1_2;
-	vector<uint8_t> MT1_2;
 	vector<Blck*>   MI2_2;
-	vector<uint8_t> MT2_2;
 	vector<Blck*>   MI3_2;
-	vector<uint8_t> MT3_2;
 	vector<Blck*>   MI4_2;
-	vector<uint8_t> MT4_2;
 	vector<Blck*>   MI5_2;
-	vector<uint8_t> MT5_2;
 	vector<Blck*>   MI1_3;
-	vector<uint8_t> MT1_3;
 	vector<Blck*>   MI2_3;
-	vector<uint8_t> MT2_3;
 	vector<Blck*>   MI3_3;
-	vector<uint8_t> MT3_3;
 	vector<Blck*>   MI4_3;
-	vector<uint8_t> MT4_3;
 	vector<Blck*>   MI5_3;
-	vector<uint8_t> MT5_3;
 	vector<Blck*>   MI1_4;
-	vector<uint8_t> MT1_4;
 	vector<Blck*>   MI2_4;
-	vector<uint8_t> MT2_4;
 	vector<Blck*>   MI3_4;
-	vector<uint8_t> MT3_4;
 	vector<Blck*>   MI4_4;
-	vector<uint8_t> MT4_4;
 	vector<Blck*>   MI5_4;
-	vector<uint8_t> MT5_4;
 	vector<Blck*>   MI1_5;
-	vector<uint8_t> MT1_5;
 	vector<Blck*>   MI2_5;
-	vector<uint8_t> MT2_5;
 	vector<Blck*>   MI3_5;
-	vector<uint8_t> MT3_5;
 	vector<Blck*>   MI4_5;
-	vector<uint8_t> MT4_5;
 	vector<Blck*>   MI5_5;
-	vector<uint8_t> MT5_5;
 	vector<Blck*>   MI1_6;
-	vector<uint8_t> MT1_6;
 	vector<Blck*>   MI2_6;
-	vector<uint8_t> MT2_6;
 	vector<Blck*>   MI3_6;
-	vector<uint8_t> MT3_6;
 	vector<Blck*>   MI4_6;
-	vector<uint8_t> MT4_6;
 	vector<Blck*>   MI5_6;
-	vector<uint8_t> MT5_6;
 	vector<Blck*>   MI1_7;
-	vector<uint8_t> MT1_7;
-	vector<Blck*>   MI1_8;
-	vector<uint8_t> MT1_8;
-	vector<Blck*>   MI2_8;
-	vector<uint8_t> MT2_8;
-	vector<Blck*>   MI3_8;
-	vector<uint8_t> MT3_8;
-	vector<Blck*>   MI4_8;
-	vector<uint8_t> MT4_8;
-	vector<Blck*>   MI5_8;
-	vector<uint8_t> MT5_8;
-	vector<Blck*>   MI1_9;
-	vector<uint8_t> MT1_9;
-	vector<Blck*>   MI2_9;
-	vector<uint8_t> MT2_9;
-	vector<Blck*>   MI3_9;
-	vector<uint8_t> MT3_9;
-	vector<Blck*>   MI4_9;
-	vector<uint8_t> MT4_9;
-	vector<Blck*>   MI5_9;
-	vector<uint8_t> MT5_9;
-	vector<Blck*>   MI1_10;
-	vector<uint8_t> MT1_10;
-	vector<Blck*>   MI2_10;
-	vector<uint8_t> MT2_10;
-	vector<Blck*>   MI3_10;
-	vector<uint8_t> MT3_10;
-	vector<Blck*>   MI4_10;
-	vector<uint8_t> MT4_10;
-	vector<Blck*>   MI5_10;
-	vector<uint8_t> MT5_10;
-	vector<Blck*>   MI1_11;
-	vector<uint8_t> MT1_11;
-	vector<Blck*>   MI2_11;
-	vector<uint8_t> MT2_11;
-	vector<Blck*>   MI3_11;
-	vector<uint8_t> MT3_11;
-	vector<Blck*>   MI4_11;
-	vector<uint8_t> MT4_11;
-	vector<Blck*>   MI1_12;
-	vector<uint8_t> MT1_12;
-	vector<Blck*>   MI2_12;
-	vector<uint8_t> MT2_12;
-	vector<Blck*>   MI3_12;
-	vector<uint8_t> MT3_12;
-	vector<Blck*>   MI4_12;
-	vector<uint8_t> MT4_12;
-	vector<void*>   MI1_13;
-	vector<uint8_t> MT1_13;
-	vector<void*>   MI2_13;
-	vector<uint8_t> MT2_13;
-	vector<void*>   MI3_13;
-	vector<uint8_t> MT3_13;
-	vector<Blck*>   MI4_13;
-	vector<uint8_t> MT4_13;
-	vector<void*>   MI1_14;
-	vector<uint8_t> MT1_14;
-	vector<void*>   MI2_14;
-	vector<uint8_t> MT2_14;
-	vector<void*>   MI3_14;
-	vector<uint8_t> MT3_14;
-	vector<void*>   MI4_14;
-	vector<uint8_t> MT4_14;
 	vector<Blck*>   MI2_7;
-	vector<uint8_t> MT2_7;
 	vector<Blck*>   MI3_7;
-	vector<uint8_t> MT3_7;
 	vector<Blck*>   MI4_7;
-	vector<uint8_t> MT4_7;
 	vector<Blck*>   MI5_7;
+	vector<Blck*>   MI1_8;
+	vector<Blck*>   MI2_8;
+	vector<Blck*>   MI3_8;
+	vector<Blck*>   MI4_8;
+	vector<Blck*>   MI5_8;
+	vector<Blck*>   MI1_9;
+	vector<Blck*>   MI2_9;
+	vector<Blck*>   MI3_9;
+	vector<Blck*>   MI4_9;
+	vector<Blck*>   MI5_9;
+	vector<Blck*>   MI1_10;
+	vector<Blck*>   MI2_10;
+	vector<Blck*>   MI3_10;
+	vector<Blck*>   MI4_10;
+	vector<Blck*>   MI5_10;
+	vector<Blck*>   MI1_11;
+	vector<Blck*>   MI2_11;
+	vector<Blck*>   MI3_11;
+	vector<Blck*>   MI4_11;
+	vector<Blck*>   MI5_11;
+	vector<Blck*>   MI1_12;
+	vector<Blck*>   MI2_12;
+	vector<Blck*>   MI3_12;
+	vector<Blck*>   MI4_12;
+	vector<void*>   MI5_12;
+	vector<Blck*>   MI1_13;
+	vector<Blck*>   MI2_13;
+	vector<Blck*>   MI3_13;
+	vector<Blck*>   MI4_13;
+	vector<void*>   MI5_13;
+	vector<void*>   MI1_14;
+	vector<void*>   MI2_14;
+	vector<void*>   MI3_14;
+	vector<void*>   MI4_14;
+	vector<uint8_t> MT1_1;
+	vector<uint8_t> MT2_1;
+	vector<uint8_t> MT3_1;
+	vector<uint8_t> MT4_1;
+	vector<uint8_t> MT5_1;
+	vector<uint8_t> MT1_2;
+	vector<uint8_t> MT2_2;
+	vector<uint8_t> MT3_2;
+	vector<uint8_t> MT4_2;
+	vector<uint8_t> MT5_2;
+	vector<uint8_t> MT1_3;
+	vector<uint8_t> MT2_3;
+	vector<uint8_t> MT3_3;
+	vector<uint8_t> MT4_3;
+	vector<uint8_t> MT5_3;
+	vector<uint8_t> MT1_4;
+	vector<uint8_t> MT2_4;
+	vector<uint8_t> MT3_4;
+	vector<uint8_t> MT4_4;
+	vector<uint8_t> MT5_4;
+	vector<uint8_t> MT1_5;
+	vector<uint8_t> MT2_5;
+	vector<uint8_t> MT3_5;
+	vector<uint8_t> MT4_5;
+	vector<uint8_t> MT5_5;
+	vector<uint8_t> MT1_6;
+	vector<uint8_t> MT2_6;
+	vector<uint8_t> MT3_6;
+	vector<uint8_t> MT4_6;
+	vector<uint8_t> MT5_6;
+	vector<uint8_t> MT1_7;
+	vector<uint8_t> MT2_7;
+	vector<uint8_t> MT3_7;
+	vector<uint8_t> MT4_7;
 	vector<uint8_t> MT5_7;
+	vector<uint8_t> MT1_8;
+	vector<uint8_t> MT2_8;
+	vector<uint8_t> MT3_8;
+	vector<uint8_t> MT4_8;
+	vector<uint8_t> MT5_8;
+	vector<uint8_t> MT1_9;
+	vector<uint8_t> MT2_9;
+	vector<uint8_t> MT3_9;
+	vector<uint8_t> MT4_9;
+	vector<uint8_t> MT5_9;
+	vector<uint8_t> MT1_10;
+	vector<uint8_t> MT2_10;
+	vector<uint8_t> MT3_10;
+	vector<uint8_t> MT4_10;
+	vector<uint8_t> MT5_10;
+	vector<uint8_t> MT1_11;
+	vector<uint8_t> MT2_11;
+	vector<uint8_t> MT3_11;
+	vector<uint8_t> MT4_11;
+	vector<uint8_t> MT5_11;
+	vector<uint8_t> MT1_12;
+	vector<uint8_t> MT2_12;
+	vector<uint8_t> MT3_12;
+	vector<uint8_t> MT4_12;
+	vector<uint8_t> MT5_12;
+	vector<uint8_t> MT1_13;
+	vector<uint8_t> MT2_13;
+	vector<uint8_t> MT3_13;
+	vector<uint8_t> MT4_13;
+	vector<uint8_t> MT5_13;
+	vector<uint8_t> MT1_14;
+	vector<uint8_t> MT2_14;
+	vector<uint8_t> MT3_14;
+	vector<uint8_t> MT4_14;
+	EnumT           MipM;
+	ICC*            Prof;
+	vector<uint8_t> Sta1;
+	vector<uint8_t> Sta2;
+	vector<uint8_t> Sta3;
+	vector<uint8_t> Sta4;
+	vector<uint8_t> Sta5;
+	int32_t         TInf;
 };
 
-struct EDfP
+struct EDfP: public BaseAdjustment
 {
-	double  RadX;
-	double  RadY;
-	double  InFo;
-	double  Rota;
-	double  Cent[2];
-	double  Radi;
-	int32_t Vibr;
-	double  Clar;
+	double Cent[2];
+	double Clar;
+	double InFo;
+	double RadX;
+	double RadY;
+	double Radi;
+	double Rota;
 };
 
 struct EOEp: public BaseExport
 {
-	int32_t Qlty;
-	int32_t PSLv;
 	bool    MnSz;
+	int32_t PSLv;
+	int32_t Qlty;
 };
 
 struct EOGf: public BaseExport
@@ -2130,40 +2231,41 @@ struct EOHD: public BaseExport
 
 struct EOJp: public BaseExport
 {
-	uint8_t Qlty;
-	bool    Prog;
 	bool    E2Ph;
+	bool    Prog;
+	uint8_t Qlty;
 };
 
 struct EOPS: public BaseExport
 {
+	EnumT adju;
+	EnumT blnd;
 	bool  comp;
-	bool  smll;
+	EnumT effc;
 	bool  fltn;
 	EnumT grad;
-	EnumT adju;
-	EnumT effc;
 	EnumT line;
-	EnumT blnd;
+	bool  smll;
 };
 
 struct EOPd: public BaseExport
 {
-	int32_t Qlty;
-	EnumT   CoSp;
-	EnumT   EmFo;
-	bool    SubF;
 	bool    AAdv;
-	bool    Spot;
-	bool    OvPB;
+	bool    CnvI;
+	EnumT   CoSp;
+	bool    EBok;
 	bool    EHyp;
 	bool    ELay;
-	bool    CnvI;
+	EnumT   EmFo;
 	bool    IPrM;
+	bool    OvPB;
 	bool    PMCB;
-	bool    PMRM;
 	bool    PMCM;
 	bool    PMPI;
+	bool    PMRM;
+	int32_t Qlty;
+	bool    Spot;
+	bool    SubF;
 };
 
 struct EOPn: public BaseExport
@@ -2174,11 +2276,11 @@ struct EOSv: public BaseExport
 {
 	int32_t Qlty;
 	bool    arco;
-	bool    flat;
 	bool    cutp;
+	bool    flat;
 	bool    isvb;
-	bool    newl;
 	bool    ltxp;
+	bool    newl;
 };
 
 struct EOTf: public BaseExport
@@ -2192,40 +2294,47 @@ struct EOTg: public BaseExport
 
 struct EOXR: public BaseExport
 {
-	bool LyMd;
-	bool CSFF;
 	bool v_32Im;
-	bool v_32Sp;
 	bool v_32Ot;
+	bool v_32Sp;
+	bool CSFF;
 	bool IULT;
+	bool LyMd;
 };
 
 struct EmbC
 {
+	EmbeddedData EmbC;
+	void*        FCac;
+	void*        FPro;
 	string       File;
 	bool         Link;
-	EmbeddedData EmbC;
+	EmbeddedData PDFD;
 };
 
 struct EmbN: public BaseLayer
 {
-	EmbC*   EmCn;
-	int32_t back;
-	EnumT   PBBx;
-	string  EmSp;
-	bool    EmAC;
-	int32_t SIdx;
-	bool    IsMs;
 	int32_t AIdx;
+	bool    EmAC;
+	EmbC*   EmCn;
+	string  EmSp;
+	void*   FCac;
+	void*   FPro;
+	bool    IsMs;
+	EnumT   PBBx;
+	double  RDPI;
+	int32_t SIdx;
+	int32_t back;
 };
 
 struct EmbR: public BaseBitm
 {
-	EmbC*   EmCn;
-	int32_t back;
-	EnumT   PBBx;
-	string  EmSp;
 	bool    EmAC;
+	EmbC*   EmCn;
+	string  EmSp;
+	EnumT   PBBx;
+	bool    PssT;
+	int32_t back;
 };
 
 struct EnBE: public BaseCmd
@@ -2275,19 +2384,19 @@ struct ExBB
 
 struct ExBF
 {
-	bool          RtOy;
-	EnumT         Srch;
-	EnumT         ORul;
 	string        FNme;
-	string        Head;
 	string        Foot;
+	string        Head;
+	EnumT         ORul;
+	bool          RtOy;
 	vector<Sctn*> Scts;
+	EnumT         Srch;
 };
 
 struct ExCI: public BaseExCsts
 {
-	int32_t min;
 	int32_t max;
+	int32_t min;
 };
 
 struct ExCS
@@ -2338,9 +2447,9 @@ struct ExRS
 
 struct ExSc
 {
-	EnumT  SzTy;
-	double Size;
 	double Mult;
+	double Size;
+	EnumT  SzTy;
 };
 
 struct ExV2: public BaseExVals
@@ -2358,6 +2467,11 @@ struct ExVR: public BaseExVals
 	double val;
 };
 
+struct ExpA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct ExpP: public BaseAdjustment
 {
 	float Expo;
@@ -2368,35 +2482,32 @@ struct FAFH: public BaseCmd
 {
 	double        Alph;
 	uint32_t      Cont;
-	vector<FDsc*> OldF;
 	bool          LSSl;
+	vector<FDsc*> OldF;
 };
 
 struct FDsc: public BaseFill
 {
-	/* FilG*, FilN*, FilS* */
+	/* FilB*, FilG*, FilN*, FilS* */
 	BaseFill* FDeF;
 	double    FDeX[6];
 };
 
 struct FExO: public BaseExport
 {
-	EnumT   FTyp;
 	EnumT   BSFm;
+	EnumT   FTyp;
 	uint8_t Qlty;
 };
 
 struct FFCm: public BaseCmd
 {
-	double Poin[2];
+	EnumT BleM;
 	/* CMYK*, GRAY*, HSLA*, LABA*, RGBA* */
 	BaseColor* Colo;
 	bool       Cont;
+	double     Poin[2];
 	EnumT      SamS;
-	EnumT      BleM;
-	bool       AbrP;
-	float      PMin;
-	float      PMax;
 };
 
 struct FRst: public BaseLayer
@@ -2405,8 +2516,15 @@ struct FRst: public BaseLayer
 
 struct FSDe: public BaseDels
 {
-	Font*   Font;
-	int32_t Flds;
+	int32_t      Flds;
+	struct Font* Font;
+};
+
+struct FTFH: public BaseCmd
+{
+	uint32_t      Cont;
+	vector<FDsc*> OldF;
+	double        tint;
 };
 
 struct FTXR
@@ -2415,11 +2533,19 @@ struct FTXR
 	vector<string> txts;
 };
 
+struct FilB: public BaseFill
+{
+	DyBm* Bitm;
+	EnumT ExtT;
+	bool  IgnA;
+	EnumT ResT;
+};
+
 struct FilG: public BaseFill
 {
-	EnumT Type;
-	Grad* Grad;
-	bool  XCor;
+	struct Grad* Grad;
+	EnumT        Type;
+	bool         XCor;
 };
 
 struct FilN: public BaseFill
@@ -2439,33 +2565,38 @@ struct Filp: public BaseProp
 	BaseFill* FLsc;
 };
 
+struct FlDS: public BaseFlDS
+{
+	string Filn;
+};
+
 struct FlRN: public BaseLayer
 {
-	/* Clar*, Clrt*, RDF2*, RGBC*, RHPC*, RLdC*, RLig*, RUSC*, RVgC* */
-	BaseFilt* Filt;
-	bool      ProA;
+	double CdXf[6];
+	/* Clar*, Clrt*, RANC*, RDF2*, RDGC*, RDNC*, RGBC*, RHPC*, RLbC*, RLdC*, RLig*, RUSC*, RVgC* */
+	BaseCmd* Filt;
+	bool     ProA;
 };
 
 struct FlrG: public BaseGlys
 {
-	int32_t ScBg;
-	int32_t FiTy;
 	int32_t FStr;
+	int32_t FiTy;
+	int32_t ScBg;
 };
 
 struct FmTC: public BaseCmd
 {
 	/* GASD*, PADS* */
 	BaseDels*     Delt;
-	EnumT         TDfT;
-	bool          UPGE;
 	bool          IgTX;
-	bool          USty;
+	PaAS*         NewP;
+	vector<Stop*> OItm;
 	PaAS*         OldP;
 	SSAS*         OldS;
-	PaAS*         NewP;
-	GlAS*         NewG;
-	vector<Stop*> OItm;
+	EnumT         TDfT;
+	bool          UPGE;
+	bool          USty;
 };
 
 struct FntM
@@ -2475,40 +2606,40 @@ struct FntM
 
 struct Font
 {
-	string       Post;
 	string       Famy;
-	int32_t      Wegt;
 	bool         Ital;
-	int32_t      Widh;
 	struct Pano* Pano;
+	string       Post;
+	int32_t      Wegt;
+	int32_t      Widh;
 };
 
 struct ForC: public BaseCmd
 {
-	EnumT         NewF;
-	EnumT         OldF;
-	ICCP*         NRGB;
 	ICCP*         NCMY;
+	bool          NFrC;
 	ICCP*         NIAP;
 	ICCP*         NLAB;
-	ICCP*         ORGB;
+	ICCP*         NRGB;
+	bool          NTBF;
+	TStS*         NTSt;
+	vector<void*> NeCB;
+	vector<void*> NeCl;
+	vector<void*> NeFl;
+	EnumT         NewF;
 	ICCP*         OCMY;
 	ICCP*         OIAP;
 	ICCP*         OLAB;
-	vector<DyBm*> OldB;
+	ICCP*         ORGB;
+	TStS*         OTSt;
 	vector<DyBm*> OlCB;
-	vector<void*> NeCB;
-	vector<FDsc*> OlFl;
-	vector<void*> NeFl;
 	/* HSLA*, RGBA* */
 	vector<BaseColor*> OlCl;
-	vector<void*>      NeCl;
+	vector<FDsc*>      OlFl;
 	vector<GAtt*>      OlGl;
 	vector<PAtt*>      OlPr;
-	bool               NFrC;
-	bool               NTBF;
-	TStS*              OTSt;
-	TStS*              NTSt;
+	vector<DyBm*>      OldB;
+	EnumT              OldF;
 };
 
 struct Futr
@@ -2539,13 +2670,23 @@ struct GASD: public BaseDels
 
 struct GAtt
 {
-	vector<int32_t> Ints;
+	Font*           DFnt;
 	vector<double>  Doub;
-	vector<string>  Stri;
+	vector<int32_t> Ints;
 	/* FDsc*, HlkA*, LDsc*, OpAA*, OtAt* */
 	vector<BaseFill*> Objs;
-	Font*             DFnt;
 	Font*             RFnt;
+	vector<string>    Stri;
+};
+
+struct GOFl: public BaseCmd
+{
+	vector<void*> OldF;
+};
+
+struct GOTr: public BaseCmd
+{
+	vector<void*> OldF;
 };
 
 struct GRAY: public BaseColor
@@ -2562,8 +2703,8 @@ struct GSSP
 
 struct GStr
 {
-	string        Utf8;
 	vector<GSSP*> Mixd;
+	string        Utf8;
 };
 
 struct Gaus: public BaseEffect
@@ -2584,6 +2725,8 @@ struct GlAS
 
 struct GrMA: public BaseCmd
 {
+	vector<GraP*> NGOP;
+	GraP*         NGPa;
 	vector<GrMP*> OldP;
 };
 
@@ -2595,27 +2738,34 @@ struct GrMP: public BaseAdjustment
 
 struct GrNC: public BaseCmd
 {
-	Grup* Grou;
+	Grup*                    Grou;
+	bool                     NCmG;
+	vector<EnumT>            OlCT;
+	vector<array<double, 6>> OlFT;
+	struct Sele*             OlSl;
+	vector<array<double, 6>> OlTr;
 	/* Scop*, Sprd* */
 	vector<BaseLayer*> OldP;
 	/* Grup*, Rstr* */
-	vector<BaseLayer*>       OldS;
-	struct Sele*             OlSl;
-	vector<EnumT>            OlCT;
-	vector<array<double, 6>> OlTr;
-	bool                     NCmG;
-	bool                     RACn;
+	vector<BaseLayer*> OldS;
+	bool               RACn;
 };
 
 struct GrRA: public BaseLayer
 {
+	GraP* NAjP;
+};
+
+struct GraP
+{
+	struct Grad* Grad;
 };
 
 struct Grad
 {
-	vector<array<double, 2>> Posn;
 	/* CMYK*, GRAY*, HSLA*, LABA*, Pant*, RGBA* */
-	vector<BaseColor*> Cols;
+	vector<BaseColor*>       Cols;
+	vector<array<double, 2>> Posn;
 };
 
 struct GrdO: public BaseEffect
@@ -2633,14 +2783,14 @@ struct HSLA: public BaseColor
 
 struct HSSP: public BaseAdjustment
 {
+	bool          HSV;
 	float         HueA;
-	float         SatA;
-	float         LumA;
 	vector<float> HueC;
-	vector<float> SatC;
+	float         LumA;
 	vector<float> LumC;
 	vector<float> RngC;
-	bool          HSV;
+	float         SatA;
+	vector<float> SatC;
 };
 
 struct HlkA: public BaseFill
@@ -2652,19 +2802,24 @@ struct HsRA: public BaseLayer
 {
 };
 
+struct HslA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct IBRB: public BaseBrush
 {
 };
 
 struct ICC
 {
-	ICCP* RGBP;
-	ICCP* RGUP;
+	bool  BPCm;
 	ICCP* CMYP;
 	ICCP* IAPr;
-	ICCP* LABP;
 	EnumT Intn;
-	bool  BPCm;
+	ICCP* LABP;
+	ICCP* RGBP;
+	ICCP* RGUP;
 };
 
 struct ICCP
@@ -2703,22 +2858,23 @@ struct ILTf
 
 struct ImgN: public BaseLayer
 {
+	void*        DTWa;
 	EnumT        ExtT;
-	EnumT        ResT;
-	string       StkU;
-	string       uPro;
-	string       StAu;
-	int32_t      ODPI;
+	bool         FWrO;
 	string       ICCP;
 	EmbeddedData Orig;
+	EnumT        ResT;
+	string       StAu;
+	string       StkU;
+	string       uPro;
 };
 
 struct InGl: public BaseCmd
 {
+	struct Sele* OldS;
+	bool         PrNc;
 	bool         TSel;
 	bool         Togl;
-	bool         PrNc;
-	struct Sele* OldS;
 };
 
 struct InRA: public BaseLayer
@@ -2727,20 +2883,20 @@ struct InRA: public BaseLayer
 
 struct Indx
 {
-	vector<void*> Tpcs;
-	vector<void*> OrTp;
-	string        Sort;
-	string        Lang;
-	bool          InSH;
-	bool          GpPR;
 	bool          ExpX;
+	bool          GpPR;
+	bool          InSH;
+	string        Lang;
+	vector<void*> OrTp;
 	string        SAfT;
+	string        SAfX;
+	string        SBfX;
 	string        SBtI;
 	string        SBtR;
-	string        SBfX;
-	string        SSee;
 	string        SSeA;
-	string        SAfX;
+	string        SSee;
+	string        Sort;
+	vector<void*> Tpcs;
 };
 
 struct InnG: public BaseEffect
@@ -2759,11 +2915,11 @@ struct LABA: public BaseColor
 
 struct LDsc: public BaseFill
 {
-	LSty*   LDeL;
 	bool    LDBe;
-	bool    LDSc;
-	CrvD*   LDeP;
 	int32_t LDSa;
+	bool    LDSc;
+	LSty*   LDeL;
+	CrvD*   LDeP;
 	bool    LIAh;
 };
 
@@ -2776,24 +2932,24 @@ struct LR3D
 {
 	EmbeddedData  Blob;
 	int32_t       Dime;
-	vector<float> Pxls;
 	string        Name;
+	vector<float> Pxls;
 };
 
 struct LStr
 {
-	string Str_; /* NOLINT(readability-identifier-naming) */
 	string Ctxt;
+	string Str_; /* NOLINT(readability-identifier-naming) */
 };
 
 struct LSty
 {
-	curve12_t Data;
-	double    Wght;
 	/* BmRB*, IBRB*, RRBr* */
 	BaseBrush*     Brus;
-	double         Phse;
+	curve12_t      Data;
 	vector<double> Patn;
+	double         Phse;
+	double         Wght;
 };
 
 struct Layt
@@ -2802,12 +2958,19 @@ struct Layt
 	vector<BaseFrms*> Frms;
 };
 
+struct LcLs
+{
+	string         defl;
+	vector<string> locK;
+	vector<string> locV;
+};
+
 struct LeFP: public BaseAdjustment
 {
-	uint16_t L_; /* NOLINT(readability-identifier-naming) */
 	uint16_t A_; /* NOLINT(readability-identifier-naming) */
 	uint16_t B_; /* NOLINT(readability-identifier-naming) */
 	float    Dens;
+	uint16_t L_; /* NOLINT(readability-identifier-naming) */
 	bool     Pres;
 };
 
@@ -2815,99 +2978,107 @@ struct LeRA: public BaseLayer
 {
 };
 
+struct LevA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct LevP: public BaseAdjustment
 {
 	float         Blac;
-	float         Whit;
-	float         OutB;
-	float         OutW;
 	vector<float> BlkC;
-	vector<float> WhtC;
 	vector<float> GamC;
 	vector<float> OBlC;
 	vector<float> OWhC;
+	float         OutB;
+	float         OutW;
+	float         Whit;
+	vector<float> WhtC;
 };
 
 struct LigP
 {
-	double        Ambi;
-	double        Diff;
-	double        Spec;
-	double        Expo;
 	RGBA*         AmbC;
-	HSLA*         SpeC;
-	double        Dept;
+	double        Ambi;
+	double        BMOp;
 	void*         BMap;
+	double        Dept;
+	double        Diff;
+	double        Expo;
+	vector<LigS*> Lits;
 	bool          ScaX;
 	bool          ScaY;
-	double        BMOp;
-	vector<LigS*> Lits;
+	HSLA*         SpeC;
+	double        Spec;
 };
 
 struct LigS
 {
-	EnumT  Type;
+	double Cent[2];
 	RGBA*  Colo;
+	double Dist;
+	double ICon;
+	double OCon;
 	double Spin;
 	double Tilt;
-	double Cent[2];
-	double Dist;
-	double OCon;
-	double ICon;
+	EnumT  Type;
 };
 
 struct LisA: public BaseAtt
 {
-	EnumT          Type;
+	EnumT          Alig;
+	GStr*          BulS;
+	vector<double> IStr;
+	double         ITab;
+	double         ITxt;
 	int32_t        Id;
 	int32_t        Levl;
-	vector<double> IStr;
-	double         ITxt;
-	GStr*          Strn;
-	GStr*          Sepr;
-	double         Scal;
-	double         OffY;
-	EnumT          Alig;
 	EnumT          NFmt;
+	GStr*          NumS;
+	double         OffY;
+	int32_t        ResL;
+	EnumT          ResT;
+	double         Scal;
+	GStr*          Sepr;
+	GStr*          Strn;
 	int32_t        Strt;
 	bool           Tier;
-	double         ITab;
-	GStr*          BulS;
-	GStr*          NumS;
-	EnumT          ResT;
-	int32_t        ResL;
+	EnumT          Type;
 };
 
 struct LoDO
 {
-	int32_t         Page;
-	bool            IFET;
-	bool            TxGr;
-	FntM*           FoMp;
-	double          dpi;
 	EnumT           ClSp;
+	FntM*           FoMp;
+	bool            IFET;
+	bool            IsPk;
+	EnumT           LoMo;
+	int32_t         Page;
 	vector<int32_t> Pags;
+	curve32_t       ResI;
+	bool            TxGr;
+	double          dpi;
 };
 
 struct MC2C: public BaseCmd
 {
-	double        Delt[2];
-	double        Dlt2[2];
-	bool          SOcr;
-	bool          Clos;
-	bool          ClSt;
-	vector<Undo*> Undo;
-	vector<void*> OCrv;
-	void*         ORCv;
-	struct Sele*  OldS;
-	bool          OmLN;
+	bool                 ClSt;
+	bool                 Clos;
+	double               Delt[2];
+	double               Dlt2[2];
+	vector<void*>        OCrv;
+	void*                ORCv;
+	struct Sele*         OldS;
+	bool                 OmLN;
+	bool                 SOcr;
+	vector<struct Undo*> Undo;
 };
 
 struct MPIN: public BaseLayer
 {
-	uint32_t PgOf;
 	uint32_t MPOf;
 	uint32_t PgCt;
+	uint32_t PgOf;
 	EnumT    ScMd;
 };
 
@@ -2917,59 +3088,69 @@ struct MRst: public BaseLayer
 
 struct MacI
 {
-	/* ARCm*, CMTC*, ClrX*, ForC*, MgDC* */
+	/* AAAC*, ARCm*, AROm*, BCoA*, BMCO*, BMGO*, BWAA*, CBaA*, CMTC*, Clar*, ClrX*, CmCm*, CoCO*, CurA*, Dupl*, EnCO*, EnGO*, ExpA*, FFCm*,
+	 * ForC*, GOFl*, GOTr*, GrMA*, HslA*, LevA*, MgDC*, OpCO*, OpGO*, RANC*, RDF2*, RDGC*, RDNC*, RDf2*, REqT*, RGBC*, RLbC*, ROCm*, RUSC*,
+	 * RVgC*, SBMC*, SCCM*, SDDC*, SGOC*, SHAA*, SRlC*, SSNS*, STAA*, SecA*, SflP*, VibA*, WBaA* */
 	BaseCmd*         Cmd;
+	vector<uint64_t> CuN1;
+	vector<string>   CuN2;
 	bool             Enab;
-	double           Sprd[4];
 	vector<uint64_t> FavP;
-	vector<uint64_t> MUID;
 	vector<void*>    MSpl;
+	vector<uint64_t> MUID;
+	double           Sprd[4];
 };
 
 struct MacP: public BaseProp
 {
-	Macr* Macr;
+	struct Macr* Macr;
 };
 
 struct Macr
 {
-	vector<MacI*> Macr;
 	string        Desc;
+	vector<MacI*> Macr;
 };
 
 struct Matx
 {
-	int32_t        Rows;
 	int32_t        Cols;
 	vector<double> Data;
+	int32_t        Rows;
 };
 
 struct MgDC: public BaseCmd
 {
-	void* SrcN;
-	void* DstN;
-	void* OldS;
-	void* OldP;
-	void* OlSi;
 	void* Cach;
+	void* DstN;
 	bool  Freq;
+	void* OlSi;
+	void* OldP;
+	void* OldS;
+	void* SrcN;
 };
 
 struct MvNC: public BaseCmd
 {
-	EnumT Type;
-	EnumT CLiT;
-	/* Grup*, Rstr*, Scop*, ShpN* */
-	BaseLayer* Dest;
-	/* Grup*, Scop*, ShpN*, Sprd* */
-	vector<BaseLayer*> OldP;
-	vector<EnumT>      OldC;
-	bool               RACt;
-	vector<bool>       OlTS;
-	bool               FrKA;
+	EnumT        CLiT;
+	vector<bool> DtLF;
 	/* Grup*, Rstr*, Scop*, ShpN*, Sprd* */
 	vector<BaseLayer*> DtLO;
-	vector<bool>       DtLF;
+	bool               FrKA;
+	vector<bool>       OlTS;
+	vector<EnumT>      OldC;
+	/* Grup*, Scop*, ShpN*, Sprd* */
+	vector<BaseLayer*> OldP;
+	bool               RACt;
+	EnumT              Type;
+};
+
+struct NGHS
+{
+	EnumT   mcat;
+	EnumT   prst;
+	int32_t seli;
+	string  temd;
 };
 
 struct OCRN: public BaseLayer
@@ -2984,8 +3165,8 @@ struct OSty: public BaseProp
 struct OTFD: public BaseDels
 {
 	vector<UndR*> Feat;
-	bool          cler;
 	LStr*         LDsc;
+	bool          cler;
 };
 
 struct OTFS
@@ -2996,19 +3177,19 @@ struct OTFS
 
 struct ObSB
 {
-	EnumT         Cont;
 	uint32_t      BFCr;
 	vector<FDsc*> BFFl;
 	/* FDsc*, FilS* */
 	BaseFill* BFil;
+	EnumT     Cont;
 };
 
 struct ObSL
 {
 	EnumT         Cont;
 	uint32_t      LICr;
-	vector<LDsc*> LILn;
 	vector<FDsc*> LIFl;
+	vector<LDsc*> LILn;
 	LDsc*         LSty;
 	/* FDsc*, FilS* */
 	BaseFill* PFil;
@@ -3021,25 +3202,34 @@ struct ObST
 
 struct ObjS: public BaseLayer
 {
-	bool  HsFE;
-	bool  HsBM;
-	bool  HsVi;
-	bool  HsTW;
-	bool  HsDO;
-	EnumT Frmt;
-	ICCP* RGBP;
-	void* CMYK;
-	ObSB* MBru;
-	ObSL* MLin;
-	ObST* MTra;
-	ObSL* FLin;
-	ObSB* FBru;
-	ObST* FTra;
-	void* GlyA;
-	void* ParA;
-	bool  OSNE;
-	bool  HsPF;
-	void* SNPR;
+	void*   CMYK;
+	ObSB*   FBru;
+	ObSL*   FLin;
+	ObST*   FTra;
+	EnumT   Frmt;
+	void*   GlyA;
+	bool    HsBM;
+	bool    HsCn;
+	bool    HsDM;
+	bool    HsDO;
+	bool    HsFE;
+	bool    HsPF;
+	bool    HsTW;
+	bool    HsVi;
+	ObSB*   MBru;
+	ObSL*   MLin;
+	ObST*   MTra;
+	bool    OSNE;
+	void*   ParA;
+	ICCP*   RGBP;
+	void*   SNPR;
+	int32_t colm;
+	EnumT   frcr;
+	double  gutt;
+	bool    lcfr;
+	int32_t rcof;
+	int32_t rows;
+	int32_t rprc;
 };
 
 struct OpAA: public BaseFill
@@ -3051,6 +3241,16 @@ struct OpAV
 {
 	string Glyp;
 	double Left;
+};
+
+struct OpCO: public BaseCmd
+{
+	double Opac;
+};
+
+struct OpGO: public BaseCmd
+{
+	double Opac;
 };
 
 struct OtAt: public BaseFill
@@ -3085,11 +3285,11 @@ struct PAOD: public BaseDels
 
 struct PAtt
 {
-	vector<int32_t> Ints;
 	vector<double>  Doub;
-	vector<string>  Stri;
+	vector<int32_t> Ints;
 	/* AFAt*, Deco*, DrCp*, LisA*, TabS*, TocA* */
 	vector<BaseAtt*> Objs;
+	vector<string>   Stri;
 };
 
 struct PBxR
@@ -3099,11 +3299,11 @@ struct PBxR
 
 struct PCFl
 {
-	uint32_t MUID;
 	int64_t  MChk;
-	int64_t  UChk;
+	uint32_t MUID;
 	uint32_t NUID;
 	PTNd*    Root;
+	int64_t  UChk;
 };
 
 struct PCrv: public BaseLayer
@@ -3113,19 +3313,20 @@ struct PCrv: public BaseLayer
 
 struct PCvD
 {
-	v_CB1* Data;
 	v_CB2* CnrD;
+	v_CB1* Data;
 };
 
 struct PLef
 {
+	string   DNam;
 	string   Name;
 	string   ONam;
-	string   DNam;
-	uint32_t v_UID;
 	uint32_t OUID;
 	/* ACrt*, AbMp*, Adjs*, AstP*, Brus*, CrPP*, DPOp*, Filp*, MacP*, OSty*, PTCP*, PfPr*, SGrP*, SPPp*, TExM*, TonP* */
 	BaseProp* Prop;
+	bool      Sync;
+	uint32_t  v_UID;
 };
 
 struct PLiA
@@ -3142,18 +3343,18 @@ struct PLig
 
 struct PNoC: public BaseCmd
 {
-	EnumT        Form;
-	ICCP*        RGBS;
 	ICCP*        CMYS;
+	void*        DCmd;
+	EnumT        Form;
 	ICCP*        IA_S;
 	ICCP*        LABS;
-	double       VPRc[4];
-	bool         Tagg;
-	void*        DCmd;
-	void*        TCmd;
-	struct Sele* OSel;
 	double       OCRc[4];
+	struct Sele* OSel;
 	struct Sele* OldS;
+	ICCP*        RGBS;
+	void*        TCmd;
+	bool         Tagg;
+	double       VPRc[4];
 };
 
 struct PRNS: public BaseCmd
@@ -3162,21 +3363,21 @@ struct PRNS: public BaseCmd
 
 struct PSRe
 {
-	void* Mstr;
 	void* FSlv;
+	void* Mstr;
 };
 
 struct PTCP: public BaseProp
 {
-	PTCf*         Cnfg;
-	vector<Prst*> Prst;
+	PTCf*                Cnfg;
+	vector<struct Prst*> Prst;
 };
 
 struct PTCf
 {
-	vector<PTEq*> eqns;
-	ExCS*         cnst;
 	EnumT         cfmt;
+	ExCS*         cnst;
+	vector<PTEq*> eqns;
 	bool          rads;
 };
 
@@ -3188,16 +3389,17 @@ struct PTEq
 
 struct PTNd
 {
+	uint32_t      CIdx;
 	uint32_t      CUID;
-	uint32_t      Usge;
-	uint32_t      v_UID;
-	uint32_t      OUID;
-	string        Name;
-	string        ONam;
+	vector<PTNd*> Chld;
 	string        DNam;
 	vector<PLef*> Levs;
-	vector<PTNd*> Chld;
-	uint32_t      CIdx;
+	string        Name;
+	string        ONam;
+	uint32_t      OUID;
+	bool          Sync;
+	uint32_t      Usge;
+	uint32_t      v_UID;
 };
 
 struct PTRt
@@ -3219,11 +3421,11 @@ struct PaAS
 
 struct PaFr: public BaseFrms
 {
+	vector<double> Advc;
+	vector<double> Ends;
 	PCvD*          PCrv;
 	vector<bool>   Revr;
 	vector<double> Strt;
-	vector<double> Ends;
-	vector<double> Advc;
 };
 
 struct Pano
@@ -3233,102 +3435,121 @@ struct Pano
 
 struct Pant: public BaseColor
 {
-	/* HSLA*, LABA*, RGBA* */
+	/* CMYK*, HSLA*, LABA*, RGBA* */
 	BaseColor* base;
-	RGBA*      srgb;
 	bool       ispt;
 	string     name;
+	RGBA*      srgb;
+};
+
+struct PcMn
+{
+	string        cpth;
+	string        path;
+	vector<PcRs*> ress;
+};
+
+struct PcRs
+{
+	FlDS* dsrc;
+	Font* font;
+	bool  inst;
+	bool  rest;
+	EnumT type;
 };
 
 /* NOLINTNEXTLINE(readability-identifier-naming) */
 struct Per_42
 {
-	vector<Quad*> Pers;
 	int32_t       Curr;
+	vector<Quad*> Pers;
 };
 
 struct Pers
 {
-	ApVs* OVer;
-	ApVs* NVer;
-	DocN* DocR;
-	Sprd* EdRt;
-	Sele* CSel;
-	Sele* SlBQ;
+	bool    v_32Un;
+	bool    BPCm;
+	int32_t BlGT;
+	bool    CCFm;
 	/* Scop*, ShpN*, Sprd* */
-	BaseLayer*    CLyr;
-	SRst*         RasS;
-	vector<Grup*> Symb;
-	/* FilG*, FilN*, FilS* */
-	vector<BaseFill*> RFll;
-	PTRt*             DFll;
-	DDef*             DDFl;
-	vector<CrvD*>     PrPr;
-	bool              v_32Un;
-	string            OCIO;
-	string            OCIV;
-	/* EOJp*, EOPS*, EOPn*, EOSv*, FExO* */
+	BaseLayer* CLyr;
+	ICCP*      CMYP;
+	Sele*      CSel;
+	bool       ClSp;
+	void*      CurS;
+	DcMD*      DCMD;
+	DDef*      DDFl;
+	EnumT      DDRF;
+	/* EOJp*, EOPS*, EOPn*, EOSv*, EOTf*, FExO* */
 	BaseExport*   DFEO;
-	string        XMPM;
-	struct UVCn*  UVCn;
-	uint8_t       UntT;
-	EnumT         DDRF;
+	PTRt*         DFll;
+	bool          DcSH;
+	bool          DmCl;
+	DocN*         DocR;
+	ExBB*         EBDB;
 	bool          EdAL;
-	bool          CCFm;
+	Sprd*         EdRt;
+	struct ExRS*  ExRS;
+	DHis*         Hist;
+	ICCP*         IAPr;
+	uint64_t      IRNL;
+	EnumT         IRPC;
+	int32_t       Indx;
+	EnumT         Intn;
+	ICCP*         LABP;
+	bool          LGui;
+	LoDO*         LoOp;
+	struct Macr*  Macr;
+	ApVs*         NVer;
+	string        OCIO;
+	string        OCIV;
+	ApVs*         OVer;
+	void*         PDFB;
+	EnumT         PPTy;
+	struct PcMn*  PcMn;
+	PfPr*         PfPl;
+	EnumT         PfTg;
 	bool          PrCC;
 	bool          PrFC;
-	ICCP*         IAPr;
-	ICCP*         CMYP;
-	ICCP*         LABP;
-	ICCP*         RGBP;
-	ICCP*         RGUP;
-	EnumT         Intn;
-	bool          BPCm;
-	uint8_t       SnUT;
-	bool          USnG;
-	SnpG*         SGrd;
-	bool          VRul;
-	bool          LGui;
-	bool          VAll;
-	bool          VGui;
-	bool          VMar;
-	bool          VBld;
-	bool          VGrd;
-	bool          VTxF;
-	bool          VBlG;
-	int32_t       BlGT;
-	uint64_t      TxVO;
-	bool          VSpl;
-	bool          ClSp;
-	bool          VCGu;
+	vector<CrvD*> PrPr;
 	PTRt*         PrpC;
-	vector<GStr*> SpIg;
-	struct ExRS*  ExRS;
-	TStS*         TSty;
-	TBFR*         TFmR;
-	TBSO*         TSrO;
-	LoDO*         LoOp;
-	vector<void*> Snap;
-	void*         CurS;
-	int32_t       Indx;
-	vector<void*> SprC;
-	bool          Rest;
-	bool          DcSH;
-	DHis*         Hist;
-	struct Macr*  Macr;
-	DcMD*         DCMD;
-	ExBB*         EBDB;
-	EnumT         IRPC;
-	uint64_t      IRNL;
-	EnumT         PPTy;
-	EnumT         PfTg;
-	PfPr*         PfPl;
+	/* FilG*, FilN*, FilS* */
+	vector<BaseFill*>    RFll;
+	ICCP*                RGBP;
+	ICCP*                RGUP;
+	SRst*                RasS;
+	bool                 Rest;
+	SnpG*                SGrd;
+	Sele*                SlBQ;
+	uint8_t              SnUT;
+	vector<struct Snap*> Snap;
+	vector<GStr*>        SpIg;
+	vector<SCRn*>        SprC;
+	vector<Grup*>        Symb;
+	TBFR*                TFmR;
+	TBSO*                TSrO;
+	TStS*                TSty;
+	uint64_t             TxVO;
+	bool                 USnG;
+	struct UVCn*         UVCn;
+	uint8_t              UntT;
+	bool                 VAll;
+	bool                 VBlG;
+	bool                 VBld;
+	bool                 VCGu;
+	bool                 VGrd;
+	bool                 VGui;
+	bool                 VMar;
+	bool                 VRul;
+	bool                 VSpl;
+	bool                 VTxF;
+	string               XMPM;
 };
 
 struct PfPr: public BaseProp
 {
-	string           name;
 	vector<uint32_t> idsl;
+	string           name;
 };
 
 struct PfRA: public BaseLayer
@@ -3342,13 +3563,13 @@ struct PgNG: public BaseGlys
 
 struct PhgB: public BaseEffect
 {
+	HSLA*  AmbC;
 	double Ambi;
 	double Diff;
-	double Spec;
 	double Expo;
-	HSLA*  AmbC;
-	HSLA*  SpeC;
 	PLiA*  Lits;
+	HSLA*  SpeC;
+	double Spec;
 };
 
 struct PoRA: public BaseLayer
@@ -3369,7 +3590,7 @@ struct Pref
 	vector<string>  IKey;
 	vector<int32_t> IVal;
 	vector<string>  PKey;
-	/* IBRB*, RRBr* */
+	/* IBRB*, RRBr*, SRBr* */
 	vector<BaseBrush*> PVal;
 };
 
@@ -3396,18 +3617,52 @@ struct Quad
 	double Y3;
 };
 
+struct RANC: public BaseCmd
+{
+	bool Gaus;
+};
+
 struct RBMI
 {
+	bool    Auth;
 	DyBm*   Bitm;
 	string  Desc;
-	bool    Auth;
 	int32_t LOff;
 	int32_t TOff;
 };
 
-struct RDF2: public BaseFilt
+struct RDF2: public BaseCmd
 {
-	EDfP* Para;
+};
+
+struct RDGC: public BaseCmd
+{
+	double Opac;
+	double Thre;
+};
+
+struct RDNC: public BaseCmd
+{
+	double BBak;
+	double ChrS;
+	double LumS;
+	bool   UsNR;
+};
+
+struct RDf2: public BaseCmd
+{
+};
+
+struct REqT: public BaseCmd
+{
+	bool   ADeg;
+	string EquX;
+	string EquY;
+	EnumT  Exte;
+	double FacA;
+	double FacB;
+	double FacC;
+	bool   Pola;
 };
 
 struct RGBA: public BaseColor
@@ -3415,26 +3670,39 @@ struct RGBA: public BaseColor
 	ColorRGBA v_col;
 };
 
-struct RGBC: public BaseFilt
+struct RGBC: public BaseCmd
 {
 };
 
-struct RHPC: public BaseFilt
+struct RHPC: public BaseCmd
 {
-	bool Mono;
 };
 
-struct RLdC: public BaseFilt
+struct RLbC: public BaseCmd
 {
-	double Inte;
-	double Orig[2];
+	int32_t Blad;
+	double  BlmC;
+	double  BlmF;
+	double  BlmT;
+	double  FSto;
+};
+
+struct RLdC: public BaseCmd
+{
 	double RadX;
 	double RadY;
 };
 
-struct RLig: public BaseFilt
+struct RLig: public BaseCmd
 {
 	LigP* lpar;
+};
+
+struct ROCm: public BaseCmd
+{
+	bool  CliS;
+	bool  ConO;
+	void* OldS;
 };
 
 struct RRBr: public BaseBrush
@@ -3448,15 +3716,14 @@ struct RRFC: public BaseCmd
 	BaseFill* Repl;
 };
 
-struct RUSC: public BaseFilt
+struct RUSC: public BaseCmd
 {
 	double Fact;
 	double Thrs;
 };
 
-struct RVgC: public BaseFilt
+struct RVgC: public BaseCmd
 {
-	double Expo;
 	double Hard;
 	double Scal;
 	double Shap;
@@ -3468,16 +3735,16 @@ struct RcRA: public BaseLayer
 
 struct Rec
 {
-	int16_t Scal;
-	string  FnPf;
 	bool    Enbl;
+	string  FnPf;
+	int16_t Scal;
 };
 
 struct RecP: public BaseAdjustment
 {
 	float RecH;
-	float RecS;
 	float RecL;
+	float RecS;
 };
 
 struct RegC: public BaseColor
@@ -3491,22 +3758,68 @@ struct Rstr: public BaseLayer
 struct SBMC: public BaseCmd
 {
 	EnumT         Blen;
-	bool          Pass;
 	vector<EnumT> OldB;
 	vector<bool>  OldP;
+	bool          Pass;
+};
+
+struct SCCM: public BaseCmd
+{
+	bool CCFm;
+	bool NCCF;
+	bool OCCF;
 };
 
 struct SCER: public BaseCmd
 {
-	Sprd*        Root;
-	Sprd*        OldR;
-	struct Sele* OldS;
 	bool         ClSl;
 	void*        Femc;
+	Sprd*        OldR;
+	struct Sele* OldS;
+	Sprd*        Root;
 };
 
 struct SCRA: public BaseLayer
 {
+};
+
+struct SCRn
+{
+	void*          AncD;
+	int32_t        BitI[4];
+	int32_t        BitR[4];
+	DyBm*          Bitm;
+	EnumT          CLiT;
+	int32_t        CMsk;
+	void*          Data;
+	string         Desc;
+	bool           Edtb;
+	bool           ExtE;
+	double         FOV;
+	float          FOpc;
+	vector<void*>  FiEf;
+	vector<string> Frst;
+	double         Lati;
+	double         Long;
+	bool           MEtb;
+	float          Opac;
+	EnumT          ProT;
+	Per_42*        Psp_42;
+	double         Roll;
+	vector<string> Scnd;
+	double         SrBx[4];
+	double         SrPB[4];
+	double         TWBo[4];
+	EnumT          TWSt;
+	void*          TagC;
+	EnumT          TrAn;
+	int32_t        TrCn;
+	double         TrFP[2];
+	bool           TrFV;
+	void*          Unpr;
+	bool           Visi;
+	Matx*          WRot;
+	uint32_t       avin;
 };
 
 struct SCoP: public BaseAdjustment
@@ -3514,18 +3827,24 @@ struct SCoP: public BaseAdjustment
 	bool Rela;
 };
 
+struct SDDC: public BaseCmd
+{
+	DDef*   Defs;
+	int32_t Mask;
+};
+
 struct SDeC: public BaseCmd
 {
+	bool           Chan;
 	string         Desc;
 	vector<string> ODes;
-	bool           Chan;
 };
 
 struct SF2C: public BaseCmd
 {
 	string         FNam;
-	vector<string> Undo;
 	vector<string> Redo;
+	vector<string> Undo;
 };
 
 struct SGCb
@@ -3535,10 +3854,21 @@ struct SGCb
 	double Roll;
 };
 
+struct SGOC: public BaseCmd
+{
+	vector<float> OOpa;
+	float         Opac;
+};
+
 struct SGrP: public BaseProp
 {
-	SnpG* SGrd;
 	bool  Pixl;
+	SnpG* SGrd;
+};
+
+struct SHAA: public BaseCmd
+{
+	vector<void*> OldP;
 };
 
 struct SHRA: public BaseLayer
@@ -3547,8 +3877,8 @@ struct SHRA: public BaseLayer
 
 struct SHiP: public BaseAdjustment
 {
-	float ShdA;
 	float HigA;
+	float ShdA;
 };
 
 struct SItm
@@ -3569,25 +3899,25 @@ struct SLAD: public BaseDels
 
 struct SLsC: public BaseCmd
 {
-	int32_t              Mask;
-	LSty*                Line;
 	vector<struct LDsc*> LSty;
-	vector<FDsc*>        OPen;
+	struct LSty*         Line;
+	int32_t              Mask;
 	vector<void*>        OGly;
+	vector<FDsc*>        OPen;
 };
 
 struct SNAR
 {
 	int32_t AlnX;
 	int32_t AlnY;
+	int32_t Base;
 	int32_t BndX;
 	int32_t BndY;
-	double  Offs[2];
 	bool    FPre;
-	int32_t SclT;
-	int32_t Base;
-	double  Scal;
 	bool    IPre;
+	double  Offs[2];
+	double  Scal;
+	int32_t SclT;
 };
 
 struct SNEN: public BaseLayer
@@ -3596,6 +3926,66 @@ struct SNEN: public BaseLayer
 
 struct SNRR: public BaseLayer
 {
+};
+
+struct SOBE: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOCO: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOGA: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOGO: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOIS: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOIg: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOOg: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOPB: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOSh: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
+};
+
+struct SOSt: public BaseCmd
+{
+	vector<bool> OldS;
+	bool         Scal;
 };
 
 struct SPPp: public BaseProp
@@ -3617,53 +4007,63 @@ struct SRBr: public BaseBrush
 {
 };
 
+struct SRlC: public BaseCmd
+{
+	string  MNam;
+	EnumT   NChL;
+	int32_t Offs;
+	void*   OldS;
+};
+
 struct SRst
 {
-	int32_t        TrCn;
-	EnumT          TrAn;
-	double         TrFP[2];
-	bool           TrFV;
-	EnumT          Blnd;
-	bool           PasT;
-	BlnR*          BlRa;
-	double         Xfrm[6];
-	double         SrBx[4];
-	double         SrPB[4];
-	double         FTxS[6];
-	string         Desc;
-	string         DefD;
-	void*          TagC;
-	bool           Visi;
-	float          Opac;
-	float          FOpc;
-	vector<void*>  FiEf;
-	bool           Edtb;
-	bool           CEdb;
-	bool           MEtb;
-	void*          Data;
-	vector<string> Frst;
-	vector<string> Scnd;
-	EnumT          Hyty;
-	string         Hypr;
-	EnumT          HyTr;
-	EnumT          TWSt;
-	double         TWBo[4];
-	EnumT          CLiT;
-	DyBm*          Bitm;
-	int32_t        BitR[4];
+	void*          AncD;
 	int32_t        BitI[4];
+	int32_t        BitR[4];
+	DyBm*          Bitm;
+	BlnR*          BlRa;
+	EnumT          Blnd;
+	bool           CEdb;
+	EnumT          CLiT;
 	int32_t        CMsk;
-	EnumT          ProT;
-	void*          Unpr;
-	Matx*          WRot;
+	void*          Data;
+	string         DefD;
+	string         Desc;
+	bool           Edtb;
+	bool           ExtE;
+	double         FOV;
+	float          FOpc;
+	double         FTxS[6];
+	vector<void*>  FiEf;
+	vector<string> Frst;
+	EnumT          HyTr;
+	string         Hypr;
+	EnumT          Hyty;
 	double         Lati;
 	double         Long;
-	double         Roll;
-	double         FOV;
-	Quad*          Pspv;
+	bool           MEtb;
+	float          Opac;
+	bool           PasT;
+	EnumT          ProT;
 	Per_42*        Psp_42;
-	bool           ExtE;
+	Quad*          Pspv;
+	double         Roll;
+	vector<string> Scnd;
+	double         SrBx[4];
+	double         SrPB[4];
+	double         TWBo[4];
+	EnumT          TWSt;
+	void*          TagC;
+	EnumT          TrAn;
+	int32_t        TrCn;
+	double         TrFP[2];
+	bool           TrFV;
 	int32_t        TraC;
+	void*          Unpr;
+	bool           Visi;
+	Matx*          WRot;
+	double         Xfrm[6];
+	uint32_t       avin;
 };
 
 struct SSAR
@@ -3679,25 +4079,24 @@ struct SSAS
 
 struct SSFH: public BaseCmd
 {
-	void*         OldS;
-	vector<FDsc*> OldF;
 	vector<FDsc*> NewF;
-	vector<GlAS*> NewG;
+	vector<FDsc*> OldF;
+	void*         OldS;
 };
 
 struct SSLF: public BaseCmd
 {
-	void*         OldS;
-	vector<FDsc*> OldF;
 	vector<FDsc*> NewF;
-	vector<void*> NewG;
+	vector<FDsc*> OldF;
+	void*         OldS;
 };
 
 struct SSNS: public BaseCmd
 {
-	bool         TesC;
 	bool         ETxt;
+	EnumT        Hint;
 	struct Sele* OldS;
+	bool         TesC;
 };
 
 struct SSaC: public BaseCmd
@@ -3706,20 +4105,24 @@ struct SSaC: public BaseCmd
 	vector<void*> OldS;
 };
 
+struct STAA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct STPa: public BaseAdjustment
 {
+	float Bala;
 	float HlHu;
 	float HlSa;
 	float ShHu;
 	float ShSa;
-	float Bala;
 };
 
 struct SViC: public BaseCmd
 {
-	EnumT        Mode;
-	bool         Visi;
 	vector<bool> OVis;
+	bool         Visi;
 };
 
 struct ScAN: public BaseScObjs
@@ -3734,68 +4137,79 @@ struct ScIN: public BaseScObjs
 
 struct ScPr: public BaseLayer
 {
-	vector<int32_t> unbr;
-	EnumT           Dire;
-	bool            Prev;
-	bool            ArtC;
-	bool            AAtC;
-	bool            CArC;
-	bool            Stac;
+	bool    AAtC;
+	bool    ArtC;
+	bool    CArC;
+	int32_t DIdx;
+	EnumT   Dire;
+	bool    GnHT;
 	/* ScAN*, ScIN*, ScRN* */
 	vector<BaseScObjs*> Objs;
+	bool                Prev;
 	bool                Prog;
-	bool                GnHT;
-	int32_t             DIdx;
+	bool                Stac;
+	vector<int32_t>     unbr;
 };
 
 struct ScRN: public BaseScObjs
 {
-	EnumT shdt;
-	/* Grup*, Scop*, ShpN*, Sprd* */
-	BaseLayer* olpr;
+	DeSy* dtcm;
+	EnumT olct;
 	/* Grup*, PCrv*, Rstr*, Scop*, ShpN* */
 	BaseLayer* olns;
-	EnumT      olct;
-	DeSy*      dtcm;
+	/* Grup*, Scop*, ShpN*, Sprd* */
+	BaseLayer* olpr;
+	EnumT      shdt;
 };
 
 struct Scal
 {
 	struct ExSc* ExSc;
-	string       Path;
 	double       ODPI;
+	string       Path;
 };
 
 struct Scop: public BaseLayer
 {
-	bool VExp;
 	/* HSLA*, RGBA* */
 	BaseColor* SGNc;
+	bool       VExp;
 };
 
 struct Sctn
 {
-	string Head;
 	string Body;
-	string Pst;
-	string LPst;
 	string Foot;
+	string Head;
+	string LPst;
+	string Pst;
 	bool   RevO;
+};
+
+struct SecA: public BaseCmd
+{
+	vector<void*> OldP;
 };
 
 struct Sele
 {
+	bool          InRi;
 	vector<SItm*> Itms;
 	/* Scop*, ShpN*, Sprd* */
 	BaseLayer* Layr;
-	bool       InRi;
 };
 
 struct SetE: public BaseCmd
 {
 	bool          Edit;
-	struct Sele*  OldS;
 	vector<EnumT> OlDS;
+	struct Sele*  OldS;
+};
+
+struct SflP: public BaseCmd
+{
+	vector<bool> OldP;
+	bool         Prot;
 };
 
 struct ShCE: public BaseShape
@@ -3805,16 +4219,16 @@ struct ShCE: public BaseShape
 
 struct ShCR: public BaseShape
 {
-	float TlWd;
 	float TlRP;
+	float TlWd;
 };
 
 struct ShCg: public BaseShape
 {
 	float    Hole;
-	float    TtSz;
 	float    NtSz;
 	uint16_t Teth;
+	float    TtSz;
 };
 
 struct ShCl: public BaseShape
@@ -3830,15 +4244,15 @@ struct ShCr: public BaseShape
 
 struct ShDA: public BaseShape
 {
-	float Thck;
-	EnumT LSty;
-	EnumT RSty;
 	bool  LLnk;
 	float LPr1;
 	float LPr2;
+	EnumT LSty;
 	bool  RLnk;
 	float RPr1;
 	float RPr2;
+	EnumT RSty;
+	float Thck;
 };
 
 struct ShDS: public BaseShape
@@ -3859,8 +4273,8 @@ struct ShNR: public BaseShape
 
 struct ShPi: public BaseShape
 {
-	float AngS;
 	float AngE;
+	float AngS;
 };
 
 struct ShPy: public BaseShape
@@ -3894,15 +4308,15 @@ struct ShSt: public BaseShape
 	float    CrcO;
 	float    CrvL;
 	float    CrvR;
-	uint16_t Pntt;
 	bool     Lgcy;
+	uint16_t Pntt;
 };
 
 struct ShTr: public BaseShape
 {
-	bool  Fixd;
 	float Ball;
 	float Bend;
+	bool  Fixd;
 	float Tail;
 };
 
@@ -3928,9 +4342,9 @@ struct ShpE: public BaseShape
 
 struct ShpN: public BaseLayer
 {
-	ShpN*   ShpM;
 	int32_t CExR[4];
 	double  Orgn[2];
+	ShpN*   ShpM;
 };
 
 struct ShpT: public BaseShape
@@ -3939,13 +4353,13 @@ struct ShpT: public BaseShape
 
 struct SlcP: public BaseLayer
 {
-	bool          EmMd;
+	bool EmMd;
+	/* EOPn*, FExO* */
+	BaseExport*   ExOp;
 	bool          InBl;
+	bool          Init;
 	int32_t       SRct[4];
 	vector<Slic*> Slcs;
-	bool          Init;
-	/* EOPn*, FExO* */
-	BaseExport* ExOp;
 };
 
 struct Slic: public BaseLayer
@@ -3955,46 +4369,60 @@ struct Slic: public BaseLayer
 
 struct Smps
 {
-	EnumT  smTy;
 	double smPt[2];
+	EnumT  smTy;
 	bool   smVi;
+};
+
+struct Snap
+{
+	bool    BPCm;
+	string  Desc;
+	DocN*   Docu;
+	Sprd*   EdtR;
+	EnumT   Form;
+	EnumT   Intn;
+	SRst*   RasS;
+	TStS*   StyS;
+	UVCn*   UniC;
+	uint8_t UniT;
 };
 
 struct SnpG
 {
-	double   Siz0;
-	double   Gut0;
-	int32_t  Dvs0;
-	double   Siz1;
-	double   Gut1;
-	int32_t  Dvs1;
-	double   Siz2;
-	double   Gut2;
-	int32_t  Dvs2;
-	EnumT    Mode;
-	bool     Unfm;
 	bool     AUpA;
-	bool     FxAs;
-	double   AspR;
-	double   UAsR;
 	double   Ang0;
 	double   Ang1;
 	double   AngU;
-	EnumT    Horz;
-	EnumT    Vert;
-	EnumT    Intm;
-	EnumT    UpRl;
-	uint32_t IDvs;
-	SGCb*    Cube;
+	double   AspR;
 	void*    CRot;
 	double   CScl;
+	SGCb*    Cube;
+	int32_t  Dvs0;
+	int32_t  Dvs1;
+	int32_t  Dvs2;
+	bool     FxAs;
+	double   Gut0;
+	double   Gut1;
+	double   Gut2;
+	EnumT    Horz;
+	uint32_t IDvs;
+	EnumT    Intm;
+	EnumT    Mode;
+	double   Siz0;
+	double   Siz1;
+	double   Siz2;
+	double   UAsR;
+	bool     Unfm;
+	EnumT    UpRl;
+	EnumT    Vert;
 };
 
 struct SoPP: public BaseAdjustment
 {
-	ICCP* Prof;
-	EnumT Intn;
 	bool  BPCs;
+	EnumT Intn;
+	ICCP* Prof;
 	bool  SPGC;
 };
 
@@ -4015,38 +4443,39 @@ struct SpTA: public BaseLayer
 
 struct Spln
 {
-	int32_t        Cnt;
-	vector<double> Vals;
-	bool           Linr;
 	double         Bnd1;
 	double         BndN;
+	int32_t        Cnt;
+	bool           Linr;
+	vector<double> Vals;
 };
 
 struct Sprd: public BaseLayer
 {
+	RGBA*         BgrC;
+	void*         BlFl;
+	void*         DScl;
+	bool          Fcng;
+	double        Mrgn[4];
 	int32_t       PagC;
-	bool          PagF;
 	bool          PagD;
+	bool          PagF;
+	bool          R1st;
+	SRst*         Ras2;
+	SRst*         RasS;
+	struct SlcP*  SlcP;
 	double        SprB[4];
 	bool          SprT;
-	SRst*         RasS;
-	SRst*         Ras2;
-	double        bled[4];
-	SlcP*         SlcP;
-	RGBA*         BgrC;
-	vector<Smps*> smps;
-	vector<VwPD*> VPts;
-	bool          Fcng;
-	bool          R1st;
-	PBxR*         bbxs;
-	double        Mrgn[4];
 	double        UOrg[2];
+	vector<VwPD*> VPts;
+	double        bled[4];
+	vector<Smps*> smps;
 };
 
 struct StBl
 {
-	GStr* Glyp;
 	GlAS* GAtt;
+	GStr* Glyp;
 	PaAS* PAtt;
 };
 
@@ -4057,15 +4486,15 @@ struct StkN: public BaseLayer
 
 struct Stop
 {
-	double Posn;
-	EnumT  Type;
-	EnumT  Lead;
-	GStr*  LStr;
 	ChGl*  DGly;
 	bool   FRgh;
-	TxtA*  IStr;
 	TexS*  GSel;
+	TxtA*  IStr;
+	GStr*  LStr;
+	EnumT  Lead;
 	TexS*  PSel;
+	double Posn;
+	EnumT  Type;
 };
 
 struct Strk: public BaseEffect
@@ -4080,6 +4509,26 @@ struct Stry
 	bool          iTab;
 };
 
+struct SynC
+{
+	vector<curve16_t> dscB;
+	vector<curve16_t> dscE;
+	UnknownStruct16   evtI;
+	cibs*             ibnd;
+	vector<string>    ignD;
+	vector<curve16_t> ignK;
+	vector<EnumT>     ignV;
+	bool              retB;
+	string            retU;
+	vector<ascp*>     scpK;
+};
+
+struct SynP
+{
+	vector<pdsi*>     itms;
+	vector<curve16_t> uids;
+};
+
 struct TBFR
 {
 	vector<TbFt*> fmts;
@@ -4087,8 +4536,8 @@ struct TBFR
 
 struct TBSO
 {
-	bool InHd;
 	bool CsSn;
+	bool InHd;
 	bool NAWd;
 };
 
@@ -4100,20 +4549,20 @@ struct TCel
 
 struct TCls
 {
-	int32_t       Size[2];
 	vector<TCel*> Cell;
+	int32_t       Size[2];
 };
 
 struct TEdg
 {
-	LDsc* Line;
 	FDsc* Fill;
+	LDsc* Line;
 };
 
 struct TEds
 {
-	int32_t       Size[2];
 	vector<TEdg*> Edge;
+	int32_t       Size[2];
 };
 
 struct TExM: public BaseProp
@@ -4123,33 +4572,33 @@ struct TExM: public BaseProp
 
 struct TMpP
 {
-	double Strg;
-	double LocC;
-	double ShaI;
-	double HigI;
-	bool   SHiE;
-	double Expo;
-	bool   ExpE;
-	double Cont;
-	bool   ConE;
-	double Satu;
-	double Vibr;
 	double Blap;
-	double Whip;
-	double WhiB;
-	double Tint;
-	bool   WhBE;
-	double DRRd;
+	bool   ConE;
+	double Cont;
+	bool   CrEn;
+	CrvP*  Curv;
 	double DRAm;
 	bool   DREn;
-	CrvP*  Curv;
-	bool   CrEn;
+	double DRRd;
+	bool   ExpE;
+	double Expo;
+	double HigI;
+	double LocC;
+	bool   SHiE;
+	double Satu;
+	double ShaI;
+	double Strg;
+	double Tint;
+	double Vibr;
+	bool   WhBE;
+	double WhiB;
+	double Whip;
 };
 
 struct TPos
 {
-	vector<double> Posn;
 	vector<double> MSiz;
+	vector<double> Posn;
 };
 
 struct TStS
@@ -4159,30 +4608,30 @@ struct TStS
 
 struct TSty
 {
-	string Name;
-	EnumT  Type;
-	bool   Show;
-	CoDe*  Delt;
 	string Base;
+	CoDe*  Delt;
 	string Foll;
+	string Name;
 	string Next;
+	bool   Show;
+	EnumT  Type;
 };
 
 struct TabS: public BaseAtt
 {
-	vector<Stop*> Stop;
-	ChGl*         DecG;
+	ChGl*                DecG;
+	vector<struct Stop*> Stop;
 };
 
 struct Tabl
 {
-	TPos*  CPos;
-	TPos*  RPos;
 	TEds*  CEdg;
-	TEds*  REdg;
+	TPos*  CPos;
 	TCls*  Cell;
-	TbFt*  TFmt;
 	double Inst[4];
+	TEds*  REdg;
+	TPos*  RPos;
+	TbFt*  TFmt;
 };
 
 struct TbBF
@@ -4193,40 +4642,40 @@ struct TbBF
 
 struct TbCF
 {
-	string        Name;
+	EnumT         AlnY;
 	vector<TbBF*> Brds;
 	FDsc*         Fill;
-	string        PSty;
 	double        Inst[4];
-	EnumT         AlnY;
+	string        Name;
+	string        PSty;
 };
 
 struct TbFr: public BaseFrms
 {
-	Tabl* Tabl;
+	struct Tabl* Tabl;
 };
 
 struct TbFt
 {
-	vector<TbCF*> Clls;
-	vector<TbCF*> Fmts;
-	int32_t       Size[2];
 	int32_t       Brds[4];
-	string        Name;
-	double        ppi;
-	bool          IsDf;
+	vector<TbCF*> Clls;
 	FDsc*         Fill;
+	vector<TbCF*> Fmts;
+	double        Inst[4];
+	bool          IsDf;
 	FDsc*         LFll;
 	LDsc*         LSty;
-	double        Inst[4];
+	string        Name;
+	int32_t       Size[2];
+	double        ppi;
 };
 
 struct TexS: public BaseSubSel
 {
-	int32_t SAnc;
-	int32_t SCar;
 	bool    SACF;
+	int32_t SAnc;
 	bool    SCCF;
+	int32_t SCar;
 	bool    SmSp;
 };
 
@@ -4236,9 +4685,15 @@ struct ThRA: public BaseLayer
 
 struct ThrP: public BaseAdjustment
 {
-	float Thre;
 	float Fals;
+	float Thre;
 	float True;
+};
+
+struct Tmps
+{
+	vector<temp*>     itms;
+	vector<curve16_t> uids;
 };
 
 struct TocA: public BaseAtt
@@ -4252,40 +4707,40 @@ struct TonP: public BaseProp
 
 struct TrCm: public BaseCmd
 {
-	bool                     TrRS;
-	bool                     FTxS;
-	double                   Xfrm[6];
-	double                   ORST[6];
-	double                   NotT[6];
-	SpRV*                    OIRe;
-	SpRV*                    NIRe;
-	vector<uint32_t>         OTCn;
-	vector<EnumT>            OTAn;
-	bool                     PPFP;
-	vector<array<double, 6>> OldA;
-	vector<array<double, 6>> OFTS;
-	bool                     Merg;
+	bool                     AjPF;
 	bool                     CRas;
 	bool                     CorC;
-	vector<array<double, 6>> OlCT;
-	vector<array<double, 6>> OPCT;
-	bool                     RArt;
-	bool                     AjPF;
-	bool                     DupN;
 	Dupl*                    DupC;
-	void*                    PFPC;
+	bool                     DupN;
+	bool                     FTxS;
+	bool                     Merg;
 	MvNC*                    MovC;
+	SpRV*                    NIRe;
+	double                   NotT[6];
+	vector<array<double, 6>> OFTS;
+	SpRV*                    OIRe;
+	vector<array<double, 6>> OPCT;
+	double                   ORST[6];
+	vector<EnumT>            OTAn;
+	vector<uint32_t>         OTCn;
+	vector<array<double, 6>> OlCT;
+	vector<array<double, 6>> OldA;
+	void*                    PFPC;
+	bool                     PPFP;
+	bool                     RArt;
 	Sprd*                    RpSd;
 	void*                    SCSC;
 	void*                    SCsC;
+	bool                     TrRS;
+	vector<void*>            UpDm;
 };
 
 struct TrSl: public BaseCmd
 {
-	vector<Slic*> Slcs;
+	EnumT         Mthd;
 	vector<void*> Nods;
 	int32_t       Ofst[2];
-	EnumT         Mthd;
+	vector<Slic*> Slcs;
 };
 
 struct TxFU
@@ -4294,9 +4749,9 @@ struct TxFU
 
 struct TxFl
 {
+	bool HOvr;
 	/* CPTx*, TxtA*, TxtF*, TxtT* */
 	vector<BaseLayer*> Nods;
-	bool               HOvr;
 	ILTf*              TFLK;
 };
 
@@ -4326,8 +4781,8 @@ struct UANC: public BaseCmd
 
 struct UVCn
 {
-	double  UPPI;
 	int32_t SPxM;
+	double  UPPI;
 	double  VDPI;
 };
 
@@ -4339,51 +4794,90 @@ struct UnSR
 
 struct UndR
 {
-	uint32_t      Fetr;
-	int32_t       Valu;
-	ShpN*         Node;
-	double        Xfrm[6];
-	double        FTxS[6];
-	Grup*         Grou;
-	Scop*         Pare;
-	void*         NexS;
-	vector<UndR*> Chil;
+	vector<UndR*>            Chil;
+	double                   FTxS[6];
+	uint32_t                 Fetr;
+	Grup*                    Grou;
+	vector<void*>            IFTI;
+	vector<array<double, 6>> IFTT;
+	void*                    IfBD;
+	vector<array<double, 6>> IfCT;
+	/* MRst*, Rstr* */
+	vector<BaseLayer*>       InTI;
+	vector<array<double, 6>> InTT;
+	DyBm*                    InfB;
+	double                   InfF[2];
+	double                   InfT[6];
+	void*                    NexS;
+	/* MRst*, Rstr*, ShpN* */
+	BaseLayer*               Node;
+	void*                    NwFC;
+	vector<void*>            OFTI;
+	vector<array<double, 6>> OFTT;
+	void*                    OlFC;
+	void*                    OrBD;
+	vector<array<double, 6>> OrCT;
+	/* MRst*, Rstr* */
+	vector<BaseLayer*>       OrTI;
+	vector<array<double, 6>> OrTT;
+	DyBm*                    OrgB;
+	double                   OrgF[2];
+	double                   OrgT[6];
+	Scop*                    Pare;
+	int32_t                  Valu;
+	double                   Xfrm[6];
 };
 
 struct Undo
 {
-	v_CB4* On;
 	v_CB5* Off;
+	v_CB4* On;
+};
+
+struct UniV
+{
+	int32_t Powr;
+	uint8_t UniT;
+	double  dVal;
 };
 
 struct VbRA: public BaseLayer
 {
 };
 
+struct VibA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct VibP: public BaseAdjustment
 {
-	int32_t Vibr;
-	float   Satu;
+	float Satu;
 };
 
 struct VwPD
 {
-	double   vpFr;
 	double   vpCt[2];
+	double   vpFr;
+	bool     vpIM;
 	string   vpPn;
 	uint32_t vpSI;
-	bool     vpIM;
 };
 
 struct WBRA: public BaseLayer
 {
 };
 
+struct WBaA: public BaseCmd
+{
+	vector<void*> OldP;
+};
+
 struct WhBP: public BaseAdjustment
 {
-	int32_t  WhBa;
 	float    WBTi;
 	uint16_t WhBV;
+	int32_t  WhBa;
 };
 
 struct XCfg
@@ -4394,23 +4888,25 @@ struct XCfg
 
 struct XMgC: public BaseCmd
 {
-	vector<XCfg*> Undo;
-	vector<void*> Redo;
 	FlagsT        Chgs;
+	bool          Defs;
+	vector<void*> Redo;
+	vector<XCfg*> Undo;
 };
 
 struct XStC: public BaseCmd
 {
-	vector<XCfg*> Undo;
+	bool          Defs;
 	vector<void*> Redo;
+	vector<XCfg*> Undo;
 };
 
 /* NOLINTNEXTLINE(readability-identifier-naming) */
 struct v_CB1
 {
 	uint8_t       byte;
-	uint32_t      size;
 	vector<v_C1*> list;
+	uint32_t      size;
 };
 
 /* NOLINTNEXTLINE(readability-identifier-naming) */
@@ -4423,8 +4919,8 @@ struct v_CB2
 /* NOLINTNEXTLINE(readability-identifier-naming) */
 struct v_CB3
 {
-	uint8_t           byte;
 	bool              bool_v;
+	uint8_t           byte;
 	vector<curve18_t> crvs;
 };
 
@@ -4432,10 +4928,10 @@ struct v_CB3
 struct v_CB4
 {
 	uint8_t  byte;
+	EnumT    enum_v;
 	uint32_t int_v;
 	double   vecd[2];
 	int32_t  veci[2];
-	EnumT    enum_v;
 };
 
 /* NOLINTNEXTLINE(readability-identifier-naming) */
@@ -4444,8 +4940,8 @@ struct v_CB5
 	uint8_t  byte;
 	uint32_t int_v;
 	double   vcd1[2];
-	int32_t  vci1[2];
 	double   vcd2[2];
+	int32_t  vci1[2];
 	int32_t  vci2[2];
 };
 
@@ -4459,9 +4955,176 @@ struct v_C1
 /* NOLINTNEXTLINE(readability-identifier-naming) */
 struct v_C2
 {
-	vector<int32_t> ints;
-	vector<double>  dbls;
 	vector<uint8_t> byts;
+	vector<double>  dbls;
+	vector<int32_t> ints;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct ascp
+{
+	struct icol* icol;
+	string       uref;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct bndl
+{
+	EnumT         alvl;
+	curve16_t     buid;
+	LcLs*         desc;
+	string        eula;
+	enty*         head;
+	LcLs*         name;
+	vector<pack*> pcks;
+	vector<bres*> rsrs;
+	string        sku_46;
+	string        stor;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct bres
+{
+	LcLs*  name;
+	string rurl;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct cibs
+{
+	vector<curve16_t> Ublk;
+	vector<curve24_t> keys;
+	/* crfA*, crfM*, crfR*, crfT*, crfW* */
+	vector<BaseCrf*> refs;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct crfA: public BaseCrf
+{
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct crfM: public BaseCrf
+{
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct crfR: public BaseCrf
+{
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct crfT: public BaseCrf
+{
+	LcLs* name;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct crfW: public BaseCrf
+{
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct enty
+{
+	uint64_t      aRev;
+	EnumT         alvl;
+	string        auth;
+	bool          capC;
+	bool          capE;
+	bool          capM;
+	bool          capR;
+	curve16_t     euid;
+	uint32_t      frmt;
+	EnumT         kind;
+	LcLs*         name;
+	vector<erev*> revs;
+	int64_t       time;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct erev
+{
+	string        auth;
+	bool          eqiv;
+	vector<pmda*> plds;
+	uint64_t      revn;
+	int64_t       time;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct icol
+{
+	vector<bndl*> bdls;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct newD
+{
+	bool     artb;
+	UniV*    bbld;
+	UniV*    bmgn;
+	EnumT    cfmt;
+	int32_t  cprl;
+	bool     defM;
+	UVCn*    dpi;
+	bool     face;
+	UniV*    hght;
+	EnumT    ippy;
+	UniV*    lbld;
+	UniV*    lmgn;
+	bool     mrgn;
+	uint32_t nopg;
+	EnumT    pgAr;
+	EnumT    pgSO;
+	int32_t  prst;
+	UniV*    rbld;
+	UniV*    rmgn;
+	bool     tbkd;
+	UniV*    tbld;
+	UniV*    tmgn;
+	EnumT    type;
+	bool     ubld;
+	bool     umgn;
+	uint8_t  unts;
+	UniV*    wdth;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct pack
+{
+	void*         head;
+	string        hint;
+	vector<enty*> itms;
+	LcLs*         name;
+	bool          prdH;
+	vector<EnumT> prdL;
+	curve16_t     puid;
+	string        stor;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct pdsi
+{
+	BinaryData data;
+	EnumT      fmt_46;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct pmda
+{
+	uint32_t chks;
+	string   ctyp;
+	string   role;
+	uint64_t size;
+	string   slug;
+};
+
+/* NOLINTNEXTLINE(readability-identifier-naming) */
+struct temp
+{
+	EmbeddedData data;
+	EmbeddedData thmb;
 };
 
 #pragma pack(pop)

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Vladimir Mamonov
+// Copyright (c) 2020-2021 Vladimir Mamonov
 // Licensed under the MIT license.
 
 #include "Affinity/Archive.h"
@@ -235,6 +235,9 @@ public:
 	static constexpr int TAG_TBFM = 0x5462466d;
 	static constexpr int TAG_TLEX = 0x546c4578;
 	static constexpr int TAG_PRFP = 0x50726650;
+
+	static constexpr int TAG_NDCS = 0x6e646373;
+	static constexpr int TAG_AFWS = 0x61667773;
 };
 
 class FileRevisionPrivate
@@ -509,7 +512,7 @@ bool ArchivePrivate::LoadHeader()
 
 	std::vector<int> supported_tags = {TAG_PRSN, TAG_PREF, TAG_ADJM, TAG_ASTP, TAG_CROP, TAG_DEVP, TAG_DCTS, TAG_DOCP, TAG_EXPP,
 	                                   TAG_FILS, TAG_GRDP, TAG_MACS, TAG_OBJS, TAG_OSTY, TAG_RBRU, TAG_SHPS, TAG_TONP, TAG_TLST,
-	                                   TAG_VBRU, TAG_ABDC, TAG_AUCR, TAG_FLTX, TAG_TBFM, TAG_TLEX, TAG_PRFP};
+	                                   TAG_VBRU, TAG_ABDC, TAG_AUCR, TAG_FLTX, TAG_TBFM, TAG_TLEX, TAG_PRFP, TAG_NDCS, TAG_AFWS};
 
 	AF_LOAD(header.h.file_tag);
 	AF_LOAD(header.h.version);

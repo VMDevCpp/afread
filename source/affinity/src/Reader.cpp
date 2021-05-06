@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Vladimir Mamonov
+// Copyright (c) 2020-2021 Vladimir Mamonov
 // Licensed under the MIT license.
 
 #include "Affinity/Reader.h"
@@ -87,11 +87,13 @@ public:
 	template <class T>
 	bool LoadField(Field* field, bool array, int type = 0);
 
-	bool LoadCurve(Field* field, bool array);
+	bool LoadStruct2C(Field* field, bool array);
 	template <class T>
 	bool LoadCurve(Field* field, bool array, uint32_t count);
+	template <class T>
+	bool LoadUnknownCurve(Field* field, bool array, uint32_t count);
 
-	bool LoadColor(Field* field, bool array, int type);
+	bool LoadStruct(Field* field, bool array, int type);
 
 	const Class*     GetDoc() const { return m_doc; }
 	const DocFormat* GetDocFormat() const { return &m_doc->f; }
@@ -178,7 +180,7 @@ bool ReaderPrivate::LoadField(Field* field, bool array, int /*type*/)
 	return true;
 }
 
-bool ReaderPrivate::LoadColor(Field* field, bool array, int type)
+bool ReaderPrivate::LoadStruct(Field* field, bool array, int type)
 {
 	int size = type - 0x34;
 
@@ -215,6 +217,10 @@ bool ReaderPrivate::LoadColor(Field* field, bool array, int type)
 	if (size == 20 && parent_tag == "CMYK"_tag && field_tag == "_col"_tag)
 	{
 		return LoadField<ColorCMYK>(field, array);
+	}
+	if (size == 16 && parent_tag == "SynC"_tag && field_tag == "evtI"_tag)
+	{
+		return LoadField<UnknownStruct16>(field, array);
 	}
 
 	AF_ERROR("unknown size and tags: " + std::to_string(size) + ", " + TagToString(parent_tag) + ", " + TagToString(field_tag));
@@ -342,7 +348,7 @@ bool ReaderPrivate::LoadField<Class*>(Field* field, bool array, int type)
 	return !invalid;
 }
 
-bool ReaderPrivate::LoadCurve(Field* field, bool array)
+bool ReaderPrivate::LoadStruct2C(Field* field, bool array)
 {
 	uint32_t count = 1;
 	uint16_t size  = 0;
@@ -353,13 +359,54 @@ bool ReaderPrivate::LoadCurve(Field* field, bool array)
 	}
 	AF_LOAD(size);
 
+	//	auto* parent = field->parent;
+	//	if (parent == nullptr || parent->GetTypes().empty())
+	//	{
+	//		AF_ERROR("invalid parent class");
+	//	}
+	//	auto parent_tag = parent->GetTypes()[0].tag;
+	//	auto field_tag  = field->tag;
+
+	// TODO(#147): check parent_tag and field_tag
+
 	switch (size)
 	{
 		case 12: return LoadCurve<curve12_t>(field, array, count);
 		case 16: return LoadCurve<curve16_t>(field, array, count);
 		case 18: return LoadCurve<curve18_t>(field, array, count);
+		case 24: return LoadUnknownCurve<curve24_t>(field, array, count);
+		case 32: return LoadUnknownCurve<curve32_t>(field, array, count);
 
 		default: AF_ERROR("unknown curve");
+	}
+
+	return true;
+}
+
+template <class T>
+bool ReaderPrivate::LoadUnknownCurve(Field* field, bool array, uint32_t count)
+{
+	SharedArray<T> clss = SharedArray<T>(count != 0U ? new T[count] : nullptr, count);
+
+	for (uint32_t i = 0; i < count; i++)
+	{
+		T cls {};
+
+		AF_LOAD(cls.u);
+
+		clss[i] = cls;
+	}
+
+	if (!array)
+	{
+		field->value = (clss ? clss[0] : T());
+		field->count = 1;
+		AF_CHECK_V(T, field->value);
+	} else
+	{
+		field->value = clss;
+		field->count = count;
+		AF_CHECK_A(SharedArray<T>, field->value);
 	}
 
 	return true;
@@ -591,7 +638,7 @@ bool ReaderPrivate::LoadFields(Class* parent, bool with_tag)
 			case 0x2b:
 			case 0x2e: ok = LoadField<std::string>(&field, array); break;
 
-			case 0x2c: ok = LoadCurve(&field, array); break;
+			case 0x2c: ok = LoadStruct2C(&field, array); break;
 			case 0x2d: ok = LoadField<BinaryData>(&field, array); break;
 
 			case 0x30:
@@ -651,7 +698,7 @@ bool ReaderPrivate::LoadFields(Class* parent, bool with_tag)
 			default:
 				if (type >= 0x35 && type <= 0x74)
 				{
-					ok = LoadColor(&field, array, type);
+					ok = LoadStruct(&field, array, type);
 				} else
 				{
 					unknown = true;
